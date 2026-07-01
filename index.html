@@ -3,52 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>apssg12 - Navigation</title>
+    <title>apssg12 – Navigation</title>
     <style>
+        :root {
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --hover-bg: #f1f5f9;
+            --btn-bg: #e2e8f0;
+            --btn-text: #1e293b;
+            --secondary-text: #6b7280;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --text: #f1f5f9;
+            --card-bg: #1e293b;
+            --border: #334155;
+            --hover-bg: #334155;
+            --btn-bg: #475569;
+            --btn-text: #f1f5f9;
+            --secondary-text: #94a3b8;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
         body {
             font-family: system-ui, -apple-system, sans-serif;
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            line-height: 1.5;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem 1.5rem;
         }
-        details {
-            margin-left: 1.5em;
-            margin-bottom: 0.3em;
+        .explorer-container {
+            width: 100%;
+            max-width: 720px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            padding: 2rem;
         }
-        summary {
-            cursor: pointer;
-            padding: 0.3em 0;
-            font-weight: 500;
-        }
-        .open-btn {
-            text-decoration: none;
-            color: #0366d6;
-            font-weight: normal;
-            margin-left: 0.5em;
-        }
-        .open-btn:hover {
-            text-decoration: underline;
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
         }
         h1 {
-            border-bottom: 1px solid #eaecef;
-            padding-bottom: 0.3em;
+            font-size: clamp(1.8rem, 5vw, 2.4rem);
+            font-weight: 700;
+        }
+        .theme-toggle {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: none;
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .subtitle {
+            color: var(--secondary-text);
+            margin-bottom: 1.8rem;
+        }
+        .file-explorer { list-style: none; }
+        .explorer-item { margin: 0.25rem 0; }
+        .folder-summary,
+        .folder-display {
+            display: flex;
+            align-items: center;
+            padding: 0.7rem 0.8rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 0.95rem;
+        }
+        .folder-summary:hover,
+        .folder-display:hover {
+            background: var(--hover-bg);
+        }
+        .folder-icon { font-size:1.2rem; margin-right:0.5rem; flex-shrink:0; }
+        .folder-name { flex-grow:1; font-weight:500; overflow:hidden; text-overflow:ellipsis; }
+        .open-btn {
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap:0.25rem;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            padding:0.3rem 0.8rem;
+            border-radius:20px;
+            font-size:0.8rem;
+            font-weight:500;
+            margin-left:0.8rem;
+            transition: background 0.2s, transform 0.1s;
+            white-space: nowrap;
+            flex-shrink:0;
+        }
+        .open-btn:hover { transform: scale(1.02); }
+        .open-icon { font-size:0.75rem; }
+        .folder-details > summary {
+            list-style: none;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+        .folder-details > summary::-webkit-details-marker { display:none; }
+        .folder-details > summary::before {
+            content: "▶";
+            position: absolute;
+            left:0.5rem;
+            top:50%;
+            transform: translateY(-50%);
+            font-size:0.7rem;
+            color: var(--secondary-text);
+            transition: transform 0.2s;
+        }
+        .folder-details[open] > summary::before {
+            transform: translateY(-50%) rotate(90deg);
+        }
+        .folder-children {
+            list-style: none;
+            margin-left:1.3rem;
+            border-left: 2px solid var(--border);
+            padding-left:0.5rem;
+        }
+        .leaf .folder-display { padding-left:1.8rem; }
+        hr { border:none; border-top:1px solid var(--border); margin:2rem 0 1rem; }
+        .footer-note {
+            color: var(--secondary-text);
+            font-size:0.8rem;
+            text-align: center;
+        }
+        .contact-bar {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .contact-link {
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+        .contact-link:hover { transform: scale(1.2); }
+        @media (max-width:500px) {
+            body { padding:1rem; }
+            .explorer-container { padding:1.5rem; }
         }
     </style>
 </head>
 <body>
-    <h1>📚 apssg12 – Site Navigation</h1>
-    <p>Click a folder to expand it. Use the <strong>[Open]</strong> button to visit that page.</p>
-    <details>
-<summary>grade_11</summary>
-<details>
-<summary>chemistry</summary>
-<details>
-<summary>unit_5 <a href="https://keabi-coder.github.io/apssg12/grade_11/chemistry/unit_5/" target="_blank" class="open-btn">[Open]</a></summary>
-</details>
-</details>
-</details>
-    <hr>
-    <p style="color: #586069; font-size: 0.9em;">Auto-generated on 2026-07-01 15:42 UTC</p>
+    <div class="explorer-container">
+        <div class="header-row">
+            <h1>📚 apssg12</h1>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+        </div>
+        <p class="subtitle">Click folders to expand, then use <strong>[Open]</strong> to visit a page.</p>
+        <ul class="file-explorer">
+            <li class="explorer-item"><details class="folder-details"><summary class="folder-summary"><span class="folder-icon">📁</span> <span class="folder-name">grade_11</span></summary><ul class="folder-children"><li class="explorer-item"><details class="folder-details"><summary class="folder-summary"><span class="folder-icon">📁</span> <span class="folder-name">chemistry</span></summary><ul class="folder-children"><li class="explorer-item leaf"><div class="folder-display"><span class="folder-icon">📁</span> <span class="folder-name">unit_5</span><a href="https://keabi-coder.github.io/apssg12/grade_11/chemistry/unit_5/" target="_blank" class="open-btn" title="Open unit_5"><span class="open-icon">↗</span> Open</a></div></li></ul></details></li></ul></details></li>
+        </ul>
+        <hr>
+        <div class="contact-bar"><a href="keabzendbekele8@example.com" target="_blank" class="contact-link" title="email">📧</a> <a href="https://t.me/keabibeki" target="_blank" class="contact-link" title="telegram">✈️</a></div>
+        <p class="footer-note">Auto‑generated on 2026-07-01 12:53 UTC</p>
+    </div>
+    <script>
+        (function() {
+            const toggle = document.getElementById('themeToggle');
+            const stored = localStorage.getItem('theme');
+            if (stored === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                toggle.textContent = '☀️';
+            }
+            toggle.addEventListener('click', () => {
+                const current = document.documentElement.getAttribute('data-theme');
+                const next = current === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', next);
+                localStorage.setItem('theme', next);
+                toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+            });
+        })();
+    </script>
 </body>
 </html>

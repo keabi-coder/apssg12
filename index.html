@@ -5,147 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APSSG12 – Learning Resources</title>
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <style>
         /* ==========================================================================
-           DESIGN TOKENS & ARCHITECTURE
-           A comprehensive, multi-layered variable system for deep UI consistency.
+           1. COMPREHENSIVE NEUMORPHIC DESIGN SYSTEM (:root Tokens)
            ========================================================================== */
         :root {
-            /* ---- 1. Core Color Palette ---- */
-            --hue: 220;
-            --sat: 14%;
-            --bg-l: 94%;
-            --surface-l: 96%;
+            /* ---- Hue & Saturation base mappings ---- */
+            --primary-hue: 220;
+            --primary-sat: 16%;
+            --bg-lightness: 94%;
+            --surface-lightness: 94%;
+            --card-lightness: 94%;
             
-            --color-bg: hsl(var(--hue), var(--sat), var(--bg-l));
-            --color-surface: hsl(var(--hue), var(--sat), var(--surface-l));
-            --color-surface-alt: hsl(var(--hue), var(--sat), calc(var(--surface-l) - 2%));
-            --color-text: hsl(var(--hue), 15%, 10%);
-            --color-text-soft: hsl(var(--hue), 10%, 35%);
-            --color-text-muted: hsl(var(--hue), 10%, 50%);
-            --color-border: hsla(var(--hue), 15%, 50%, 0.12);
-            --color-border-strong: hsla(var(--hue), 15%, 50%, 0.2);
+            /* ---- Core Background & Content Colors ---- */
+            --color-bg: hsl(var(--primary-hue), var(--primary-sat), var(--bg-lightness));
+            --color-surface: hsl(var(--primary-hue), var(--primary-sat), var(--surface-lightness));
+            --color-card: hsl(var(--primary-hue), var(--primary-sat), var(--card-lightness));
             
-            /* ---- 2. Accent System ---- */
-            --accent: #3b82f6;
-            /* Manually parse accent or fallback to a default vibrant blue/purple */
-            --accent-h: 245;
-            --accent-s: 90%;
-            --accent-l: 65%;
-            --color-accent: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
-            --color-accent-hover: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 5%));
-            --color-accent-soft: hsla(var(--accent-h), var(--accent-s), 60%, 0.1);
-            --color-accent-glow: hsla(var(--accent-h), var(--accent-s), 60%, 0.4);
-
-            /* ---- 3. Neumorphic Shadow Ecosystem ---- */
-            /* Base Extrusions */
-            --shadow-xs: 2px 2px 4px hsl(var(--hue), var(--sat), calc(var(--bg-l) - 4%)),
-                         -2px -2px 4px hsl(var(--hue), var(--sat), 100%);
-            --shadow-sm: 4px 4px 8px hsl(var(--hue), var(--sat), calc(var(--bg-l) - 6%)),
-                         -4px -4px 8px hsl(var(--hue), var(--sat), 100%);
-            --shadow-md: 6px 6px 12px hsl(var(--hue), var(--sat), calc(var(--bg-l) - 8%)),
-                         -6px -6px 12px hsl(var(--hue), var(--sat), 100%);
-            --shadow-lg: 8px 8px 16px hsl(var(--hue), var(--sat), calc(var(--bg-l) - 10%)),
-                         -8px -8px 16px hsl(var(--hue), var(--sat), 100%);
-            --shadow-xl: 12px 12px 24px hsl(var(--hue), var(--sat), calc(var(--bg-l) - 12%)),
-                         -12px -12px 24px hsl(var(--hue), var(--sat), 100%);
-            /* Inset / Pressed */
-            --shadow-inset-sm: inset 2px 2px 4px hsl(var(--hue), var(--sat), calc(var(--bg-l) - 8%)),
-                               inset -2px -2px 4px hsl(var(--hue), var(--sat), 100%);
-            --shadow-inset-md: inset 4px 4px 8px hsl(var(--hue), var(--sat), calc(var(--bg-l) - 8%)),
-                               inset -4px -4px 8px hsl(var(--hue), var(--sat), 100%);
-            --shadow-inset-lg: inset 6px 6px 12px hsl(var(--hue), var(--sat), calc(var(--bg-l) - 10%)),
-                               inset -6px -6px 12px hsl(var(--hue), var(--sat), 100%);
-            /* Specific UI Shadows */
-            --shadow-nav: 0 4px 30px hsla(var(--hue), 20%, 30%, 0.06);
-            --shadow-glow: 0 0 20px var(--color-accent-glow);
-
-            /* ---- 4. Typography Scale ---- */
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+            --color-text: #1e293b;
+            --color-text-soft: #475569;
+            --color-text-muted: #64748b;
+            --color-border: rgba(255, 255, 255, 0.6);
+            --color-glass-bg: rgba(255, 255, 255, 0.45);
             
-            --fs-xs: 0.75rem;    /* 12px */
-            --fs-sm: 0.875rem;   /* 14px */
-            --fs-base: 1rem;     /* 16px */
-            --fs-lg: 1.125rem;   /* 18px */
-            --fs-xl: 1.25rem;    /* 20px */
-            --fs-2xl: 1.5rem;    /* 24px */
-            --fs-3xl: 1.875rem;  /* 30px */
-            --fs-4xl: 2.25rem;   /* 36px */
-            --fs-hero: clamp(2.5rem, 6vw, 4.5rem);
+            /* ---- Accent Mappings ---- */
+            --color-accent: #3b82f6;
+            --color-accent-soft: hsla(220, 95%, 50%, 0.08);
+            --color-accent-glow: hsla(220, 95%, 50%, 0.25);
             
-            --lh-tight: 1.1;
-            --lh-snug: 1.3;
-            --lh-normal: 1.5;
-            --lh-relaxed: 1.75;
+            /* ---- Neumorphic Elevation Elevations ---- */
+            /* Flat / Extruded upward */
+            --nm-shadow-flat: 10px 10px 20px #cbd5e1, -10px -10px 20px #ffffff;
+            --nm-shadow-flat-sm: 5px 5px 10px #cbd5e1, -5px -5px 10px #ffffff;
+            --nm-shadow-flat-lg: 16px 16px 32px #b8c5d6, -16px -16px 32px #ffffff;
             
-            --tracking-tighter: -0.03em;
-            --tracking-tight: -0.02em;
-            --tracking-normal: 0;
-            --tracking-wide: 0.02em;
+            /* Pressed / Recessed downward */
+            --nm-shadow-pressed: inset 6px 6px 12px #cbd5e1, inset -6px -6px 12px #ffffff;
+            --nm-shadow-pressed-sm: inset 3px 3px 6px #cbd5e1, inset -3px -3px 6px #ffffff;
+            --nm-shadow-pressed-lg: inset 10px 10px 20px #b8c5d6, inset -10px -10px 20px #ffffff;
             
-            /* ---- 5. Spacing & Layout ---- */
-            --space-1: 0.25rem;
-            --space-2: 0.5rem;
-            --space-3: 0.75rem;
-            --space-4: 1rem;
-            --space-5: 1.5rem;
-            --space-6: 2rem;
-            --space-7: 3rem;
-            --space-8: 4rem;
-            --space-9: 6rem;
+            /* ---- Typography & Sizing Scales ---- */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
             
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 20px;
-            --radius-xl: 28px;
-            --radius-full: 999px;
+            --radius-sm: 12px;
+            --radius-md: 20px;
+            --radius-lg: 32px;
+            --radius-full: 9999px;
             
-            --container-w: 1200px;
-            --navbar-h: 72px;
-            
-            /* ---- 6. Motion Design ---- */
-            --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
-            --ease-emphasized: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            /* ---- Motion & Interpolation curves ---- */
+            --ease-smooth: cubic-bezier(0.2, 0.8, 0.2, 1);
             --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
-            --dur-1: 0.1s;
-            --dur-2: 0.2s;
-            --dur-3: 0.3s;
-            --dur-4: 0.5s;
-            --dur-5: 0.8s;
+            --transition-normal: 0.35s var(--ease-smooth);
+            --transition-fast: 0.2s var(--ease-smooth);
         }
 
-        /* ---- Dark Theme Overrides ---- */
+        /* ---- 2. Elegant Dark Mode Neumorphism Mappings ---- */
         [data-theme="dark"] {
-            --bg-l: 10%;
-            --surface-l: 14%;
-            --color-text: hsl(var(--hue), 15%, 95%);
-            --color-text-soft: hsl(var(--hue), 10%, 70%);
-            --color-text-muted: hsl(var(--hue), 10%, 50%);
-            --color-border: hsla(var(--hue), 20%, 80%, 0.08);
-            --color-border-strong: hsla(var(--hue), 20%, 80%, 0.15);
+            --bg-lightness: 11%;
+            --surface-lightness: 11%;
+            --card-lightness: 11%;
             
-            --shadow-xs: 2px 2px 4px hsl(var(--hue), var(--sat), calc(var(--bg-l) - 3%)),
-                         -2px -2px 4px hsl(var(--hue), var(--sat), calc(var(--bg-l) + 4%));
-            --shadow-sm: 4px 4px 8px hsl(var(--hue), var(--sat), calc(var(--bg-l) - 5%)),
-                         -4px -4px 8px hsl(var(--hue), var(--sat), calc(var(--bg-l) + 6%));
-            --shadow-md: 6px 6px 12px hsl(var(--hue), var(--sat), calc(var(--bg-l) - 6%)),
-                         -6px -6px 12px hsl(var(--hue), var(--sat), calc(var(--bg-l) + 8%));
-            --shadow-lg: 8px 8px 16px hsl(var(--hue), var(--sat), calc(var(--bg-l) - 8%)),
-                         -8px -8px 16px hsl(var(--hue), var(--sat), calc(var(--bg-l) + 10%));
-            --shadow-xl: 12px 12px 24px hsl(var(--hue), var(--sat), calc(var(--bg-l) - 10%)),
-                         -12px -12px 24px hsl(var(--hue), var(--sat), calc(var(--bg-l) + 12%));
-            --shadow-inset-sm: inset 2px 2px 4px hsl(var(--hue), var(--sat), calc(var(--bg-l) - 6%)),
-                               inset -2px -2px 4px hsl(var(--hue), var(--sat), calc(var(--bg-l) + 6%));
-            --shadow-inset-md: inset 4px 4px 8px hsl(var(--hue), var(--sat), calc(var(--bg-l) - 6%)),
-                               inset -4px -4px 8px hsl(var(--hue), var(--sat), calc(var(--bg-l) + 6%));
-            --shadow-inset-lg: inset 6px 6px 12px hsl(var(--hue), var(--sat), calc(var(--bg-l) - 8%)),
-                               inset -6px -6px 12px hsl(var(--hue), var(--sat), calc(var(--bg-l) + 8%));
-            --shadow-nav: 0 4px 30px rgba(0,0,0,0.3);
+            --color-text: #f8fafc;
+            --color-text-soft: #cbd5e1;
+            --color-text-muted: #64748b;
+            --color-border: rgba(15, 23, 42, 0.3);
+            --color-glass-bg: rgba(15, 23, 42, 0.45);
+            
+            /* Dark Mode shadows must use deep indigo-tinted darks & sharp, ambient highlights */
+            --nm-shadow-flat: 10px 10px 20px #060b13, -10px -10px 20px #1c273e;
+            --nm-shadow-flat-sm: 5px 5px 10px #060b13, -5px -5px 10px #1c273e;
+            --nm-shadow-flat-lg: 16px 16px 32px #04080e, -16px -16px 32px #22304c;
+            
+            --nm-shadow-pressed: inset 6px 6px 12px #060b13, inset -6px -6px 12px #1c273e;
+            --nm-shadow-pressed-sm: inset 3px 3px 6px #060b13, inset -3px -3px 6px #1c273e;
+            --nm-shadow-pressed-lg: inset 10px 10px 20px #04080e, inset -10px -10px 20px #22304c;
+            
+            --color-accent-soft: hsla(220, 95%, 60%, 0.12);
         }
 
         /* ==========================================================================
-           GLOBAL RESET & BASE STYLES
+           3. BASE ELEMENT SYSTEM
            ========================================================================== */
         *, *::before, *::after {
             margin: 0;
@@ -156,15 +97,14 @@
         html {
             scroll-behavior: smooth;
             font-size: 16px;
-            -webkit-text-size-adjust: 100%;
         }
 
         body {
             font-family: var(--font-sans);
             background-color: var(--color-bg);
             color: var(--color-text);
-            line-height: var(--lh-normal);
-            letter-spacing: var(--tracking-normal);
+            line-height: 1.62;
+            letter-spacing: -0.015em;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -172,10 +112,10 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
-            transition: background-color var(--dur-3) var(--ease-standard), color var(--dur-3) var(--ease-standard);
+            transition: background-color var(--transition-normal), color var(--transition-normal);
         }
 
-        /* Custom SVG Background Pattern */
+        /* Ambient background graphics */
         body::before {
             content: '';
             position: fixed;
@@ -184,177 +124,187 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.4;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23888' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.15;
+            pointer-events: none;
+            background-image: radial-gradient(var(--color-accent) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
-
-        ::selection {
-            background: var(--color-accent-soft);
-            color: var(--color-accent);
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        button {
-            font-family: inherit;
-            border: none;
-            background: none;
-            cursor: pointer;
-            color: inherit;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 10px; height: 10px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--color-border-strong); border-radius: var(--radius-full); border: 2px solid var(--color-bg); }
-        ::-webkit-scrollbar-thumb:hover { background: var(--color-text-muted); }
 
         /* ==========================================================================
-           LAYOUT PRIMITIVES
+           4. NEUMORPHIC LAYOUT & CORE CLASSES
            ========================================================================== */
         .container {
-            max-width: var(--container-w);
+            max-width: 1240px;
             margin: 0 auto;
-            padding: var(--space-6) var(--space-4);
-            flex: 1;
+            padding: 2rem 1.5rem;
             width: 100%;
+            flex: 1;
         }
 
-        .section {
-            margin-bottom: var(--space-8);
-            animation: fadeInUp var(--dur-4) var(--ease-emphasized) both;
+        /* Elegant Extruded Card */
+        .nm-card {
+            background-color: var(--color-card);
+            border-radius: var(--radius-md);
+            box-shadow: var(--nm-shadow-flat);
+            border: 1px solid var(--color-border);
+            padding: 2rem;
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal);
         }
 
-        .section-title {
-            font-size: var(--fs-3xl);
-            font-weight: 800;
-            letter-spacing: var(--tracking-tighter;
-            margin-bottom: var(--space-5);
-            display: flex;
+        /* Interactive Neumorphic Card */
+        .nm-card-interactive {
+            background-color: var(--color-card);
+            border-radius: var(--radius-md);
+            box-shadow: var(--nm-shadow-flat);
+            border: 1px solid var(--color-border);
+            padding: 2rem;
+            cursor: pointer;
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+        }
+
+        .nm-card-interactive:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--nm-shadow-flat-lg);
+        }
+
+        .nm-card-interactive:active {
+            transform: translateY(1px);
+            box-shadow: var(--nm-shadow-pressed);
+        }
+
+        /* Flat Neumorphic Button */
+        .nm-btn {
+            background-color: var(--color-surface);
+            box-shadow: var(--nm-shadow-flat-sm);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            display: inline-flex;
             align-items: center;
-            gap: var(--space-3);
-            color: var(--color-text);
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all var(--transition-fast);
+            cursor: pointer;
         }
 
-        .section-icon {
-            width: 32px;
-            height: 32px;
+        .nm-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--nm-shadow-flat);
             color: var(--color-accent);
         }
 
+        .nm-btn:active {
+            transform: translateY(1px);
+            box-shadow: var(--nm-shadow-pressed-sm);
+        }
+
+        /* Pressed Neumorphic Well */
+        .nm-well {
+            background-color: var(--color-surface);
+            box-shadow: var(--nm-shadow-pressed);
+            border-radius: var(--radius-md);
+            border: 1px solid transparent;
+            padding: 2rem;
+        }
+
         /* ==========================================================================
-           NAVIGATION BAR
+           5. HEADER & RESPONSIVE NAV
            ========================================================================== */
         .navbar {
             position: sticky;
             top: 0;
             z-index: 1000;
-            height: var(--navbar-h);
-            background: hsla(var(--hue), var(--sat), var(--bg-l), 0.8);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            height: 76px;
+            background: var(--color-glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--color-border);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 var(--space-6);
-            box-shadow: var(--shadow-nav);
+            padding: 0 2rem;
+            box-shadow: 0 8px 32px 0 rgba(148, 163, 184, 0.08);
+            transition: background-color var(--transition-normal);
         }
 
         .logo {
-            font-size: var(--fs-xl);
             font-weight: 900;
-            letter-spacing: var(--tracking-tight);
+            font-size: 1.5rem;
+            letter-spacing: -0.03em;
             color: var(--color-text);
             display: flex;
             align-items: center;
-            gap: var(--space-2);
-            transition: transform var(--dur-2) var(--ease-bounce);
-        }
-
-        .logo:hover {
-            transform: scale(1.02);
+            gap: 0.625rem;
         }
 
         .logo-img {
-            height: 36px;
+            height: 40px;
             width: auto;
+            border-radius: var(--radius-sm);
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: var(--space-2);
+            gap: 0.5rem;
             background: var(--color-surface);
-            padding: var(--space-1);
+            padding: 0.375rem;
             border-radius: var(--radius-full);
-            box-shadow: var(--shadow-inset-sm);
+            box-shadow: var(--nm-shadow-pressed-sm);
         }
 
         .nav-link {
-            padding: var(--space-2) var(--space-4);
-            font-size: var(--fs-sm);
-            font-weight: 500;
+            padding: 0.5rem 1.25rem;
+            font-weight: 600;
+            font-size: 0.875rem;
             color: var(--color-text-soft);
             border-radius: var(--radius-full);
-            transition: all var(--dur-2) var(--ease-standard);
-            position: relative;
-            z-index: 1;
+            transition: all var(--transition-fast);
         }
 
         .nav-link:hover {
-            color: var(--color-text);
+            color: var(--color-accent);
             background: var(--color-bg);
-            box-shadow: var(--shadow-xs);
+            box-shadow: var(--nm-shadow-flat-sm);
         }
 
-        .nav-actions {
+        .nav-link.active {
+            color: white;
+            background: var(--color-accent);
+            box-shadow: 0 4px 12px var(--color-accent-glow);
+        }
+
+        /* Theme Toggle container */
+        .theme-toggle-container {
             display: flex;
             align-items: center;
-            gap: var(--space-3);
+            gap: 1rem;
         }
 
-        /* Theme Toggle Switch */
         .theme-toggle {
-            width: 60px;
-            height: 32px;
-            background: var(--color-surface);
-            border-radius: var(--radius-full);
-            position: relative;
-            box-shadow: var(--shadow-inset-sm);
-            transition: background var(--dur-3) var(--ease-standard);
-        }
-
-        .toggle-thumb {
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 28px;
-            height: 28px;
-            background: var(--color-bg);
+            width: 44px;
+            height: 44px;
+            background-color: var(--color-surface);
             border-radius: 50%;
-            box-shadow: var(--shadow-sm);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform var(--dur-3) var(--ease-bounce), background var(--dur-3);
-            color: var(--color-accent);
+            box-shadow: var(--nm-shadow-flat-sm);
+            border: 1px solid var(--color-border);
+            transition: all var(--transition-fast);
+            cursor: pointer;
         }
 
-        [data-theme="dark"] .toggle-thumb {
-            transform: translateX(28px);
-            color: hsl(40, 90%, 60%); /* Moon color */
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: var(--nm-shadow-flat);
         }
 
-        .theme-icon {
-            width: 16px;
-            height: 16px;
+        .theme-toggle:active {
+            box-shadow: var(--nm-shadow-pressed-sm);
         }
 
-        /* Mobile Menu */
         .menu-toggle {
             display: none;
             width: 44px;
@@ -362,318 +312,295 @@
             align-items: center;
             justify-content: center;
             background: var(--color-surface);
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .menu-toggle:active {
-            box-shadow: var(--shadow-inset-sm);
-        }
-
-        .menu-icon, .close-icon {
-            width: 24px;
-            height: 24px;
+            box-shadow: var(--nm-shadow-flat-sm);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
         }
 
         /* ==========================================================================
-           HERO SECTION
+           6. HERO SECTION
            ========================================================================== */
         .hero {
-            position: relative;
             text-align: center;
-            padding: var(--space-9) var(--space-6);
-            background: var(--color-surface);
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-lg);
-            margin-bottom: var(--space-8);
-            overflow: hidden;
+            padding: 5rem 2rem;
+            background-color: var(--color-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--nm-shadow-flat);
             border: 1px solid var(--color-border);
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.8s var(--ease-smooth);
         }
 
-        /* Gradient Mesh Background for Hero */
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 20% 20%, var(--color-accent-soft), transparent 40%),
-                        radial-gradient(circle at 80% 80%, hsla(280, 90%, 60%, 0.1), transparent 40%);
-            opacity: 0.6;
-            z-index: 0;
-            transition: opacity var(--dur-4);
-        }
-
-        .hero:hover::before {
-            opacity: 0.8;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
+            top: -20%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--color-accent-soft) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
         .hero h1 {
             font-size: var(--fs-hero);
             font-weight: 900;
-            letter-spacing: var(--tracking-tighter;
-            margin-bottom: var(--space-4);
-            background: linear-gradient(135deg, var(--color-text), var(--color-text-muted));
+            letter-spacing: -0.04em;
+            margin-bottom: 1.25rem;
+            line-height: 1.15;
+            background: linear-gradient(135deg, var(--color-text) 30%, var(--color-accent) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            line-height: var(--lh-tight);
         }
 
         .hero p {
-            font-size: var(--fs-lg);
             color: var(--color-text-soft);
-            max-width: 600px;
-            margin: 0 auto var(--space-6);
-            line-height: var(--lh-relaxed);
+            font-size: 1.25rem;
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.68;
         }
 
-        .notes-btn {
+        .notes-btn-large {
             display: inline-flex;
             align-items: center;
-            gap: var(--space-2);
+            gap: 0.75rem;
             background: var(--color-accent);
-            color: white;
-            padding: var(--space-3) var(--space-6);
+            color: #ffffff;
+            padding: 1.125rem 2.5rem;
             border-radius: var(--radius-full);
-            font-size: var(--fs-base);
-            font-weight: 600;
-            letter-spacing: var(--tracking-wide;
-            box-shadow: 0 4px 14px 0 var(--color-accent-glow);
-            transition: all var(--dur-3) var(--ease-emphasized);
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 25px var(--color-accent-glow);
+            transition: all var(--transition-normal) var(--ease-bounce);
         }
 
-        .notes-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px 0 var(--color-accent-glow);
-            background: var(--color-accent-hover);
+        .notes-btn-large:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px var(--color-accent-glow);
+            filter: brightness(1.08);
         }
 
-        .notes-btn:active {
-            transform: translateY(0);
-            box-shadow: var(--shadow-inset-sm);
+        .notes-btn-large:active {
+            transform: translateY(1px);
         }
 
         .notes-icon {
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
         }
 
         /* ==========================================================================
-           FILE EXPLORER INTERFACE
+           7. INTERACTIVE STUDY MATERIALS EXPLORER
            ========================================================================== */
         .explorer-container {
-            background: var(--color-surface);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg);
-            overflow: hidden;
+            background-color: var(--color-card);
+            border-radius: var(--radius-md);
+            box-shadow: var(--nm-shadow-flat);
             border: 1px solid var(--color-border);
+            overflow: hidden;
+            margin-top: 1.5rem;
         }
 
         .explorer-toolbar {
             display: flex;
             align-items: center;
-            gap: var(--space-2);
-            padding: var(--space-3);
-            background: var(--color-surface-alt);
+            justify-content: space-between;
+            padding: 1.125rem 1.5rem;
+            background-color: var(--color-surface);
             border-bottom: 1px solid var(--color-border);
         }
 
+        .nav-controls {
+            display: flex;
+            gap: 0.75rem;
+        }
+
         .nav-btn {
-            width: 40px;
-            height: 40px;
-            background: var(--color-surface);
+            width: 42px;
+            height: 42px;
+            background-color: var(--color-surface);
             border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: var(--shadow-xs);
-            transition: all var(--dur-2) var(--ease-standard);
+            box-shadow: var(--nm-shadow-flat-sm);
+            border: 1px solid var(--color-border);
+            transition: all var(--transition-fast);
             color: var(--color-text-soft);
         }
 
         .nav-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: var(--nm-shadow-flat);
             color: var(--color-accent);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-sm);
         }
 
         .nav-btn:active:not(:disabled) {
             transform: translateY(0);
-            box-shadow: var(--shadow-inset-sm);
+            box-shadow: var(--nm-shadow-pressed-sm);
         }
 
         .nav-btn:disabled {
-            opacity: 0.3;
-            pointer-events: none;
+            opacity: 0.35;
+            cursor: not-allowed;
+            box-shadow: none;
+            border-color: transparent;
         }
 
-        .back-icon { transform: rotate(180deg); }
-        .nav-icon { width: 20px; height: 20px; }
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+        }
 
-        .breadcrumb {
+        .breadcrumb-container {
             display: flex;
             align-items: center;
             flex-wrap: wrap;
-            gap: var(--space-1);
-            padding: var(--space-4) var(--space-5);
-            font-size: var(--fs-sm);
-            color: var(--color-text-soft);
-            background: var(--color-surface);
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            background-color: var(--color-surface);
+            border-bottom: 1px solid var(--color-border);
+            font-size: 0.9rem;
+            font-weight: 600;
         }
 
-        .breadcrumb a, .breadcrumb span {
-            padding: var(--space-1) var(--space-2);
+        .breadcrumb-link {
+            color: var(--color-text-muted);
+            padding: 0.375rem 0.75rem;
             border-radius: var(--radius-sm);
-            cursor: pointer;
-            transition: all var(--dur-1);
+            transition: all var(--transition-fast);
             display: flex;
             align-items: center;
+            gap: 0.25rem;
         }
 
-        .breadcrumb a:hover {
+        .breadcrumb-link:hover {
             color: var(--color-accent);
-            background: var(--color-accent-soft);
+            background-color: var(--color-accent-soft);
         }
 
-        .breadcrumb .separator {
-            margin: 0 var(--space-1);
-            opacity: 0.4;
-            font-size: var(--fs-xs);
+        .breadcrumb-separator {
+            color: var(--color-text-muted);
+            opacity: 0.5;
         }
-
-        .home-icon { width: 18px; height: 18px; }
 
         .folder-list {
-            padding: var(--space-3);
-            min-height: 120px;
-            transition: opacity var(--dur-2);
+            min-height: 200px;
+            padding: 1.25rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+            transition: opacity var(--transition-fast);
         }
 
         .folder-item {
             display: flex;
             align-items: center;
-            padding: var(--space-3) var(--space-4);
-            margin-bottom: var(--space-2);
-            border-radius: var(--radius-md);
+            justify-content: space-between;
+            padding: 1.125rem 1.5rem;
+            background-color: var(--color-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border);
+            box-shadow: var(--nm-shadow-flat-sm);
             cursor: pointer;
-            transition: all var(--dur-2) var(--ease-standard);
-            background: transparent;
-            color: var(--color-text);
+            transition: all var(--transition-normal) var(--ease-bounce);
         }
 
-        .folder-item:last-child { margin-bottom: 0; }
-
         .folder-item:hover {
-            background: var(--color-bg);
-            box-shadow: var(--shadow-sm);
-            transform: translateX(4px);
+            transform: translateX(6px);
+            box-shadow: var(--nm-shadow-flat);
+            border-color: var(--color-accent);
+            background-color: var(--color-accent-soft);
         }
 
         .folder-item:active {
-            box-shadow: var(--shadow-inset-sm);
             transform: translateX(2px);
+            box-shadow: var(--nm-shadow-pressed-sm);
         }
 
-        .folder-item:focus-visible {
-            outline: 2px solid var(--color-accent);
-            outline-offset: 2px;
+        .item-main-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
-        .folder-icon, .file-icon {
-            width: 24px;
-            height: 24px;
-            margin-right: var(--space-3);
+        .folder-icon-box {
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
+            background-color: var(--color-surface);
+            border-radius: var(--radius-sm);
+            box-shadow: var(--nm-shadow-pressed-sm);
         }
 
         .folder-img, .file-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+            width: 22px;
+            height: 22px;
         }
 
         .folder-name {
-            font-size: var(--fs-base);
-            font-weight: 500;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--color-text);
+            text-transform: capitalize;
         }
 
         .folder-item.leaf .folder-name {
             color: var(--color-accent);
-            font-weight: 600;
         }
 
-        .folder-item.leaf .file-img {
-            filter: drop-shadow(0 0 4px var(--color-accent-soft));
+        .open-indicator {
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all var(--transition-fast);
+            color: var(--color-accent);
         }
 
-        .empty-state {
-            padding: var(--space-8);
-            text-align: center;
-            color: var(--color-text-muted);
-            font-size: var(--fs-base);
+        .folder-item:hover .open-indicator {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         /* ==========================================================================
-           CONTENT SECTIONS (About)
-           ========================================================================== */
-        .content-block {
-            background: var(--color-surface);
-            border-radius: var(--radius-lg);
-            padding: var(--space-6);
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--color-border);
-            font-size: var(--fs-base);
-            line-height: var(--lh-relaxed);
-            color: var(--color-text-soft);
-        }
-
-        .content-block p { margin-bottom: var(--space-4); }
-        .content-block p:last-child { margin-bottom: 0; }
-
-        /* ==========================================================================
-           CONTACT & FUTURE CARDS
+           8. CONTACT CARDS & METRIC COUNTERS
            ========================================================================== */
         .contact-bar {
             display: flex;
-            gap: var(--space-4);
+            gap: 1.25rem;
             flex-wrap: wrap;
-        }
-
-        .contact-tooltip {
-            position: relative;
+            margin-top: 1.5rem;
         }
 
         .contact-link {
+            width: 56px;
+            height: 56px;
+            background-color: var(--color-surface);
+            border-radius: var(--radius-sm);
+            box-shadow: var(--nm-shadow-flat-sm);
+            border: 1px solid var(--color-border);
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 56px;
-            height: 56px;
-            background: var(--color-surface);
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-sm);
             color: var(--color-text-soft);
-            transition: all var(--dur-3) var(--ease-bounce);
+            transition: all var(--transition-normal) var(--ease-bounce);
         }
 
         .contact-link:hover {
-            transform: translateY(-4px);
+            transform: translateY(-6px);
             color: var(--color-accent);
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--nm-shadow-flat);
         }
 
         .contact-link:active {
             transform: translateY(0);
-            box-shadow: var(--shadow-inset-sm);
+            box-shadow: var(--nm-shadow-pressed-sm);
         }
 
         .contact-icon {
@@ -681,23 +608,28 @@
             height: 24px;
         }
 
+        .contact-tooltip {
+            position: relative;
+        }
+
         .contact-tooltip::after {
             content: attr(data-tooltip);
             position: absolute;
-            bottom: 110%;
+            bottom: 115%;
             left: 50%;
             transform: translateX(-50%) scale(0.9);
-            background: var(--color-text);
+            background-color: var(--color-text);
             color: var(--color-bg);
-            padding: var(--space-1) var(--space-3);
+            padding: 0.5rem 1rem;
             border-radius: var(--radius-sm);
-            font-size: var(--fs-xs);
-            font-weight: 600;
-            white-space: nowrap;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             opacity: 0;
             pointer-events: none;
-            transition: all var(--dur-2) var(--ease-bounce);
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--nm-shadow-flat-sm);
+            transition: all var(--transition-fast);
         }
 
         .contact-tooltip:hover::after {
@@ -705,67 +637,111 @@
             transform: translateX(-50%) scale(1);
         }
 
+        /* ==========================================================================
+           9. FUTURE ROADMAP GRIDS
+           ========================================================================== */
         .future-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--space-5);
+            gap: 2rem;
+            margin-top: 1.5rem;
         }
 
         .future-card {
-            background: var(--color-surface);
-            border-radius: var(--radius-lg);
-            padding: var(--space-6);
-            box-shadow: var(--shadow-md);
-            transition: all var(--dur-3) var(--ease-emphasized);
+            background-color: var(--color-card);
+            border-radius: var(--radius-md);
+            padding: 2.25rem 2rem;
+            box-shadow: var(--nm-shadow-flat);
+            border: 1px solid var(--color-border);
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            border: 1px solid var(--color-border);
+            gap: 1.25rem;
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal);
         }
 
         .future-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-xl);
+            transform: translateY(-8px);
+            box-shadow: var(--nm-shadow-flat-lg);
+        }
+
+        .future-icon-container {
+            width: 52px;
+            height: 52px;
+            background-color: var(--color-surface);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--nm-shadow-pressed-sm);
         }
 
         .future-icon-img {
-            width: 48px;
-            height: 48px;
-            margin-bottom: var(--space-4);
-            padding: var(--space-3);
-            background: var(--color-bg);
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-inset-sm);
+            width: 26px;
+            height: 26px;
         }
 
         .future-card h3 {
-            font-size: var(--fs-xl);
-            font-weight: 700;
-            margin-bottom: var(--space-2);
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
             color: var(--color-text);
         }
 
         .future-card p {
-            font-size: var(--fs-sm);
+            font-size: 0.95rem;
             color: var(--color-text-soft);
-            line-height: var(--lh-normal);
+            line-height: 1.6;
         }
 
         /* ==========================================================================
-           FOOTER
+           10. TEXT CONTENT BLOCKS
+           ========================================================================== */
+        .text-block {
+            background-color: var(--color-card);
+            border-radius: var(--radius-md);
+            padding: 2.5rem 2rem;
+            box-shadow: var(--nm-shadow-flat);
+            border: 1px solid var(--color-border);
+            color: var(--color-text-soft);
+            font-size: 1.1rem;
+            line-height: 1.75;
+        }
+
+        .text-block p {
+            margin-bottom: 1.5rem;
+        }
+
+        .text-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ==========================================================================
+           11. FOOTER ARCHITECTURE
            ========================================================================== */
         footer {
             text-align: center;
-            padding: var(--space-8) var(--space-4);
+            padding: 3rem 1.5rem;
             color: var(--color-text-muted);
-            font-size: var(--fs-sm);
+            font-size: 0.9rem;
             border-top: 1px solid var(--color-border);
-            margin-top: var(--space-8);
+            margin-top: 5rem;
+            background-color: var(--color-surface);
         }
 
         /* ==========================================================================
-           ANIMATIONS
+           12. TRANSITIONS & DEVICE RESPONSIVENESS
            ========================================================================== */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -777,57 +753,39 @@
             }
         }
 
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
+        .section {
+            animation: fadeInUp 0.8s var(--ease-smooth) both;
         }
 
-        /* Staggered Animation Delays */
-        .section:nth-child(1) { animation-delay: 0.05s; }
-        .section:nth-child(2) { animation-delay: 0.15s; }
-        .section:nth-child(3) { animation-delay: 0.25s; }
-        .section:nth-child(4) { animation-delay: 0.35s; }
-        .section:nth-child(5) { animation-delay: 0.45s; }
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
 
-        /* ==========================================================================
-           RESPONSIVE DESIGN
-           ========================================================================== */
         @media (max-width: 768px) {
-            :root {
-                --navbar-h: 64px;
+            .navbar {
+                padding: 0 1rem;
+                height: 68px;
             }
 
             .nav-links {
                 position: fixed;
-                top: var(--navbar-h);
+                top: 68px;
                 left: 0;
                 right: 0;
+                background-color: var(--color-bg);
                 flex-direction: column;
-                gap: 0;
-                background: var(--color-bg);
-                backdrop-filter: blur(20px);
-                padding: var(--space-4);
-                display: flex;
-                height: 0;
-                overflow: hidden;
-                opacity: 0;
-                box-shadow: var(--shadow-lg);
-                transition: all var(--dur-3) var(--ease-standard);
+                gap: 0.5rem;
+                padding: 1.5rem;
+                display: none;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.1);
                 border-bottom: 1px solid var(--color-border);
+                z-index: 999;
+                border-radius: 0 0 var(--radius-md) var(--radius-md);
             }
 
             .nav-links.active {
-                height: calc(100vh - var(--navbar-h));
-                opacity: 1;
-                padding: var(--space-6) var(--space-4);
-            }
-
-            .nav-link {
-                width: 100%;
-                padding: var(--space-4);
-                font-size: var(--fs-lg);
-                border-radius: var(--radius-md);
-                margin-bottom: var(--space-2);
+                display: flex;
             }
 
             .menu-toggle {
@@ -835,32 +793,15 @@
             }
 
             .hero {
-                padding: var(--space-7) var(--space-4);
+                padding: 3.5rem 1rem;
             }
 
             .hero h1 {
-                font-size: clamp(2rem, 8vw, 3rem);
+                font-size: 2.25rem;
             }
 
             .future-grid {
                 grid-template-columns: 1fr;
-            }
-        }
-
-        @media (min-width: 1600px) {
-            :root {
-                --container-w: 1400px;
-                --fs-base: 1.125rem;
-            }
-        }
-
-        /* Accessibility: Reduced Motion */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
             }
         }
     </style>
@@ -868,21 +809,15 @@
 <body>
     <nav class="navbar">
         <a href="#home" class="logo">APSSG12</a>
-        
         <div class="nav-links" id="navLinks">
             <a href="#home" class="nav-link">Home</a><a href="#notes" class="nav-link">Notes</a><a href="#about-me" class="nav-link">About Me</a><a href="#about-website" class="nav-link">About Website</a><a href="#contact" class="nav-link">Contact</a><a href="#future" class="nav-link">Future</a>
         </div>
-        
-        <div class="nav-actions">
+        <div class="theme-toggle-container">
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                <div class="toggle-thumb">
-                    <span class="sun-icon"><img src="images/sun.svg" alt="light mode" class="theme-icon"></span>
-                    <span class="moon-icon" style="display:none;"><img src="images/moon.svg" alt="dark mode" class="theme-icon"></span>
-                </div>
+                <span class="sun-icon"><img src="images/sun.svg" alt="light mode" class="theme-icon"></span>
+                <span class="moon-icon" style="display:none;"><img src="images/moon.svg" alt="dark mode" class="theme-icon"></span>
             </button>
-            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-                <img src="images/menu.svg" alt="Menu" class="menu-icon">
-            </button>
+            <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><img src="images/menu.svg" alt="Menu" class="menu-icon"></button>
         </div>
     </nav>
 
@@ -891,8 +826,8 @@
             <div class="hero-content">
                 <h1>APSSG12 – Learning Resources</h1>
                 <p>Your gateway to structured knowledge.</p>
-                <a href="#notes" class="notes-btn">
-                    <img src="images/notes.svg" alt="Notes" class="notes-icon"> <span>Access Notes</span>
+                <a href="#notes" class="notes-btn-large">
+                    <img src="images/notes.svg" alt="Notes" class="notes-icon"> <span>Notes Directory</span>
                 </a>
             </div>
         </section>
@@ -903,17 +838,19 @@
             </h2>
             <div class="explorer-container">
                 <div class="explorer-toolbar">
-                    <button class="nav-btn" id="backBtn" disabled aria-label="Back"><img src="images/arrow.svg" alt="Back" class="nav-icon back-icon"></button>
-                    <button class="nav-btn" id="forwardBtn" disabled aria-label="Forward"><img src="images/arrow.svg" alt="Forward" class="nav-icon"></button>
+                    <div class="nav-controls">
+                        <button class="nav-btn" id="backBtn" disabled aria-label="Go back"><img src="images/arrow.svg" alt="Back" class="nav-icon back-icon"></button>
+                        <button class="nav-btn" id="forwardBtn" disabled aria-label="Go forward"><img src="images/arrow.svg" alt="Forward" class="nav-icon"></button>
+                    </div>
                 </div>
-                <div class="breadcrumb" id="breadcrumb"></div>
+                <div class="breadcrumb-container" id="breadcrumb"></div>
                 <div class="folder-list" id="folderList"></div>
             </div>
         </section>
 
         <section id="about-me" class="section">
             <h2 class="section-title">About Me</h2>
-            <div class="content-block">
+            <div class="text-block">
                 
 <p>Hello! I'm Keabi, a passionate educator and developer. I create learning resources
 to help students master complex subjects in a simple, structured way.</p>
@@ -923,7 +860,7 @@ to help students master complex subjects in a simple, structured way.</p>
 
         <section id="about-website" class="section">
             <h2 class="section-title">About This Website</h2>
-            <div class="content-block">
+            <div class="text-block">
                 
 <p>This site is an auto‑generated collection of study materials, organised by grade,
 subject, and unit. Every time the content is updated, the site rebuilds itself
@@ -950,26 +887,22 @@ automatically using GitHub Pages.</p>
     </main>
 
     <footer>
-        <p>Auto‑generated on 2026-07-03 10:13 UTC • Powered by GitHub Pages</p>
+        <p>Auto‑generated on 2026-07-03 10:54 UTC • Powered by GitHub Pages</p>
     </footer>
 
     <script>
         (function() {
-            // =================== Dark Mode Toggle ===================
+            // =================== Theme Toggle Logic ===================
             const toggle = document.getElementById('themeToggle');
             const sunIcon = toggle.querySelector('.sun-icon');
             const moonIcon = toggle.querySelector('.moon-icon');
             const root = document.documentElement;
-
-            // Apply stored theme on load
-            const stored = localStorage.getItem('theme');
-            if (stored === 'dark') {
+            
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
                 root.setAttribute('data-theme', 'dark');
                 sunIcon.style.display = 'none';
-                moonIcon.style.display = 'flex';
-            } else {
-                sunIcon.style.display = 'flex';
-                moonIcon.style.display = 'none';
+                moonIcon.style.display = 'inline';
             }
 
             toggle.addEventListener('click', () => {
@@ -977,17 +910,17 @@ automatically using GitHub Pages.</p>
                 if (isDark) {
                     root.removeAttribute('data-theme');
                     localStorage.setItem('theme', 'light');
-                    sunIcon.style.display = 'flex';
+                    sunIcon.style.display = 'inline';
                     moonIcon.style.display = 'none';
                 } else {
                     root.setAttribute('data-theme', 'dark');
                     localStorage.setItem('theme', 'dark');
                     sunIcon.style.display = 'none';
-                    moonIcon.style.display = 'flex';
+                    moonIcon.style.display = 'inline';
                 }
             });
 
-            // =================== Mobile Menu ===================
+            // =================== Mobile Menu Navigation ===================
             const menuToggle = document.getElementById('menuToggle');
             const navLinks = document.getElementById('navLinks');
             menuToggle.addEventListener('click', () => {
@@ -999,8 +932,8 @@ automatically using GitHub Pages.</p>
                 });
             });
 
-            // =================== File Explorer Logic ===================
-            const fileTree = {"grade_10": {"__has_index__": false, "__children__": {"chemistry": {"__has_index__": false, "__children__": {"unit_3": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}}}, "biology": {"__has_index__": false, "__children__": {"unit_4": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}}}, "physics": {"__has_index__": false, "__children__": {"unit_3": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}}}}}, "grade_12": {"__has_index__": false, "__children__": {"physics": {"__has_index__": false, "__children__": {"unit_6": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}}}, "biology": {"__has_index__": false, "__children__": {"unit_3": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}}}, "chemistry": {"__has_index__": false, "__children__": {"unit_2": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}}}}}, "grade_11": {"__has_index__": false, "__children__": {"physics": {"__has_index__": false, "__children__": {"unit_5": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}}}, "chemistry": {"__has_index__": false, "__children__": {"unit_2": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}}}, "biology": {"__has_index__": false, "__children__": {"unit_1": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}}}}}, "grade_9": {"__has_index__": false, "__children__": {"biology": {"__has_index__": false, "__children__": {"unit_3": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}}}, "chemistry": {"__has_index__": false, "__children__": {"unit_1": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}}}, "physics": {"__has_index__": false, "__children__": {"unit_4": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}}}}}};
+            // =================== Neumorphic File Explorer ===================
+            const fileTree = {"grade_10": {"__has_index__": false, "__children__": {"chemistry": {"__has_index__": false, "__children__": {"unit_4": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}}}, "biology": {"__has_index__": false, "__children__": {"unit_5": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}}}, "physics": {"__has_index__": false, "__children__": {"all unit summary": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}}}}}, "grade_11": {"__has_index__": false, "__children__": {"biology": {"__has_index__": false, "__children__": {"unit_4": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}}}, "chemistry": {"__has_index__": false, "__children__": {"unit_2": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}}}, "physics": {"__has_index__": false, "__children__": {"unit_6": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}}}}}, "grade_12": {"__has_index__": false, "__children__": {"biology": {"__has_index__": false, "__children__": {"unit_4": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}}}, "physics": {"__has_index__": false, "__children__": {"unit_1": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}}}, "chemistry": {"__has_index__": false, "__children__": {"unit_3": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}}}}}, "grade_9": {"__has_index__": false, "__children__": {"physics": {"__has_index__": false, "__children__": {"unit_5": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}}}, "biology": {"__has_index__": false, "__children__": {"unit_4": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}}}, "chemistry": {"__has_index__": false, "__children__": {"unit_1": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}}}}}};
             const baseUrl = "https://keabi-coder.github.io/apssg12";
             const folderIconSvg = '<img src="images/folder.svg" alt="Folder" class="folder-img">';
             const fileIconSvg = '<img src="images/file.svg" alt="Page" class="file-img">';
@@ -1026,19 +959,21 @@ automatically using GitHub Pages.</p>
             function renderBreadcrumb(pathArr) {
                 breadcrumbEl.innerHTML = '';
                 const homeLink = document.createElement('a');
-                homeLink.innerHTML = homeIconSvg || '⌂';
-                homeLink.title = 'Home';
+                homeLink.className = 'breadcrumb-link';
+                homeLink.innerHTML = homeIconSvg || '⌂ Home';
+                homeLink.title = 'Root Directory';
                 homeLink.addEventListener('click', () => navigateTo([]));
                 breadcrumbEl.appendChild(homeLink);
 
                 pathArr.forEach((segment, index) => {
                     const sep = document.createElement('span');
-                    sep.className = 'separator';
+                    sep.className = 'breadcrumb-separator';
                     sep.textContent = '›';
                     breadcrumbEl.appendChild(sep);
 
                     const segmentLink = document.createElement('a');
-                    segmentLink.textContent = segment;
+                    segmentLink.className = 'breadcrumb-link';
+                    segmentLink.textContent = segment.replace(/_/g, ' ');
                     segmentLink.addEventListener('click', () => {
                         navigateTo(pathArr.slice(0, index + 1));
                     });
@@ -1052,11 +987,10 @@ automatically using GitHub Pages.</p>
                 renderBreadcrumb(currentPath);
 
                 folderListEl.style.opacity = '0';
-                
                 setTimeout(() => {
                     folderListEl.innerHTML = '';
                     if (!currentNode || Object.keys(currentNode).length === 0) {
-                        folderListEl.innerHTML = '<div class="empty-state">This folder is empty.</div>';
+                        folderListEl.innerHTML = '<div class="empty-state">This directory folder is empty.</div>';
                     } else {
                         const folders = Object.keys(currentNode).sort();
                         for (const name of folders) {
@@ -1066,24 +1000,29 @@ automatically using GitHub Pages.</p>
 
                             const itemDiv = document.createElement('div');
                             itemDiv.className = 'folder-item';
+                            if (hasIndex) itemDiv.classList.add('leaf');
                             itemDiv.tabIndex = 0;
 
-                            const iconSpan = document.createElement('span');
-                            if (hasIndex) {
-                                iconSpan.innerHTML = fileIconSvg;
-                                iconSpan.className = 'file-icon';
-                                itemDiv.classList.add('leaf');
-                            } else {
-                                iconSpan.innerHTML = folderIconSvg;
-                                iconSpan.className = 'folder-icon';
-                            }
+                            const mainContent = document.createElement('div');
+                            mainContent.className = 'item-main-content';
+
+                            const iconBox = document.createElement('div');
+                            iconBox.className = 'folder-icon-box';
+                            iconBox.innerHTML = hasIndex ? fileIconSvg : folderIconSvg;
 
                             const nameSpan = document.createElement('span');
                             nameSpan.className = 'folder-name';
-                            nameSpan.textContent = name;
+                            nameSpan.textContent = name.replace(/_/g, ' ');
 
-                            itemDiv.appendChild(iconSpan);
-                            itemDiv.appendChild(nameSpan);
+                            mainContent.appendChild(iconBox);
+                            mainContent.appendChild(nameSpan);
+                            itemDiv.appendChild(mainContent);
+
+                            // Open Indicator icon arrow
+                            const arrowSpan = document.createElement('span');
+                            arrowSpan.className = 'open-indicator';
+                            arrowSpan.innerHTML = '➔';
+                            itemDiv.appendChild(arrowSpan);
 
                             itemDiv.addEventListener('click', (e) => {
                                 if (hasIndex) {
@@ -1102,7 +1041,7 @@ automatically using GitHub Pages.</p>
                         }
                     }
                     folderListEl.style.opacity = '1';
-                }, 150);
+                }, 100);
 
                 backBtn.disabled = historyIndex === 0;
                 forwardBtn.disabled = historyIndex === historyStack.length - 1;
@@ -1131,7 +1070,7 @@ automatically using GitHub Pages.</p>
                 }
             });
 
-            // Keyboard shortcut for back
+            // Backspace navigation shortcut
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Backspace' && document.activeElement === document.body) {
                     e.preventDefault();
@@ -1139,7 +1078,6 @@ automatically using GitHub Pages.</p>
                 }
             });
 
-            // Initial Render
             renderCurrent();
         })();
     </script>

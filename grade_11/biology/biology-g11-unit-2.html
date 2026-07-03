@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>biology-g11-unit-2</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+        <style>
+            :root {
+                --bg: #fffefb;
+                --text: #2b2823;
+                --accent: #4a6d7c;
+                --border: #e4ddcf;
+                --font-sans: 'Inter', 'Segoe UI', 'SF Pro Display', system-ui, -apple-system, sans-serif;
+                --font-serif: 'Georgia', 'Times New Roman', 'STIX Two Text', 'Charis SIL', serif;
+                --font-mono: 'SF Mono', 'Fira Code', 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+                --radius-sm: 8px;
+                --radius-md: 12px;
+            }
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body {
+                background: #f4f0ea;
+                font-family: var(--font-serif);
+                color: var(--text);
+                line-height: 1.8;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                padding: 40px 20px 80px;
+            }
+            .document-container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: var(--bg);
+                padding: 50px 60px;
+                border-radius: 16px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.04);
+            }
+            @media (max-width: 768px) {
+                .document-container { padding: 30px 24px; border-radius: 10px; }
+                body { padding: 20px 10px 40px; }
+            }
+            .document-container h1, .document-container h2, .document-container h3,
+            .document-container h4, .document-container h5, .document-container h6 {
+                font-family: var(--font-sans);
+                font-weight: 650;
+                line-height: 1.3;
+                margin-top: 1.8em;
+                margin-bottom: 0.6em;
+                color: #1f1c18;
+                letter-spacing: -0.02em;
+            }
+            .document-container h1 { font-size: 2rem; border-bottom: 2px solid #e8e2d4; padding-bottom: 0.3em; margin-top: 0.2em; }
+            .document-container h2 { font-size: 1.5rem; border-bottom: 1px solid #ece6da; padding-bottom: 0.2em; }
+            .document-container h3 { font-size: 1.25rem; }
+            .document-container h4 { font-size: 1.1rem; }
+            .document-container p { margin: 0.8em 0; }
+            .document-container a {
+                color: var(--accent);
+                text-decoration: underline;
+                text-underline-offset: 3px;
+                text-decoration-thickness: 1.2px;
+                text-decoration-color: rgba(74,109,124,0.35);
+            }
+            .document-container a:hover { text-decoration-color: var(--accent); color: #2f505e; }
+            .document-container strong { font-weight: 700; color: #1a1815; }
+            .document-container em { font-style: italic; color: #4a4540; }
+            .document-container blockquote {
+                margin: 1.4em 0; padding: 14px 24px;
+                border-left: 4px solid #cdb69b;
+                background: #faf6ef;
+                border-radius: 0 8px 8px 0;
+                color: #5a5248; font-style: italic;
+            }
+            .document-container ul, .document-container ol { margin: 0.8em 0; padding-left: 1.8em; }
+            .document-container li { margin: 0.4em 0; line-height: 1.7; }
+            .document-container li::marker { color: #b0a394; }
+            .document-container code {
+                font-family: var(--font-mono); font-size: 0.85em;
+                background: #f2ede4; padding: 2px 8px; border-radius: 4px; color: #654f3b;
+            }
+            .document-container pre {
+                margin: 1.4em 0; padding: 20px 24px;
+                background: #f8f5ef; border: 1px solid #e4ddcf;
+                border-radius: 10px; overflow-x: auto;
+                font-size: 0.9rem; line-height: 1.6;
+            }
+            .document-container pre code { background: transparent; padding: 0; border-radius: 0; color: #3d352c; }
+            .document-container table {
+                width: 100%; border-collapse: collapse; margin: 1.4em 0;
+                font-size: 0.95rem; font-family: var(--font-sans);
+                border-radius: 10px; overflow: hidden;
+                box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            }
+            .document-container th, .document-container td {
+                padding: 10px 18px; border: 1px solid #e5ded3; text-align: left;
+            }
+            .document-container th { background: #f5f1e9; font-weight: 650; color: #3d352c; }
+            .document-container tr:nth-child(even) td { background: #fdfbf7; }
+            .document-container tr:hover td { background: #faf6ee; }
+            .document-container hr { border: none; border-top: 2px solid #e5ded3; margin: 2.2em 0; }
+            .document-container img { max-width: 100%; border-radius: 8px; margin: 1em 0; }
+            .document-container .katex-display { margin: 1.4em 0; overflow-x: auto; overflow-y: hidden; }
+            .document-container .katex { font-size: 1.25em; }
+            .document-container .math-error { color: #c0392b; background: #fdecea; padding: 2px 6px; border-radius: 3px; font-family: var(--font-mono); font-size: 0.85em; }
+            .document-container dl { margin: 1em 0; }
+            .document-container dt { font-weight: 700; color: #1f1c18; margin-top: 0.8em; }
+            .document-container dd { margin-left: 1.6em; margin-bottom: 0.6em; color: #4a4540; }
+            .document-container sup, .document-container sub { font-size: 0.8em; }
+        </style>
+        </head>
+        <body>
+        <div class="document-container">
+        <h1>UNIT 2: ANIMALS – EXAM REVISION PACKAGE</h1>
+<h2>FULL CONTENT CLEANING</h2>
+<p>All learning content from Unit 2 has been extracted, cleaned of page numbers, activity instructions, review questions, and filler text. The material is reorganized to cover:</p>
+<ul>
+<li>Characteristics of animals and their classification</li>
+<li>Invertebrate and vertebrate distinctions</li>
+<li>Reproduction in animals (asexual and sexual)</li>
+<li>Detailed reproduction in insects, frogs, crocodiles, birds, and rats</li>
+<li>Economic importance of insects (beneficial and harmful)</li>
+<li>Animal behavior (types and patterns)</li>
+<li>Homeostasis (thermoregulation, osmoregulation, blood sugar regulation, feedback mechanisms)</li>
+<li>Renowned zoologists in Ethiopia (brief mention)</li>
+</ul>
+<hr>
+<h2>BALANCED REVISION NOTES</h2>
+<h3>2.1 Characteristics of Animals</h3>
+<p><strong>Common characteristics of animals</strong></p>
+<ul>
+<li><strong>Eukaryotic</strong> – cells have a true nucleus.</li>
+<li><strong>Multicellular</strong> – bodies are made of many cells.</li>
+<li><strong>Heterotrophic</strong> – obtain food by consuming other organisms; cannot make their own food.</li>
+<li><strong>Sensitive to stimuli</strong> – detect and respond to changes in the environment.</li>
+<li><strong>Reproduce</strong> – produce offspring to ensure species continuity.</li>
+<li><strong>Protect themselves</strong> – have defence mechanisms.</li>
+<li><strong>Move</strong> (motility) – most animals can move at some life stage.</li>
+<li><strong>Respire</strong> – exchange gases (take in oxygen, release carbon dioxide).</li>
+<li><strong>Excrete</strong> – remove metabolic wastes.</li>
+<li><strong>Grow</strong> – increase in size and develop.</li>
+<li><strong>Body symmetry</strong> – body plan can be asymmetrical, radial, or bilateral.</li>
+</ul>
+<p><strong>Major groups based on backbone</strong></p>
+<ul>
+<li><strong>Vertebrates</strong> – animals with a backbone (vertebral column).</li>
+<li><strong>Invertebrates</strong> – animals without a backbone.</li>
+</ul>
+<p>Vertebrates are further divided by temperature regulation:</p>
+<ul>
+<li><strong>Homeothermic</strong> (warm‑blooded): mammals, birds.</li>
+<li><strong>Poikilothermic</strong> (cold‑blooded): fish, reptiles, amphibians.</li>
+</ul>
+<p>Invertebrates include: porifera, platyhelminthes, cnidaria, arthropoda (crustacea, spiders, insects, many‑legs), annelida, echinodermata, mollusca.</p>
+<hr>
+<h3>2.2 Invertebrates and Vertebrates</h3>
+<h4>2.2.1 Invertebrate Animals</h4>
+<p><strong>Definition</strong></p>
+<ul>
+<li>Invertebrates are animals that <strong>do not have a backbone</strong> or vertebral column.</li>
+</ul>
+<p><strong>Key features</strong></p>
+<ul>
+<li>Most diverse group of animals; found almost everywhere.</li>
+<li>Lack a rigid internal skeletal system.</li>
+<li>Many are soft‑bodied; some have an external skeleton called an <strong>exoskeleton</strong> (often made of chitin) that protects the soft inner body.</li>
+<li><strong>Cold‑blooded</strong> – do not regulate internal body temperature; body temperature changes with the environment.</li>
+<li>Examples: earthworms, insects, spiders, snails, sponges, jellyfish, lobsters, crabs, sea stars, squid.</li>
+</ul>
+<h4>2.2.2 Vertebrate Animals</h4>
+<p><strong>Definition</strong></p>
+<ul>
+<li>Vertebrates are animals that possess a <strong>well‑defined internal skeleton</strong> with cartilage and a <strong>backbone</strong> (vertebral column).</li>
+</ul>
+<p><strong>Key features</strong></p>
+<ul>
+<li>Highly advanced group with complex, specialized organ systems.</li>
+<li>Skeleton divided into:<ul>
+<li><strong>Axial skeleton</strong>: skull, vertebrae, ribs, sternum.</li>
+<li><strong>Appendicular skeleton</strong>: girdles and appendages.</li>
+</ul>
+</li>
+<li>Skull protects the highly developed brain; vertebrae protect the nerve cord.</li>
+<li><strong>Circulatory system</strong>: closed system; ventral heart with 2–4 chambers; median dorsal artery.</li>
+<li><strong>Respiratory system</strong>: gills or lungs.</li>
+<li><strong>Centralized nervous system</strong>: brain and sensory organs (eyes, ears, nostrils).</li>
+<li><strong>Excretory system</strong>: paired kidneys.</li>
+<li><strong>Body symmetry</strong>: bilaterally symmetrical.</li>
+<li>Examples: mammals, birds, fish, reptiles, amphibians.</li>
+<li>Temperature regulation:<ul>
+<li>Fish, reptiles, amphibians – cold‑blooded.</li>
+<li>Birds and mammals – warm‑blooded.</li>
+</ul>
+</li>
+<li>All vertebrates are chordates, but not all chordates are vertebrates.</li>
+</ul>
+<p><strong>Difference between invertebrates and vertebrates (summary table)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Invertebrates</th>
+<th>Vertebrates</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Backbone</td>
+<td>Absent</td>
+<td>Present</td>
+</tr>
+<tr>
+<td>Skeleton</td>
+<td>No rigid internal skeleton; some have exoskeleton</td>
+<td>Well‑defined internal skeleton (bone/cartilage)</td>
+</tr>
+<tr>
+<td>Body symmetry</td>
+<td>Varies (asymmetrical, radial, bilateral)</td>
+<td>Bilateral</td>
+</tr>
+<tr>
+<td>Circulatory system</td>
+<td>Usually open (or absent)</td>
+<td>Closed, ventral heart with 2–4 chambers</td>
+</tr>
+<tr>
+<td>Nervous system</td>
+<td>Less centralized (nerve net, ganglia)</td>
+<td>Centralized with brain and sensory organs</td>
+</tr>
+<tr>
+<td>Nutrition</td>
+<td>Heterotrophic</td>
+<td>Heterotrophic</td>
+</tr>
+<tr>
+<td>Reproduction</td>
+<td>Both asexual and sexual; mainly external</td>
+<td>Mainly sexual; internal or external</td>
+</tr>
+<tr>
+<td>Body temperature</td>
+<td>Cold‑blooded (ectothermic)</td>
+<td>Cold‑blooded (fish, reptiles, amphibians) and warm‑blooded (birds, mammals)</td>
+</tr>
+<tr>
+<td>Examples</td>
+<td>Insects, spiders, worms, jellyfish</td>
+<td>Fish, frogs, reptiles, birds, mammals</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>2.3 Reproduction in Animals</h3>
+<p><strong>Reproduction</strong> is the process by which living organisms duplicate themselves to ensure continuity of their species.</p>
+<p>Two main types:</p>
+<ul>
+<li><strong>Asexual reproduction</strong></li>
+<li><strong>Sexual reproduction</strong></li>
+</ul>
+<h4>2.3.1 Asexual Reproduction</h4>
+<ul>
+<li>Involves a <strong>single individual</strong>; no fusion of gametes.</li>
+<li>More common in invertebrates than vertebrates.</li>
+<li>Forms:<ul>
+<li><strong>Budding</strong> – a new individual develops as an outgrowth from the parent.</li>
+<li><strong>Fragmentation</strong> – the parent breaks into pieces, each piece grows into a new individual.</li>
+<li><strong>Parthenogenesis</strong> – an unfertilized egg develops into a new offspring (occurs in some insects and vertebrates).</li>
+</ul>
+</li>
+</ul>
+<h4>2.3.2 Sexual Reproduction</h4>
+<ul>
+<li>Involves <strong>two parents</strong> (male and female).</li>
+<li>Requires the <strong>fusion of gametes</strong> (fertilization) to form a zygote.</li>
+<li>Offspring inherit genetic material from both parents.</li>
+<li>Parents are <strong>diploid (2n)</strong>; gametes are <strong>haploid (n)</strong>.</li>
+<li>Males produce sperm in testes; sperm stored in epididymis until ejaculation.</li>
+<li>Females produce ovum (egg) in ovary; egg matures in ovary.</li>
+<li><strong>Fertilization</strong> – fusion of sperm and egg to produce a diploid <strong>zygote (2n)</strong>.</li>
+</ul>
+<p><strong>Types of fertilization</strong></p>
+<ul>
+<li><strong>External fertilization</strong>: eggs and sperm are released into the environment (usually water); common in aquatic animals.</li>
+<li><strong>Internal fertilization</strong>: sperm is deposited inside the female’s body; common in land animals.</li>
+</ul>
+<p><strong>Embryonic development after fertilization</strong></p>
+<ol>
+<li><strong>Cleavage</strong> – series of mitotic cell divisions of the zygote, resulting in an eight‑celled structure.</li>
+<li><strong>Blastula</strong> – a hollow ball of cells formed after further division and rearrangement.</li>
+<li><strong>Gastrulation</strong> – the blastula undergoes cell division and rearrangement to form a <strong>gastrula</strong> with distinct <strong>germ layers</strong>.</li>
+<li><strong>Organogenesis</strong> – germ layers develop into tissues, organs, and organ systems.</li>
+<li><strong>Embryo</strong> → adult organism.</li>
+</ol>
+<h4>2.3.3 Reproduction in Insects (Complete and Incomplete Metamorphosis)</h4>
+<p>Insects are the largest class of phylum Arthropoda. They have segmented bodies, jointed legs, and an exoskeleton.</p>
+<ul>
+<li>Undergo <strong>sexual reproduction</strong>; eggs are usually fertilized internally.</li>
+<li>Some insects undergo <strong>parthenogenesis</strong>.</li>
+<li>After fertilization, the female lays eggs; after hatching, insects undergo major body changes called <strong>metamorphosis</strong>.</li>
+</ul>
+<p><strong>Two types of metamorphosis</strong></p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Complete Metamorphosis</th>
+<th>Incomplete Metamorphosis</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Number of stages</td>
+<td>Four</td>
+<td>Three</td>
+</tr>
+<tr>
+<td>Stages</td>
+<td>Egg → Larva → Pupa → Adult</td>
+<td>Egg → Nymph → Adult</td>
+</tr>
+<tr>
+<td>Example</td>
+<td>Honeybees, butterflies, beetles</td>
+<td>Grasshoppers, cockroaches</td>
+</tr>
+<tr>
+<td>Appearance</td>
+<td>Larva looks completely different from adult; pupa is a resting stage.</td>
+<td>Nymph resembles a smaller adult and lacks wings (wings develop gradually).</td>
+</tr>
+</tbody></table>
+<p>Metamorphosis is controlled by <strong>chemical substances (hormones)</strong> in the insect.</p>
+<h4>2.3.4 Reproduction in Frogs</h4>
+<ul>
+<li>Frogs undergo <strong>sexual reproduction</strong>.</li>
+<li><strong>External fertilization</strong>: female releases eggs into water; male releases sperm over them.</li>
+<li>A few frog species have internal fertilization.</li>
+<li>Eggs are not amniotic; they are covered by a <strong>jelly‑like substance</strong> that protects them in water.</li>
+<li>Frogs lay a <strong>large number of eggs</strong> at one time to increase the chances of fertilization and survival.</li>
+<li>After fertilization, eggs develop into a larval stage called a <strong>tadpole</strong>.</li>
+<li>The tadpole undergoes <strong>metamorphosis</strong> to become an adult frog (grows legs, loses tail, develops lungs).</li>
+</ul>
+<p><strong>Life cycle of a frog</strong>: Egg (in water) → Tadpole → Adult frog.</p>
+<p><strong>Disadvantage of external fertilization</strong>: eggs are vulnerable to environmental changes and predators; laying many eggs and jelly coating help overcome this.</p>
+<h4>2.3.5 Reproduction in Crocodiles</h4>
+<ul>
+<li>Crocodilians are semi‑aquatic reptiles.</li>
+<li><strong>Sexual reproduction</strong> with internal fertilization.</li>
+<li>Mating takes place in water; eggs are fertilized inside the female.</li>
+<li>Eggs are laid and buried in sand or deposited in mound vegetation.</li>
+<li>Egg number: 10–100 depending on species.</li>
+<li>Eggs have a <strong>hard, leathery</strong> shell, which is an advancement over frog eggs, providing better protection.</li>
+<li>Development is <strong>direct</strong> (no larval stage); hatchlings resemble adults.</li>
+</ul>
+<p><strong>Life cycle of a crocodile</strong>: Egg (buried) → Hatchling → Adult.</p>
+<h4>2.3.6 Reproduction in Birds</h4>
+<ul>
+<li><strong>Sexual reproduction</strong>; internal fertilization.</li>
+<li>Most birds are <strong>monogamous</strong> (one male, one female for a breeding season); some are <strong>polygamous</strong> (multiple partners).</li>
+<li>Male birds lack external genital organs; sperm transfer occurs by bringing the male cloaca into contact with the female cloaca.</li>
+<li>Female birds usually have a <strong>single ovary</strong>.</li>
+<li>The ovum (egg yolk) is released into the <strong>oviduct</strong>.</li>
+</ul>
+<p><strong>Parts of the oviduct and their functions</strong></p>
+<ul>
+<li><strong>Infundibulum</strong> – funnel‑shaped; engulfs the yolk.</li>
+<li><strong>Magnum</strong> – longest part; secretes albumen (egg white).</li>
+<li><strong>Isthmus</strong> – forms inner and outer shell membranes; produces sulfur‑containing amino acids.</li>
+<li><strong>Uterus</strong> – egg stays here longest; shell forms over membranes.</li>
+<li><strong>Vagina</strong> – final section; egg passes through cloaca to be laid.</li>
+</ul>
+<p><strong>Egg structure</strong>: yolk, chalaza, albumen, shell membranes, air sac, shell.</p>
+<ul>
+<li>After fertilization, the egg develops a hard shell; the embryo is surrounded by the <strong>amnion</strong> (fluid‑filled sac).</li>
+<li><strong>Incubation</strong> – parent(s) keep eggs warm with body heat.<ul>
+<li>A <strong>brood patch</strong> (area of skin with dense blood vessels) develops in the female to transfer heat efficiently.</li>
+<li>Birds rotate eggs to distribute warmth evenly.</li>
+</ul>
+</li>
+<li><strong>Hatching</strong> – the chick uses an <strong>egg tooth</strong> (tooth‑like structure on the beak) to break the shell.<ul>
+<li>The egg tooth is lost after hatching.</li>
+<li>Chicks communicate with parents before hatching by vocal sounds.</li>
+</ul>
+</li>
+<li><strong>Parental care</strong>: birds build nests, often hidden or with camouflaged eggs to avoid predators. Some birds provide extensive care after hatching; others leave chicks to fend for themselves.</li>
+</ul>
+<p><strong>Life cycle of a bird</strong>: Egg (incubated) → Hatchling → Adult.</p>
+<h4>2.3.7 Reproduction in Rats (Mammals)</h4>
+<ul>
+<li>Rats represent typical mammalian sexual reproduction.</li>
+<li><strong>Internal fertilization</strong>; development occurs inside the female.</li>
+</ul>
+<p><strong>Male reproductive structures</strong>: testes, scrotum, seminiferous tubules, epididymis, vas deferens, penis with bacula.<br><strong>Female reproductive structures</strong>: two ovaries, oviducts, uterine horns, vagina with vulva.</p>
+<p><strong>Pregnancy and development</strong></p>
+<ul>
+<li>Fertilized zygote divides and forms a <strong>blastocyst</strong> (blastula).</li>
+<li>Blastocysts implant in the <strong>uterine horns</strong>.</li>
+<li><strong>Umbilical cord</strong> nourishes the embryo; <strong>placenta</strong> transports oxygen and removes waste.</li>
+<li><strong>Amniotic sac</strong> protects the embryo.</li>
+<li>Embryo develops: neural plate → brain and spinal cord; limb buds; nervous system pathways.</li>
+<li><strong>Gestation period</strong>:<ul>
+<li>Brown rat: 22–24 days</li>
+<li>Black rat: ~22 days</li>
+<li>Giant mole rat: 37–49 days</li>
+</ul>
+</li>
+<li>Birth: offspring are hairless, deaf, with sealed eyelids.</li>
+<li>Litter size: 7–12 pups on average; fewer for giant mole rats.</li>
+<li>Mother feeds milk; young are fully weaned at ~45 days.</li>
+<li><strong>Sexual maturity</strong>:<ul>
+<li>Brown/black rats: 3–4 months</li>
+<li>Giant mole rats: 4–6 months</li>
+</ul>
+</li>
+</ul>
+<p><strong>Parental care in rats</strong></p>
+<ul>
+<li>Females build nests and care for pups; if a mother dies, other females may take over nursing.</li>
+<li>Males do not participate in parental care.</li>
+</ul>
+<p><strong>Comparison of reproduction across animal groups</strong></p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Frog</th>
+<th>Crocodile</th>
+<th>Bird</th>
+<th>Rat</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Fertilization</td>
+<td>External (mostly)</td>
+<td>Internal</td>
+<td>Internal</td>
+<td>Internal</td>
+</tr>
+<tr>
+<td>Egg type</td>
+<td>Jelly‑coated, non‑amniotic</td>
+<td>Hard, leathery, amniotic</td>
+<td>Hard‑shelled, amniotic</td>
+<td>No shell; embryo develops internally</td>
+</tr>
+<tr>
+<td>Development site</td>
+<td>External (water)</td>
+<td>External (nest/mound)</td>
+<td>External (nest)</td>
+<td>Internal (uterus)</td>
+</tr>
+<tr>
+<td>Parental care</td>
+<td>None</td>
+<td>Some (nest guarding)</td>
+<td>Extensive (incubation, feeding)</td>
+<td>Extensive (nursing, nesting)</td>
+</tr>
+<tr>
+<td>Metamorphosis</td>
+<td>Yes (tadpole → adult)</td>
+<td>No (direct development)</td>
+<td>No (direct development)</td>
+<td>No (direct development)</td>
+</tr>
+<tr>
+<td>Special structures</td>
+<td>Jelly coat</td>
+<td>Leathery shell</td>
+<td>Egg tooth, brood patch</td>
+<td>Placenta, umbilical cord</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>2.4 The Economic Importance of Insects</h3>
+<p>Insects have both beneficial and harmful effects on the economy, lives, and ecosystems.</p>
+<h4>2.4.1 Beneficial Aspects</h4>
+<p><strong>A. Agriculture</strong></p>
+<ul>
+<li><strong>Pollinators</strong>: insects visit flowers for nectar/pollen; transfer pollen, enabling pollination.<ul>
+<li>About 35% of world crop production results from insect pollination.</li>
+<li>Essential for reproduction of many flowering plants and fruit/seed production.</li>
+<li>High economic value.</li>
+</ul>
+</li>
+<li><strong>Pest regulation</strong> (natural biological control):<ul>
+<li>Insect predators and parasitoids feed on pest insects.</li>
+<li>Examples:<ul>
+<li><em>Stagmomantis</em> (mantis) – feeds on grasshoppers and caterpillars.</li>
+<li><em>Cheilomenes</em> (ladybird beetle) – feeds on aphids and scale worms.</li>
+<li><em>Epicauta</em> (blister beetle) – eats locust egg masses.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Other roles:<ul>
+<li>Feed on weeds.</li>
+<li>Improve soil aeration, nutrient cycling, and soil structure as decomposers.</li>
+</ul>
+</li>
+</ul>
+<p><strong>B. Food</strong></p>
+<ul>
+<li>Edible insects are a sustainable source of animal protein.</li>
+<li>Over 1,462 recorded species are consumed worldwide, especially in Asia and Central America.</li>
+<li>Commonly eaten: crickets, grasshoppers, beetle/moth larvae, termites.</li>
+<li>Nutritious: high protein, fat, minerals; can be farmed easily with low environmental footprint.</li>
+<li>Also serve as food for many vertebrates.</li>
+</ul>
+<p><strong>C. Industry</strong></p>
+<ul>
+<li><strong>Honey and beeswax</strong> – produced by honeybees (<em>Apis mellifera</em>); millions of tons produced yearly.</li>
+<li><strong>Silk</strong> – silk fibers from silkworms (<em>Bombyx mori</em> and others); used for luxurious textiles.</li>
+<li><strong>Shellac</strong> – resin secreted by lac insects (<em>Laccifer lacca</em>); used in dyes, inks, polishes, sealing wax, felt‑hat stiffening.</li>
+<li><strong>Cochineal pigment</strong> – from scale insect <em>Dactylopius coccus</em>; used as a colorant in foods, beverages, cosmetics, art.</li>
+<li><strong>Tannic acid</strong> – from gall tissues produced by trees in response to cynipid wasp secretions; used in leather tanning, dyeing, and inks.</li>
+</ul>
+<p><strong>D. Health and Medicine</strong></p>
+<ul>
+<li><strong>Honey</strong> – used to treat burns, chronic wounds, post‑surgical wounds; promotes healthy immune systems, improves circulation, decreases inflammation.</li>
+<li><strong>Bee and ant venom</strong> – used to treat joint pain.</li>
+<li><strong>Cantharidan</strong> (from blister beetles) – a powerful protein blocker; prevents reproduction of some viral cells; may be useful in treating cancerous tumours resistant to radiation/chemotherapy.</li>
+<li><strong>Ground grasshopper poultices</strong> – used in some African cultures as pain relievers, especially for migraines.</li>
+</ul>
+<h4>2.4.2 Harmful Aspects</h4>
+<ul>
+<li><strong>Plant pests</strong>: insects feed on leaves, stems, buds, flowers, fruits, seeds in fields and storage, reducing crop yield.<ul>
+<li>Examples: locusts, caterpillars, bugs, hoppers, aphids.</li>
+<li><strong>Locusts</strong> are highly destructive; they form huge swarms, especially in hot, dry regions, devouring all green plants.</li>
+</ul>
+</li>
+<li><strong>Stored grain pests</strong>: Rice Weevil, Lesser Grain Borer, Rust Red Flour Beetle, Sawtooth Grain Beetle, Flat Grain Beetle.</li>
+<li><strong>Disease vectors</strong>:<ul>
+<li><em>Anopheles</em> mosquito – transmits malaria (<em>Plasmodium</em>).</li>
+<li><em>Culex</em> mosquito – spreads filariasis (filarial worms).</li>
+<li>Tsetse fly (<em>Trypanosoma gambiense</em>) – spreads African sleeping sickness.</li>
+<li>Housefly (<em>Musca domestica</em>) – spreads food‑ and water‑borne diseases.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3>2.5 Animal Behavior</h3>
+<p><strong>Animal behavior</strong> is defined as all the ways animals interact with other organisms and the physical environment. It includes movement, interactions within the environment, and learning.</p>
+<h4>2.5.1 Types of Animal Behavior</h4>
+<p>Two main types:</p>
+<ul>
+<li><strong>Innate (inherent) behavior</strong></li>
+<li><strong>Learned (acquired) behavior</strong></li>
+</ul>
+<p><strong>A. Innate (Inherent) Behavior</strong></p>
+<ul>
+<li>Inborn; determined by genes; independent of experience; species‑specific.</li>
+<li>Three subtypes:</li>
+</ul>
+<ol>
+<li><p><strong>Instinctive behavior</strong></p>
+<ul>
+<li>Examples: web making in spiders, nest‑building in birds, swimming in dolphins, chick mouth opening when mother returns, honeybee dance for food source location.</li>
+</ul>
+</li>
+<li><p><strong>Reflex behavior</strong></p>
+<ul>
+<li>A sudden, involuntary response to a stimulus.</li>
+<li>The pain message travels only to the spinal cord and back, not the brain, allowing faster response.</li>
+<li>Examples: pulling hand away from hot/sharp object, blinking when an object nears the eye, closing eyes against dust.</li>
+</ul>
+</li>
+<li><p><strong>Orientation behavior</strong></p>
+<ul>
+<li><strong>Taxis</strong> – directed movement toward or away from a stimulus source.<ul>
+<li>Positive taxis: movement toward the stimulus.</li>
+<li>Negative taxis: movement away from the stimulus.</li>
+<li>Example: cockroaches moving away from light (negative phototaxis).</li>
+<li>Types: phototaxis (light), chemotaxis (chemicals), thigmotaxis (touch), geotaxis (gravity).</li>
+</ul>
+</li>
+<li><strong>Kinesis</strong> – undirected, random movement; response depends on stimulus intensity, not direction.<ul>
+<li>Example: woodlice movement in response to temperature changes.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>B. Learned (Acquired) Behavior</strong></p>
+<ul>
+<li>Not inherited; not genetically determined.</li>
+<li>Acquired during an individual’s lifetime; allows adaptation to environmental changes.</li>
+<li>Modified by previous experiences.</li>
+<li>Types:</li>
+</ul>
+<ol>
+<li><p><strong>Habituation</strong></p>
+<ul>
+<li>A simple form of non‑associative learning; an animal stops responding to a repeated, harmless stimulus.</li>
+<li>Example: getting used to the sound of a television while reading.</li>
+</ul>
+</li>
+<li><p><strong>Classical conditioning</strong></p>
+<ul>
+<li>Associative learning where a response to one stimulus becomes associated with a second, previously neutral stimulus.</li>
+<li>Discovered by Ivan P. Pavlov.</li>
+<li>Three stages:<ul>
+<li><strong>Before conditioning</strong>: Unconditioned stimulus (UCS) → Unconditioned response (UCR) (natural, unlearned).</li>
+<li><strong>During conditioning</strong>: Neutral stimulus (conditioned stimulus, CS) is repeatedly paired with UCS.</li>
+<li><strong>After conditioning</strong>: CS alone elicits the conditioned response (CR).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Operant conditioning</strong></p>
+<ul>
+<li>Associative learning in which behavior is modified by consequences (reward or punishment).</li>
+<li>Discovered by B.F. Skinner.</li>
+<li>Three types of operant responses:<ul>
+<li><strong>Neutral operants</strong> – neither increase nor decrease probability of behavior.</li>
+<li><strong>Reinforcers</strong> – increase probability of behavior (positive or negative reinforcement).</li>
+<li><strong>Punishers</strong> – decrease likelihood of behavior (punishment weakens behavior).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Insight learning</strong></p>
+<ul>
+<li>Learning based on past experience and reasoning; a hallmark of human behavior.</li>
+<li>Example: problem‑solving from starting a fire to space travel.</li>
+</ul>
+</li>
+<li><p><strong>Sensitization</strong></p>
+<ul>
+<li>Non‑associative learning; repeated administration of a stimulus amplifies the response (reverse tolerance).</li>
+<li>Occurs when a stimulus is presented above the tolerance threshold.</li>
+<li>Example: a painful stimulus may make one more sensitive to a loud noise.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Difference between innate and learned behavior</strong></p>
+<table>
+<thead>
+<tr>
+<th>Innate Behavior</th>
+<th>Learned Behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Genetically determined, inborn</td>
+<td>Acquired through experience</td>
+</tr>
+<tr>
+<td>Uniform within a species</td>
+<td>Varies among individuals</td>
+</tr>
+<tr>
+<td>Does not require practice</td>
+<td>Requires practice or exposure</td>
+</tr>
+<tr>
+<td>Inflexible, fixed</td>
+<td>Flexible, modified by environment</td>
+</tr>
+<tr>
+<td>Examples: reflexes, instincts</td>
+<td>Examples: habituation, conditioning</td>
+</tr>
+</tbody></table>
+<h4>2.5.2 Patterns of Behavior</h4>
+<p>Common behavioral patterns found across many species:</p>
+<ol>
+<li><p><strong>Behavioral cycles</strong></p>
+<ul>
+<li>Responses to periodic environmental changes.</li>
+<li><strong>Seasonal migration</strong> – movement of animals (birds, insects, mammals) from one habitat to another due to changes in food, sunlight, temperature, breeding conditions.</li>
+<li><strong>Circadian rhythms</strong> (biological clocks) – 24‑hour cycles regulating sleep‑wake cycles and other essential functions.</li>
+</ul>
+</li>
+<li><p><strong>Reproductive behavior</strong></p>
+<ul>
+<li>Coordinates timing and patterning of reproductive activity.</li>
+<li>Includes locating/selecting mates, courtship displays (sounds, visual displays, chemicals), producing offspring, and rearing young.</li>
+<li>Example: courtship dance in pigeons.</li>
+</ul>
+</li>
+<li><p><strong>Social behavior</strong></p>
+<ul>
+<li>Observed in group‑living animals; includes division of labor.</li>
+<li>Examples:<ul>
+<li>Social insects (ants, termites, bees, wasps) – workers, soldiers.</li>
+<li>Elephants – pay homage to dead relatives.</li>
+<li>Penguins, primates, humans.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Competition</strong></p>
+<ul>
+<li>Occurs when organisms compete for limited resources (space, territory, water, mates, food).</li>
+<li>Two types:<ul>
+<li><strong>Intraspecific competition</strong> – between members of the same species.</li>
+<li><strong>Interspecific competition</strong> – between members of different species.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Territoriality</strong></p>
+<ul>
+<li>Protecting a space that contains necessary resources.</li>
+<li>Many animals use <strong>display behavior</strong> (chest pounding, red breast display, pheromone marking) rather than fighting to warn others.</li>
+<li>Examples:<ul>
+<li>Dogs and lions mark territory with urine (pheromones).</li>
+<li>Male gorillas pound chest, thump ground.</li>
+<li>Robin displays red breast.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Communication</strong></p>
+<ul>
+<li>Essential for interaction; uses sight, sound, touch (tactile), and chemicals (pheromones).</li>
+<li>Examples:<ul>
+<li>Birds sing, frogs croak.</li>
+<li>Ants use pheromones to mark trails to food.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3>2.6 Homeostasis in Animals</h3>
+<p><strong>Homeostasis</strong> is the self‑regulatory process by which animals maintain stable internal body conditions despite external changes. It maintains equilibrium at a <strong>set point</strong> (normal conditions).</p>
+<p><strong>Components of homeostatic control</strong></p>
+<ul>
+<li><strong>Stimulus</strong> – a change in the environment or body condition (e.g., temperature change, glucose level change).</li>
+<li><strong>Receptor</strong> – detects the change and sends a signal (e.g., thermoreceptors).</li>
+<li><strong>Control center</strong> – receives the signal and sends commands; often the <strong>hypothalamus</strong> in the brain.</li>
+<li><strong>Effector</strong> – organ or tissue (e.g., kidney, liver, muscles, glands) that carries out the response to counteract the change and restore normal condition.</li>
+</ul>
+<h4>2.6.1 Thermoregulation</h4>
+<p><strong>Thermoregulation</strong> is the process of maintaining constant internal body temperature.</p>
+<p><strong>Two groups of animals based on temperature regulation:</strong></p>
+<ol>
+<li><p><strong>Poikilothermic (ectothermic) animals</strong></p>
+<ul>
+<li>Body temperature matches the environment; varies with it.</li>
+<li>Lack internal physiological control.</li>
+<li>Behavioral methods to adjust temperature: burrowing, basking in sun, swimming, using group activity (e.g., bees in hive).</li>
+<li>Examples: fish, reptiles, amphibians, most invertebrates.</li>
+</ul>
+</li>
+<li><p><strong>Homeothermic (endothermic) animals</strong></p>
+<ul>
+<li>Maintain constant internal body temperature regardless of the environment.</li>
+<li>Generate internal heat; use morphological, physiological, and behavioral methods.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Temperature regulation in homeotherms</strong></p>
+<p><strong>A. Cold environment – heat conservation</strong></p>
+<ul>
+<li><strong>Insulation</strong>: fur, fat, feathers (e.g., arctic fox uses fluffy tail; birds puff up feathers).</li>
+<li><strong>Vasoconstriction</strong>: narrowing of blood vessels in the skin to reduce blood flow and heat loss.</li>
+<li><strong>Shivering</strong>: involuntary muscle contractions that generate heat from respiration.</li>
+<li>Behavioral: huddling, seeking shelter.</li>
+</ul>
+<p><strong>B. Hot environment – heat loss</strong></p>
+<ul>
+<li><strong>Vasodilation</strong>: widening of blood vessels in the skin, increasing blood flow to the surface, allowing heat loss by radiation and evaporation.</li>
+<li><strong>Sweating</strong>: sweat glands produce sweat; evaporation of sweat cools the body.</li>
+<li>Behavioral: seeking shade, swimming.</li>
+</ul>
+<p><strong>Control center</strong>: <strong>Hypothalamus</strong> detects temperature changes and triggers vasodilation/constriction, sweating, shivering.</p>
+<p><strong>Mechanisms of heat exchange with environment</strong></p>
+<ul>
+<li>Radiation</li>
+<li>Evaporation</li>
+<li>Convection</li>
+<li>Conduction</li>
+</ul>
+<p><strong>Morphological adaptations</strong></p>
+<ul>
+<li>Large ears in hot climates → increase heat loss.</li>
+<li>Small ears and thick fur in cold climates → reduce heat loss.</li>
+</ul>
+<p><strong>Surface‑area‑to‑volume ratio</strong></p>
+<ul>
+<li>Smaller animals have a <strong>higher surface area to volume ratio</strong> → lose heat more rapidly → higher metabolic rate.</li>
+<li>Larger animals have a <strong>lower surface area to volume ratio</strong> → lose heat more slowly.</li>
+<li>Example: a rabbit (small) loses heat faster than an elephant (large).</li>
+</ul>
+<h4>2.6.2 Osmoregulation</h4>
+<p><strong>Osmoregulation</strong> is the process that regulates osmotic pressure of body fluids and electrolyte balance to maintain homeostasis.</p>
+<ul>
+<li>About 60% of the human body is fluid; ~2/3 is intracellular fluid, 1/3 is extracellular fluid (interstitial fluid + blood plasma).</li>
+<li>Disruption in osmotic pressure causes imbalance in water/electrolyte movement.</li>
+</ul>
+<p><strong>Two strategies</strong>:</p>
+<ul>
+<li><strong>Osmoconformers</strong>: maintain internal osmotic pressure equal to the external environment. Examples: starfish, jellyfish, lobsters.</li>
+<li><strong>Osmoregulators</strong>: actively regulate osmotic pressure independent of the environment. Examples: most vertebrates, including humans.</li>
+</ul>
+<p><strong>Role of the kidney</strong></p>
+<ul>
+<li>Main osmoregulatory organ in humans.</li>
+<li>When water level is high → produces large amount of hypotonic urine.</li>
+<li>When water level is low → retains water, produces small amount of hypertonic urine.</li>
+</ul>
+<p><strong>Control</strong>: Osmoreceptors in the <strong>hypothalamus</strong> detect osmotic changes; <strong>antidiuretic hormone (ADH)</strong> from the pituitary gland regulates kidney function.</p>
+<h4>2.6.3 Blood Sugar (Glucose) Regulation</h4>
+<ul>
+<li>Glucose is the main energy source for body systems, including the brain.</li>
+<li>Blood glucose concentration must be kept constant.</li>
+</ul>
+<p><strong>Hormones from the pancreas</strong>:</p>
+<ul>
+<li><strong>Insulin</strong>: released when blood glucose is high. Promotes conversion of glucose → <strong>glycogen</strong> (stored in liver).</li>
+<li><strong>Glucagon</strong>: released when blood glucose is low. Promotes conversion of glycogen → glucose (released into blood).</li>
+</ul>
+<p>This negative feedback loop maintains sugar balance.</p>
+<h4>2.6.4 Control of Homeostasis – Feedback Mechanisms</h4>
+<p><strong>Feedback mechanism</strong> is a physiological regulation system that returns the body to its normal internal state.</p>
+<p><strong>Two types</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Negative Feedback</th>
+<th>Positive Feedback</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Direction</td>
+<td>Reverses the change; returns to set point</td>
+<td>Amplifies the change; moves further from set point</td>
+</tr>
+<tr>
+<td>Purpose</td>
+<td>Maintains homeostasis</td>
+<td>Drives processes to completion (e.g., childbirth, blood clotting)</td>
+</tr>
+<tr>
+<td>Example</td>
+<td>Body temperature regulation: when too hot → sweating (cools down); when too cold → shivering (warms up)</td>
+<td>Not emphasized for maintenance; examples include oxytocin release during labor</td>
+</tr>
+</tbody></table>
+<p><strong>Components of negative feedback loop</strong> (as described for temperature):</p>
+<ul>
+<li><strong>Stimulus</strong>: increased body temperature.</li>
+<li><strong>Receptor</strong>: thermoreceptors sense heat.</li>
+<li><strong>Control center</strong>: hypothalamus.</li>
+<li><strong>Effector</strong>: blood vessels dilate (vasodilation), sweat glands activated.</li>
+<li><strong>Response</strong>: heat loss; temperature drops to normal.</li>
+</ul>
+<p>When body temperature drops too low:</p>
+<ul>
+<li><p>Vasoconstriction, shivering, sweat glands inactive → conserve/generate heat.</p>
+</li>
+<li><p>Blood glucose regulation and osmoregulation also operate by negative feedback.</p>
+</li>
+</ul>
+<hr>
+<h3>2.7 Renowned Zoologists in Ethiopia</h3>
+<ul>
+<li>Zoology is the scientific study of animals (evolution, anatomy, physiology, behavior, habitats, health).</li>
+<li>Many Ethiopian zoologists have contributed to animal studies and economic development.</li>
+<li>Their work is considered patriotic (hard work, diligence).</li>
+<li>Specific names and details are not provided in this unit; the text emphasizes appreciating local scientists.</li>
+</ul>
+<hr>
+<h2>EXAM REVISION SUMMARY</h2>
+<ul>
+<li><strong>Animal characteristics</strong>: eukaryotic, multicellular, heterotrophic, sensitive, reproduce, protect, move, respire, excrete, grow, body symmetry.</li>
+<li><strong>Classification</strong>: vertebrates (backbone) vs invertebrates (no backbone); vertebrates further split into homeothermic (birds, mammals) and poikilothermic (fish, amphibians, reptiles).</li>
+<li><strong>Invertebrates</strong>: lack rigid skeleton, often have exoskeleton, cold‑blooded, diverse.</li>
+<li><strong>Vertebrates</strong>: internal skeleton, axial/appendicular, closed circulation, centralized nervous system, kidneys.</li>
+<li><strong>Asexual reproduction</strong>: budding, fragmentation, parthenogenesis; single parent, no gamete fusion.</li>
+<li><strong>Sexual reproduction</strong>: involves gametes (sperm, egg), fertilization, diploid zygote; embryonic stages – cleavage, blastula, gastrula, organogenesis.</li>
+<li><strong>External vs internal fertilization</strong>: external in water (frogs); internal (crocodiles, birds, rats). Internal fertilization advantageous for land animals.</li>
+<li><strong>Insect metamorphosis</strong>: complete (4 stages: egg, larva, pupa, adult) e.g., honeybee; incomplete (3 stages: egg, nymph, adult) e.g., grasshopper. Controlled by hormones.</li>
+<li><strong>Frog reproduction</strong>: external fertilization, jelly‑coated eggs, tadpole stage, metamorphosis to adult.</li>
+<li><strong>Crocodile reproduction</strong>: internal fertilization, leathery hard eggs, direct development, nest guarding.</li>
+<li><strong>Bird reproduction</strong>: internal fertilization via cloaca, single ovary, oviduct parts (infundibulum, magnum, isthmus, uterus, vagina), hard‑shelled amniotic egg, incubation with brood patch, egg tooth for hatching, nest building and parental care.</li>
+<li><strong>Rat reproduction</strong>: internal fertilization, internal development, placenta and umbilical cord nourish embryo, gestation ~22–24 days (brown/black rat), altricial young (hairless, deaf), maternal care.</li>
+<li><strong>Insect economic importance – beneficial</strong>: pollination (35% crop production), pest control (predators like ladybirds, mantises), food source (high protein), industrial products (honey, beeswax, silk, shellac, cochineal, tannic acid), medicine (honey for wounds, bee/ant venom for pain, cantharidin for viral infections/cancer, grasshopper poultices for migraines).</li>
+<li><strong>Harmful insects</strong>: plant pests (locust swarms, caterpillars, aphids), stored grain pests, disease vectors (Anopheles – malaria, Culex – filariasis, tsetse fly – sleeping sickness, housefly – food/water diseases).</li>
+<li><strong>Animal behavior</strong>: innate (instinct, reflex, orientation – taxis/kinesis) vs learned (habituation, classical conditioning, operant conditioning, insight learning, sensitization).</li>
+<li><strong>Behavioral patterns</strong>: circadian rhythms, seasonal migration, reproductive behavior, social behavior, competition (intra‑/interspecific), territoriality (displays, pheromones), communication (sight, sound, touch, chemicals).</li>
+<li><strong>Homeostasis</strong>: maintenance of stable internal conditions via receptors, control center (hypothalamus), effectors.</li>
+<li><strong>Thermoregulation</strong>: poikilotherms (body temperature varies with environment) use behavioral methods; homeotherms use insulation, vasoconstriction/dilation, sweating, shivering. Surface area to volume ratio affects heat loss (small animals lose heat faster).</li>
+<li><strong>Osmoregulation</strong>: water/electrolyte balance; osmoconformers vs osmoregulators; kidney and ADH control in humans.</li>
+<li><strong>Blood sugar regulation</strong>: insulin lowers blood glucose (stores glycogen); glucagon raises blood glucose (breaks down glycogen); pancreatic hormones maintain balance.</li>
+<li><strong>Feedback mechanisms</strong>: negative feedback reverses changes (temperature, glucose regulation); positive feedback amplifies changes. Negative feedback maintains homeostasis.</li>
+</ul>
+
+    </div>
+</body>
+</html>

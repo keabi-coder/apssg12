@@ -6,171 +6,285 @@
     <title>APSSG12 – Learning Resources</title>
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
     <style>
+        /* ========== DESIGN TOKENS ========== */
         :root {
-            --bg: #f8fafc;
-            --text: #0f172a;
-            --card-bg: #ffffff;
-            --border: #e2e8f0;
-            --hover-bg: #f1f5f9;
-            --btn-bg: #e2e8f0;
-            --btn-text: #1e293b;
-            --secondary-text: #475569;
+            /* ---- Color Palette ---- */
+            --hue: 215;                           /* base hue */
+            --sat: 40%;
+            --bg-lightness: 94%;
+            --card-lightness: 96%;
+            --text-lightness: 8%;
+
+            --bg: hsl(var(--hue), var(--sat), var(--bg-lightness));
+            --card-bg: hsl(var(--hue), var(--sat), var(--card-lightness));
+            --text: hsl(var(--hue), 10%, var(--text-lightness));
+            --text-soft: hsl(var(--hue), 10%, 30%);
             --accent: #3b82f6;
-            --nav-bg: rgba(255,255,255,0.85);
-            --hero-bg: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
-            --radius: 12px;
-        }
-        [data-theme="dark"] {
-            --bg: #0f172a;
-            --text: #f1f5f9;
-            --card-bg: #1e293b;
-            --border: #334155;
-            --hover-bg: #1e293b;
-            --btn-bg: #334155;
-            --btn-text: #f1f5f9;
-            --secondary-text: #94a3b8;
-            --nav-bg: rgba(15,23,42,0.9);
-            --hero-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --accent-hsl: 217, 91%, 60%;          /* blue-500 in HSL */
+            --accent-light: hsl(217, 91%, 95%);
+            --accent-dark: hsl(217, 91%, 45%);
+
+            /* ---- Neumorphic Shadows ---- */
+            --shadow-soft: 6px 6px 12px hsl(var(--hue), var(--sat), calc(var(--bg-lightness) - 12%)),
+                           -6px -6px 12px hsl(var(--hue), var(--sat), 100%);
+            --shadow-soft-sm: 3px 3px 6px hsl(var(--hue), var(--sat), calc(var(--bg-lightness) - 10%)),
+                             -3px -3px 6px hsl(var(--hue), var(--sat), 100%);
+            --shadow-pressed: inset 4px 4px 8px hsl(var(--hue), var(--sat), calc(var(--bg-lightness) - 12%)),
+                             inset -4px -4px 8px hsl(var(--hue), var(--sat), 100%);
+            --shadow-card: 8px 8px 16px hsl(var(--hue), var(--sat), calc(var(--bg-lightness) - 12%)),
+                          -8px -8px 16px hsl(var(--hue), var(--sat), 100%);
+            --shadow-card-hover: 12px 12px 24px hsl(var(--hue), var(--sat), calc(var(--bg-lightness) - 15%)),
+                                -12px -12px 24px hsl(var(--hue), var(--sat), 100%);
+            --shadow-nav: 0 4px 20px hsl(var(--hue), var(--sat), calc(var(--bg-lightness) - 8%), 0.3);
+
+            /* ---- Typography ---- */
+            --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --fs-hero: clamp(2.2rem, 6vw, 4rem);
+            --fs-h2: clamp(1.6rem, 4vw, 2.4rem);
+            --fs-body: 1rem;
+            --lh-body: 1.7;
+            --letter-spacing: -0.01em;
+
+            /* ---- Border Radius ---- */
+            --radius-sm: 10px;
+            --radius-md: 18px;
+            --radius-lg: 24px;
+            --radius-pill: 50px;
+
+            /* ---- Transitions ---- */
+            --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+            --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+            --duration-fast: 0.15s;
+            --duration-normal: 0.3s;
+            --duration-slow: 0.5s;
+
+            /* ---- Spacing ---- */
+            --gap-xs: 0.5rem;
+            --gap-sm: 0.75rem;
+            --gap-md: 1.5rem;
+            --gap-lg: 2.5rem;
+            --gap-xl: 4rem;
+
+            /* ---- Navbar dimensions ---- */
+            --navbar-height: 64px;
         }
 
-        * { margin:0; padding:0; box-sizing:border-box; }
-        html { scroll-behavior: smooth; }
+        /* ---- Dark Theme Overrides ---- */
+        [data-theme="dark"] {
+            --bg-lightness: 12%;
+            --card-lightness: 18%;
+            --text-lightness: 90%;
+            --text-soft: hsl(var(--hue), 10%, 65%);
+            --shadow-soft: 6px 6px 12px hsl(var(--hue), var(--sat), calc(var(--bg-lightness) - 5%)),
+                           -6px -6px 12px hsl(var(--hue), var(--sat), calc(var(--bg-lightness) + 8%));
+            --shadow-soft-sm: 3px 3px 6px hsl(var(--hue), var(--sat), calc(var(--bg-lightness) - 5%)),
+                             -3px -3px 6px hsl(var(--hue), var(--sat), calc(var(--bg-lightness) + 8%));
+            --shadow-pressed: inset 4px 4px 8px hsl(var(--hue), var(--sat), calc(var(--bg-lightness) - 5%)),
+                             inset -4px -4px 8px hsl(var(--hue), var(--sat), calc(var(--bg-lightness) + 8%));
+            --shadow-card: 8px 8px 16px hsl(var(--hue), var(--sat), calc(var(--bg-lightness) - 5%)),
+                          -8px -8px 16px hsl(var(--hue), var(--sat), calc(var(--bg-lightness) + 8%));
+            --shadow-card-hover: 12px 12px 24px hsl(var(--hue), var(--sat), calc(var(--bg-lightness) - 5%)),
+                                -12px -12px 24px hsl(var(--hue), var(--sat), calc(var(--bg-lightness) + 8%));
+            --shadow-nav: 0 4px 20px hsl(var(--hue), var(--sat), 5%, 0.4);
+        }
+
+        /* ========== GLOBAL RESET ========== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
         body {
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: var(--font-family);
             background: var(--bg);
             color: var(--text);
-            line-height: 1.6;
+            line-height: var(--lh-body);
+            letter-spacing: var(--letter-spacing);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
+        /* ========== UTILITY CLASSES ========== */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        /* ========== NAVIGATION ========== */
         .navbar {
             position: sticky;
             top: 0;
-            z-index: 100;
-            background: var(--nav-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            padding: 0.8rem 2rem;
+            z-index: 1000;
+            height: var(--navbar-height);
+            background: var(--bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid hsla(var(--hue), var(--sat), 50%, 0.08);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 2rem;
+            box-shadow: var(--shadow-nav);
         }
+
         .logo {
             font-weight: 700;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             text-decoration: none;
             color: var(--text);
             letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
+
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: var(--gap-lg);
         }
+
         .nav-link {
             text-decoration: none;
-            color: var(--secondary-text);
+            color: var(--text-soft);
             font-weight: 500;
             font-size: 0.95rem;
-            transition: color 0.2s;
+            padding: 0.4rem 0.8rem;
+            border-radius: var(--radius-sm);
+            transition: all var(--duration-fast) var(--ease-smooth);
             position: relative;
         }
+
         .nav-link:hover {
             color: var(--accent);
+            background: var(--accent-light);
         }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background: var(--accent);
-            transition: width 0.2s;
+
+        .nav-link:active {
+            box-shadow: var(--shadow-pressed);
         }
-        .nav-link:hover::after {
-            width: 100%;
-        }
+
         .menu-toggle {
             display: none;
             background: none;
             border: none;
             cursor: pointer;
         }
-        .menu-icon, .theme-icon { width: 24px; height: 24px; }
+
         .theme-toggle {
-            background: var(--btn-bg);
-            color: var(--btn-text);
+            background: var(--bg);
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: background 0.2s;
+            box-shadow: var(--shadow-soft-sm);
+            transition: box-shadow var(--duration-fast) var(--ease-smooth), transform var(--duration-fast) var(--ease-smooth);
         }
-        .theme-toggle:hover { background: var(--hover-bg); }
 
+        .theme-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        .theme-toggle:active {
+            box-shadow: var(--shadow-pressed);
+        }
+
+        /* ========== CONTAINER & LAYOUT ========== */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 2rem;
             flex: 1;
+            width: 100%;
         }
 
+        /* ========== HERO ========== */
         .hero {
             text-align: center;
-            padding: 4rem 1rem 3rem;
-            background: var(--hero-bg);
-            border-radius: var(--radius);
-            margin-bottom: 3rem;
-            box-shadow: var(--shadow-md);
+            padding: clamp(3rem, 6vw, 5rem) 1.5rem;
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-card);
+            margin-bottom: var(--gap-xl);
+            transition: box-shadow var(--duration-normal) var(--ease-smooth);
         }
+
+        .hero:hover {
+            box-shadow: var(--shadow-card-hover);
+        }
+
         .hero h1 {
-            font-size: clamp(2.2rem, 6vw, 4rem);
+            font-size: var(--fs-hero);
             font-weight: 800;
             margin-bottom: 1rem;
-            letter-spacing: -1px;
+            letter-spacing: -0.02em;
         }
+
         .hero p {
-            color: var(--secondary-text);
+            color: var(--text-soft);
             font-size: clamp(1rem, 2.5vw, 1.3rem);
             max-width: 600px;
             margin: 0 auto 2rem;
         }
+
         .notes-btn {
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
             background: var(--accent);
-            color: #ffffff;
-            padding: 0.9rem 2.2rem;
-            border-radius: 40px;
+            color: #fff;
+            padding: 0.9rem 2.4rem;
+            border-radius: var(--radius-pill);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: -0.01em;
+            box-shadow: var(--shadow-soft-sm);
+            transition: all var(--duration-normal) var(--ease-bounce);
         }
-        .notes-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        }
-        .notes-icon { width: 28px; height: 28px; }
 
-        .section {
-            margin: 4rem 0;
+        .notes-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px hsla(var(--accent-hsl), 0.35);
         }
+
+        .notes-btn:active {
+            transform: translateY(1px);
+            box-shadow: var(--shadow-pressed);
+        }
+
+        .notes-icon {
+            width: 28px;
+            height: 28px;
+        }
+
+        /* ========== SECTION TITLES ========== */
+        .section {
+            margin: var(--gap-xl) 0;
+        }
+
         .section h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-size: var(--fs-h2);
             font-weight: 700;
             margin-bottom: 1.5rem;
             display: flex;
@@ -178,189 +292,339 @@
             gap: 0.75rem;
             color: var(--text);
         }
-        .study-icon { width: 36px; height: 36px; }
 
-        /* -------- Explorer -------- */
+        .study-icon {
+            width: 38px;
+            height: 38px;
+        }
+
+        /* ========== FILE EXPLORER ========== */
         .explorer-container {
             background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-card);
             overflow: hidden;
-            box-shadow: var(--shadow-md);
+            transition: box-shadow var(--duration-normal) var(--ease-smooth);
         }
+
+        .explorer-container:hover {
+            box-shadow: var(--shadow-card-hover);
+        }
+
         .explorer-toolbar {
             display: flex;
             align-items: center;
             gap: 0.5rem;
             padding: 0.75rem 1rem;
-            border-bottom: 1px solid var(--border);
-            background: var(--card-bg);
+            border-bottom: 1px solid hsla(var(--hue), var(--sat), 50%, 0.06);
+            background: var(--bg);
         }
+
         .nav-btn {
-            background: var(--btn-bg);
+            background: var(--bg);
             border: none;
-            border-radius: 8px;
-            padding: 0.5rem;
-            cursor: pointer;
+            border-radius: var(--radius-sm);
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
-            transition: background 0.2s;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-soft-sm);
+            transition: all var(--duration-fast) var(--ease-smooth);
         }
-        .nav-btn:hover { background: var(--hover-bg); }
-        .nav-btn:disabled { opacity: 0.3; cursor: default; }
-        .back-icon { transform: rotate(180deg); }
-        .nav-icon { width: 20px; height: 20px; }
+
+        .nav-btn:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .nav-btn:active:not(:disabled) {
+            box-shadow: var(--shadow-pressed);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.4;
+            cursor: default;
+        }
+
+        .back-icon {
+            transform: rotate(180deg);
+        }
+
+        .nav-icon {
+            width: 22px;
+            height: 22px;
+        }
 
         .breadcrumb {
             display: flex;
             align-items: center;
             flex-wrap: wrap;
-            padding: 0.5rem 1rem;
-            border-bottom: 1px solid var(--border);
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid hsla(var(--hue), var(--sat), 50%, 0.06);
             background: var(--card-bg);
             font-size: 0.9rem;
         }
+
         .breadcrumb a, .breadcrumb span {
             text-decoration: none;
-            color: var(--secondary-text);
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
+            color: var(--text-soft);
+            padding: 0.3rem 0.5rem;
+            border-radius: var(--radius-sm);
             cursor: pointer;
-            transition: background 0.15s;
+            transition: background var(--duration-fast) var(--ease-smooth), color var(--duration-fast);
         }
-        .breadcrumb a:hover { background: var(--hover-bg); color: var(--accent); }
-        .breadcrumb .separator { margin: 0 0.25rem; color: var(--border); }
+
+        .breadcrumb a:hover {
+            background: var(--accent-light);
+            color: var(--accent);
+        }
+
+        .breadcrumb .separator {
+            margin: 0 0.2rem;
+            color: hsla(var(--hue), var(--sat), 50%, 0.4);
+        }
 
         .folder-list {
-            min-height: 100px;
+            min-height: 80px;
             transition: opacity 0.2s ease;
         }
+
         .folder-item {
             display: flex;
             align-items: center;
-            padding: 0.8rem 1.2rem;
-            border-bottom: 1px solid var(--border);
+            padding: 0.9rem 1.2rem;
+            border-bottom: 1px solid hsla(var(--hue), var(--sat), 50%, 0.05);
             cursor: pointer;
-            transition: background 0.15s;
+            transition: all var(--duration-fast) var(--ease-smooth);
+            background: var(--card-bg);
         }
-        .folder-item:hover { background: var(--hover-bg); }
-        .folder-item:last-child { border-bottom: none; }
-        .folder-item .folder-icon, .folder-item .file-icon {
+
+        .folder-item:last-child {
+            border-bottom: none;
+        }
+
+        .folder-item:hover {
+            background: var(--accent-light);
+        }
+
+        .folder-item:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: -2px;
+        }
+
+        .folder-icon, .file-icon {
             margin-right: 0.8rem;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
         }
-        .folder-img, .file-img { width: 28px; height: 28px; }
+
+        .folder-img, .file-img {
+            width: 28px;
+            height: 28px;
+        }
+
         .folder-name {
             flex-grow: 1;
             font-weight: 500;
             font-size: 1rem;
         }
+
         .folder-item.leaf .folder-name {
             color: var(--accent);
+            font-weight: 600;
             text-decoration: underline;
             text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
         }
 
-        /* -------- Contact Tooltips -------- */
+        /* ========== CONTACT TOOLTIPS ========== */
         .contact-tooltip {
             position: relative;
             display: inline-block;
         }
+
         .contact-tooltip::after {
             content: attr(data-tooltip);
             position: absolute;
-            bottom: 125%;
+            bottom: 130%;
             left: 50%;
             transform: translateX(-50%);
             background: var(--text);
             color: var(--bg);
-            padding: 0.3rem 0.7rem;
-            border-radius: 6px;
+            padding: 0.4rem 1rem;
+            border-radius: 8px;
             font-size: 0.8rem;
+            font-weight: 500;
             white-space: nowrap;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.2s;
+            transition: opacity var(--duration-fast) var(--ease-smooth);
+            box-shadow: var(--shadow-soft-sm);
         }
+
         .contact-tooltip:hover::after {
             opacity: 1;
         }
+
         .contact-bar {
             display: flex;
             justify-content: center;
-            gap: 2.5rem;
+            gap: 2rem;
             flex-wrap: wrap;
             margin-top: 1rem;
         }
+
         .contact-link {
-            color: var(--secondary-text);
-            transition: transform 0.2s, color 0.2s;
+            color: var(--text-soft);
+            transition: transform var(--duration-fast) var(--ease-bounce), color var(--duration-fast);
             display: block;
         }
+
         .contact-link:hover {
             transform: translateY(-3px);
             color: var(--accent);
         }
-        .contact-icon { width: 32px; height: 32px; }
 
-        /* -------- Future Cards -------- */
+        .contact-icon {
+            width: 36px;
+            height: 36px;
+        }
+
+        /* ========== FUTURE CARDS (Neumorphic) ========== */
         .future-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.8rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: var(--gap-md);
             margin-top: 1.5rem;
         }
+
         .future-card {
             background: var(--card-bg);
-            border-radius: 16px;
+            border-radius: var(--radius-md);
             padding: 2rem 1.5rem;
-            box-shadow: var(--shadow-sm);
-            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: var(--shadow-card);
+            transition: all var(--duration-normal) var(--ease-smooth);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            border: none;
         }
-        .future-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg);
-        }
-        .future-icon-img { width: 3rem; height: 3rem; margin-bottom: 1rem; }
-        .future-card h3 { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .future-card p { font-size: 0.95rem; line-height: 1.6; color: var(--secondary-text); }
 
+        .future-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-card-hover);
+        }
+
+        .future-icon-img {
+            width: 3.5rem;
+            height: 3.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .future-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+
+        .future-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-soft);
+        }
+
+        /* ========== FOOTER ========== */
         footer {
             text-align: center;
             padding: 2rem;
-            color: var(--secondary-text);
+            color: var(--text-soft);
             font-size: 0.9rem;
-            border-top: 1px solid var(--border);
-            margin-top: 3rem;
+            border-top: 1px solid hsla(var(--hue), var(--sat), 50%, 0.1);
+            margin-top: var(--gap-xl);
         }
 
+        /* ========== RESPONSIVE DESIGN ========== */
         @media (max-width: 768px) {
-            .navbar { padding: 0.8rem 1rem; }
+            .navbar {
+                padding: 0 1rem;
+            }
+
             .nav-links {
                 position: fixed;
-                top: 60px;
+                top: var(--navbar-height);
                 left: 0;
                 right: 0;
-                background: var(--nav-bg);
-                backdrop-filter: blur(10px);
+                background: var(--bg);
+                backdrop-filter: blur(16px);
                 flex-direction: column;
-                gap: 1.5rem;
+                gap: 1rem;
                 padding: 2rem;
                 display: none;
-                border-bottom: 1px solid var(--border);
-                box-shadow: var(--shadow-md);
-                z-index: 99;
+                box-shadow: var(--shadow-nav);
+                border-bottom: 1px solid hsla(var(--hue), var(--sat), 50%, 0.08);
+                z-index: 999;
             }
-            .nav-links.active { display: flex; }
-            .menu-toggle { display: block; }
-            .hero { padding: 2.5rem 1rem 2rem; }
-            .container { padding: 1rem; }
-            .future-grid { grid-template-columns: 1fr; }
-            .contact-bar { gap: 1.5rem; }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero {
+                padding: 2.5rem 1rem;
+                border-radius: var(--radius-md);
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .future-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-bar {
+                gap: 1.5rem;
+            }
         }
+
         @media (min-width: 1600px) {
-            .container { max-width: 1400px; }
-            .future-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+            .container {
+                max-width: 1400px;
+            }
+
+            .future-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
         }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero, .section {
+            animation: fadeSlideUp 0.6s var(--ease-smooth) both;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
@@ -426,17 +690,17 @@ automatically using GitHub Pages.</p>
         <section id="future" class="section">
             <h2>Future Improvements</h2>
             <div class="future-grid">
-                <div class="future-card" style="color:#1e293b; background-color:#f0f9ff; border:1px solid #3b82f6;"><img src="images/search.svg" alt="Search Functionality" class="future-icon-img"><h3>Search Functionality</h3><p>Find any topic instantly with a full‑text search engine.</p></div>
-<div class="future-card" style="color:#1e293b; background-color:#f0fdf4; border:1px solid #22c55e;"><img src="images/progress.svg" alt="Progress Tracking" class="future-icon-img"><h3>Progress Tracking</h3><p>Track your learning progress with interactive charts.</p></div>
-<div class="future-card" style="color:#1e293b; background-color:#fef2f2; border:1px solid #ef4444;"><img src="images/quiz.svg" alt="Interactive Quizzes" class="future-icon-img"><h3>Interactive Quizzes</h3><p>Test your knowledge after each unit with auto‑graded quizzes.</p></div>
-<div class="future-card" style="color:#1e293b; background-color:#faf5ff; border:1px solid #a855f7;"><img src="images/mobile.svg" alt="Mobile App" class="future-icon-img"><h3>Mobile App</h3><p>A dedicated mobile app for offline access and notifications.</p></div>
-<div class="future-card" style="color:#f1f5f9; background-color:#1e293b; border:1px solid #475569;"><img src="images/moon.svg" alt="Dark Mode Improvements" class="future-icon-img"><h3>Dark Mode Improvements</h3><p>Even better dark mode with custom colour schemes.</p></div>
+                <div class="future-card" style="color:#1e293b; background:#f0f9ff; border:1px solid #3b82f6;"><img src="images/search.svg" alt="Search Functionality" class="future-icon-img"><h3>Search Functionality</h3><p>Find any topic instantly with a full‑text search engine.</p></div>
+<div class="future-card" style="color:#1e293b; background:#f0fdf4; border:1px solid #22c55e;"><img src="images/progress.svg" alt="Progress Tracking" class="future-icon-img"><h3>Progress Tracking</h3><p>Track your learning progress with interactive charts.</p></div>
+<div class="future-card" style="color:#1e293b; background:#fef2f2; border:1px solid #ef4444;"><img src="images/quiz.svg" alt="Interactive Quizzes" class="future-icon-img"><h3>Interactive Quizzes</h3><p>Test your knowledge after each unit with auto‑graded quizzes.</p></div>
+<div class="future-card" style="color:#1e293b; background:#faf5ff; border:1px solid #a855f7;"><img src="images/mobile.svg" alt="Mobile App" class="future-icon-img"><h3>Mobile App</h3><p>A dedicated mobile app for offline access and notifications.</p></div>
+<div class="future-card" style="color:#f1f5f9; background:#1e293b; border:1px solid #475569;"><img src="images/moon.svg" alt="Dark Mode Improvements" class="future-icon-img"><h3>Dark Mode Improvements</h3><p>Even better dark mode with custom colour schemes.</p></div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>Auto‑generated on 2026-07-03 09:31 UTC • Powered by GitHub Pages</p>
+        <p>Auto‑generated on 2026-07-03 09:52 UTC • Powered by GitHub Pages</p>
     </footer>
 
     <script>
@@ -479,7 +743,7 @@ automatically using GitHub Pages.</p>
             });
 
             // =================== File Explorer ===================
-            const fileTree = {"grade_11": {"__has_index__": false, "__children__": {"chemistry": {"__has_index__": false, "__children__": {"unit_1": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}}}, "biology": {"__has_index__": false, "__children__": {"all unit summary": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}}}, "physics": {"__has_index__": false, "__children__": {"unit_2": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}}}}}, "grade_9": {"__has_index__": false, "__children__": {"chemistry": {"__has_index__": false, "__children__": {"unit_6": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}}}, "physics": {"__has_index__": false, "__children__": {"unit_2": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}}}, "biology": {"__has_index__": false, "__children__": {"unit_5": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}}}}}, "grade_10": {"__has_index__": false, "__children__": {"biology": {"__has_index__": false, "__children__": {"unit_5": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}}}, "physics": {"__has_index__": false, "__children__": {"unit_3": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}}}, "chemistry": {"__has_index__": false, "__children__": {"unit_6": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}}}}}, "grade_12": {"__has_index__": false, "__children__": {"biology": {"__has_index__": false, "__children__": {"all unit summary": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}}}, "chemistry": {"__has_index__": false, "__children__": {"unit_2": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}}}, "physics": {"__has_index__": false, "__children__": {"unit_6": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}}}}}};
+            const fileTree = {"grade_9": {"__has_index__": false, "__children__": {"chemistry": {"__has_index__": false, "__children__": {"unit_3": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}}}, "physics": {"__has_index__": false, "__children__": {"unit_3": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}}}, "biology": {"__has_index__": false, "__children__": {"unit_5": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}}}}}, "grade_10": {"__has_index__": false, "__children__": {"biology": {"__has_index__": false, "__children__": {"unit_6": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}}}, "physics": {"__has_index__": false, "__children__": {"unit_4": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}}}, "chemistry": {"__has_index__": false, "__children__": {"unit_1": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}}}}}, "grade_12": {"__has_index__": false, "__children__": {"physics": {"__has_index__": false, "__children__": {"unit_3": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}}}, "chemistry": {"__has_index__": false, "__children__": {"all unit summary": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}}}, "biology": {"__has_index__": false, "__children__": {"all unit summary": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}}}}}, "grade_11": {"__has_index__": false, "__children__": {"biology": {"__has_index__": false, "__children__": {"unit_1": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}}}, "physics": {"__has_index__": false, "__children__": {"unit_3": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}}}, "chemistry": {"__has_index__": false, "__children__": {"unit_6": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}}}}}};
             const baseUrl = "https://keabi-coder.github.io/apssg12";
             const folderIcon = '<img src="images/folder.svg" alt="Folder" class="folder-img">';
             const fileIcon = '<img src="images/file.svg" alt="Page" class="file-img">';
@@ -530,65 +794,58 @@ automatically using GitHub Pages.</p>
                 const currentNode = getNodeAtPath(currentPath);
                 renderBreadcrumb(currentPath);
 
-                folderListEl.innerHTML = '';
                 folderListEl.style.opacity = '0';
-                setTimeout(() => { folderListEl.style.opacity = '1'; }, 10);
-
-                if (!currentNode || Object.keys(currentNode).length === 0) {
-                    folderListEl.innerHTML = '<div style="padding:2rem;text-align:center;color:var(--secondary-text);">This folder is empty.</div>';
-                    updateNavButtons();
-                    return;
-                }
-
-                const folders = Object.keys(currentNode).sort();
-                for (const name of folders) {
-                    const data = currentNode[name];
-                    const hasIndex = data.__has_index__;
-                    const hasChildren = Object.keys(data.__children__).length > 0;
-
-                    const itemDiv = document.createElement('div');
-                    itemDiv.className = 'folder-item';
-                    itemDiv.tabIndex = 0;
-
-                    const iconSpan = document.createElement('span');
-                    if (hasIndex) {
-                        iconSpan.innerHTML = fileIcon;
-                        iconSpan.className = 'file-icon';
-                        itemDiv.classList.add('leaf');
+                setTimeout(() => {
+                    folderListEl.innerHTML = '';
+                    if (!currentNode || Object.keys(currentNode).length === 0) {
+                        folderListEl.innerHTML = '<div style="padding:2rem;text-align:center;color:var(--text-soft);">This folder is empty.</div>';
                     } else {
-                        iconSpan.innerHTML = folderIcon;
-                        iconSpan.className = 'folder-icon';
+                        const folders = Object.keys(currentNode).sort();
+                        for (const name of folders) {
+                            const data = currentNode[name];
+                            const hasIndex = data.__has_index__;
+                            const hasChildren = Object.keys(data.__children__).length > 0;
+
+                            const itemDiv = document.createElement('div');
+                            itemDiv.className = 'folder-item';
+                            itemDiv.tabIndex = 0;
+
+                            const iconSpan = document.createElement('span');
+                            if (hasIndex) {
+                                iconSpan.innerHTML = fileIcon;
+                                iconSpan.className = 'file-icon';
+                                itemDiv.classList.add('leaf');
+                            } else {
+                                iconSpan.innerHTML = folderIcon;
+                                iconSpan.className = 'folder-icon';
+                            }
+
+                            const nameSpan = document.createElement('span');
+                            nameSpan.className = 'folder-name';
+                            nameSpan.textContent = name;
+
+                            itemDiv.appendChild(iconSpan);
+                            itemDiv.appendChild(nameSpan);
+
+                            itemDiv.addEventListener('click', (e) => {
+                                if (hasIndex) {
+                                    const folderPath = currentPath.concat(name).join('/');
+                                    window.open(baseUrl + '/' + folderPath + '/', '_blank');
+                                } else if (hasChildren) {
+                                    navigateTo([...currentPath, name]);
+                                }
+                            });
+
+                            itemDiv.addEventListener('keydown', (e) => {
+                                if (e.key === 'Enter') itemDiv.click();
+                            });
+
+                            folderListEl.appendChild(itemDiv);
+                        }
                     }
+                    folderListEl.style.opacity = '1';
+                }, 50);
 
-                    const nameSpan = document.createElement('span');
-                    nameSpan.className = 'folder-name';
-                    nameSpan.textContent = name;
-
-                    itemDiv.appendChild(iconSpan);
-                    itemDiv.appendChild(nameSpan);
-
-                    itemDiv.addEventListener('click', (e) => {
-                        if (hasIndex) {
-                            const folderPath = currentPath.concat(name).join('/');
-                            window.open(baseUrl + '/' + folderPath + '/', '_blank');
-                        } else if (hasChildren) {
-                            navigateTo([...currentPath, name]);
-                        }
-                    });
-
-                    itemDiv.addEventListener('keydown', (e) => {
-                        if (e.key === 'Enter') {
-                            itemDiv.click();
-                        }
-                    });
-
-                    folderListEl.appendChild(itemDiv);
-                }
-
-                updateNavButtons();
-            }
-
-            function updateNavButtons() {
                 backBtn.disabled = historyIndex === 0;
                 forwardBtn.disabled = historyIndex === historyStack.length - 1;
             }

@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>biology-g12-unit-4</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+        <style>
+            :root {
+                --bg: #fffefb;
+                --text: #2b2823;
+                --accent: #4a6d7c;
+                --border: #e4ddcf;
+                --font-sans: 'Inter', 'Segoe UI', 'SF Pro Display', system-ui, -apple-system, sans-serif;
+                --font-serif: 'Georgia', 'Times New Roman', 'STIX Two Text', 'Charis SIL', serif;
+                --font-mono: 'SF Mono', 'Fira Code', 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+                --radius-sm: 8px;
+                --radius-md: 12px;
+            }
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body {
+                background: #f4f0ea;
+                font-family: var(--font-serif);
+                color: var(--text);
+                line-height: 1.8;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                padding: 40px 20px 80px;
+            }
+            .document-container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: var(--bg);
+                padding: 50px 60px;
+                border-radius: 16px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.04);
+            }
+            @media (max-width: 768px) {
+                .document-container { padding: 30px 24px; border-radius: 10px; }
+                body { padding: 20px 10px 40px; }
+            }
+            .document-container h1, .document-container h2, .document-container h3,
+            .document-container h4, .document-container h5, .document-container h6 {
+                font-family: var(--font-sans);
+                font-weight: 650;
+                line-height: 1.3;
+                margin-top: 1.8em;
+                margin-bottom: 0.6em;
+                color: #1f1c18;
+                letter-spacing: -0.02em;
+            }
+            .document-container h1 { font-size: 2rem; border-bottom: 2px solid #e8e2d4; padding-bottom: 0.3em; margin-top: 0.2em; }
+            .document-container h2 { font-size: 1.5rem; border-bottom: 1px solid #ece6da; padding-bottom: 0.2em; }
+            .document-container h3 { font-size: 1.25rem; }
+            .document-container h4 { font-size: 1.1rem; }
+            .document-container p { margin: 0.8em 0; }
+            .document-container a {
+                color: var(--accent);
+                text-decoration: underline;
+                text-underline-offset: 3px;
+                text-decoration-thickness: 1.2px;
+                text-decoration-color: rgba(74,109,124,0.35);
+            }
+            .document-container a:hover { text-decoration-color: var(--accent); color: #2f505e; }
+            .document-container strong { font-weight: 700; color: #1a1815; }
+            .document-container em { font-style: italic; color: #4a4540; }
+            .document-container blockquote {
+                margin: 1.4em 0; padding: 14px 24px;
+                border-left: 4px solid #cdb69b;
+                background: #faf6ef;
+                border-radius: 0 8px 8px 0;
+                color: #5a5248; font-style: italic;
+            }
+            .document-container ul, .document-container ol { margin: 0.8em 0; padding-left: 1.8em; }
+            .document-container li { margin: 0.4em 0; line-height: 1.7; }
+            .document-container li::marker { color: #b0a394; }
+            .document-container code {
+                font-family: var(--font-mono); font-size: 0.85em;
+                background: #f2ede4; padding: 2px 8px; border-radius: 4px; color: #654f3b;
+            }
+            .document-container pre {
+                margin: 1.4em 0; padding: 20px 24px;
+                background: #f8f5ef; border: 1px solid #e4ddcf;
+                border-radius: 10px; overflow-x: auto;
+                font-size: 0.9rem; line-height: 1.6;
+            }
+            .document-container pre code { background: transparent; padding: 0; border-radius: 0; color: #3d352c; }
+            .document-container table {
+                width: 100%; border-collapse: collapse; margin: 1.4em 0;
+                font-size: 0.95rem; font-family: var(--font-sans);
+                border-radius: 10px; overflow: hidden;
+                box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            }
+            .document-container th, .document-container td {
+                padding: 10px 18px; border: 1px solid #e5ded3; text-align: left;
+            }
+            .document-container th { background: #f5f1e9; font-weight: 650; color: #3d352c; }
+            .document-container tr:nth-child(even) td { background: #fdfbf7; }
+            .document-container tr:hover td { background: #faf6ee; }
+            .document-container hr { border: none; border-top: 2px solid #e5ded3; margin: 2.2em 0; }
+            .document-container img { max-width: 100%; border-radius: 8px; margin: 1em 0; }
+            .document-container .katex-display { margin: 1.4em 0; overflow-x: auto; overflow-y: hidden; }
+            .document-container .katex { font-size: 1.25em; }
+            .document-container .math-error { color: #c0392b; background: #fdecea; padding: 2px 6px; border-radius: 3px; font-family: var(--font-mono); font-size: 0.85em; }
+            .document-container dl { margin: 1em 0; }
+            .document-container dt { font-weight: 700; color: #1f1c18; margin-top: 0.8em; }
+            .document-container dd { margin-left: 1.6em; margin-bottom: 0.6em; color: #4a4540; }
+            .document-container sup, .document-container sub { font-size: 0.8em; }
+        </style>
+        </head>
+        <body>
+        <div class="document-container">
+        <hr>
+<h3>4.1 Definition of Evolution</h3>
+<ul>
+<li><strong>Evolution:</strong> The gradual change in the genetic composition of a population over successive generations. It may be caused by meiosis, hybridization, natural selection, or mutation. This leads to divergence from other populations of the same species and may result in the origin of a new species.</li>
+</ul>
+<h3>4.2 Theories of the Origin of Life</h3>
+<h4>4.2.1 Special Creationism</h4>
+<ul>
+<li>Life on Earth was formed by a supernatural or divine force (a supreme being).  </li>
+<li>It is not based on scientific thinking. Different religions have different versions. The idea is not testable or provable by science.</li>
+</ul>
+<h4>4.2.2 Spontaneous Generation</h4>
+<ul>
+<li>The idea that life can arise spontaneously from non-living matter.  </li>
+<li><strong>Aristotle</strong> (384–322 BC) was an early proponent.  </li>
+<li><strong>Jan Baptista van Helmont</strong> (17th century) proposed that mice could arise from rags and wheat kernels left in an open container for 3 weeks.  </li>
+<li><strong>Francesco Redi (1668):</strong> Placed meat in jars – one open, others covered with cloth. Maggots appeared only in the open jar; maggots were found on the outside of the cloth. This showed maggots come from fly eggs, not from meat.  </li>
+<li><strong>Louis Pasteur:</strong> Showed that broth remained free of microorganisms if sealed and sterilized, proving that microorganisms come from pre-existing microorganisms, not from spontaneous generation.  </li>
+<li>Redi and Pasteur disproved spontaneous generation for macro-organisms and microorganisms, but the question of the very first living cell remains unanswered by this theory.</li>
+</ul>
+<h4>4.2.3 Eternity of Life</h4>
+<ul>
+<li>Life has no beginning and no end; it has always existed.  </li>
+<li>Supporters believed the Universe is unchanging and life is an inherent property of it. (Even Albert Einstein once believed the Universe was unchanging.)</li>
+</ul>
+<h4>4.2.4 Cosmozoan Theory (Panspermia or Spore Broth Theory)</h4>
+<ul>
+<li>Life on Earth arrived from elsewhere in the Universe, e.g., via meteorites or cosmic dust, in the form of highly resistant spores or “protoplasm.”  </li>
+<li>Proposed by Richter (1865). Helmholz (1884) suggested protoplasm reached Earth with falling meteorites.</li>
+</ul>
+<h4>4.2.5 Biochemical Origin (Abiogenesis)</h4>
+<ul>
+<li>Life originated on Earth through a series of biochemical reactions that produced organic molecules, which then assembled into pre-cells and eventually cells.  </li>
+<li><strong>Aleksandr Oparin</strong> (1924) and <strong>John Haldane</strong> (1929) independently proposed that gases in the early Earth atmosphere combined to form simple organic compounds, then more complex molecules. These molecules became separated from the surrounding medium, forming coacervate droplets (pre-cells) that could absorb nutrients, grow, and divide.  </li>
+<li><strong>Stanley Miller’s experiment:</strong> Simulated early Earth conditions by mixing gases (methane, ammonia, hydrogen, water vapor) and applying electric sparks. This produced simple organic compounds, including amino acids – the building blocks of proteins. This supported the Oparin-Haldane model.</li>
+</ul>
+<h4>4.2.6 Early Life and the First Organisms</h4>
+<ul>
+<li>The first organisms appeared about 4 billion years ago; they were prokaryotes (no true nucleus) and likely used RNA as genetic material.  </li>
+<li>They gave rise to three lines:  <ul>
+<li><strong>Archaebacteria:</strong> Prokaryotes including thermophilic, methanogenic, and halophilic bacteria; now found in extreme environments.  </li>
+<li><strong>Eubacteria:</strong> Ordinary bacteria and cyanobacteria (blue-green bacteria/algae).  </li>
+<li><strong>Eukaryotes:</strong> Eventually gave rise to protists, fungi, plants, and animals (mostly aerobic).</li>
+</ul>
+</li>
+<li><strong>Shift to oxygen atmosphere:</strong> About 2.4 billion years ago, photoautotrophs (cyanobacteria) produced oxygen, making aerobic respiration possible.  </li>
+<li><strong>Chemoautotrophs:</strong> Primitive autotrophs that use energy from chemical reactions (e.g., hydrogen sulfide) to synthesize organic compounds from CO₂. They are mainly bacteria or archaea living in hostile environments like deep-sea vents. They were likely among the first organisms on Earth.  </li>
+<li><strong>Timeline:</strong> Bacteria only forms for a long period (3.5–2.1 billion years ago); eukaryotes became numerous 2.1–1.9 billion years ago; fungi-like organisms ~0.9 billion years ago; animals ~600–700 million years ago.</li>
+</ul>
+<h3>4.3 Theories of Evolution</h3>
+<h4>4.3.1 Lamarckism (Theory of Inheritance of Acquired Characters)</h4>
+<ul>
+<li><strong>Proposed by Jean-Baptiste Lamarck (1809).</strong>  </li>
+<li><strong>Postulates:</strong>  <ol>
+<li><strong>New needs:</strong> Environmental changes create new needs; organisms exert special efforts (changes in habits or behaviour).  </li>
+<li><strong>Use and disuse of organs:</strong> Greater use of an organ enlarges/develops it; disuse reduces it.  </li>
+<li><strong>Inheritance of acquired characters:</strong> Favourable characteristics acquired during an individual's lifetime are inherited by offspring.  </li>
+<li><strong>Speciation:</strong> Accumulation of new characters over many generations results in a new species.</li>
+</ol>
+</li>
+<li><strong>Example:</strong> The long neck of the giraffe resulted from generations of stretching to reach high leaves.  </li>
+<li><strong>Significance:</strong> First comprehensive theory of biological evolution; explained vestigial organs as due to disuse; explained strong jaw muscles and claws in carnivores.  </li>
+<li><strong>Criticism:</strong> The theory of inheritance of acquired traits was disproved by genetics.</li>
+</ul>
+<h4>4.3.2 Darwinism (Theory of Natural Selection)</h4>
+<ul>
+<li><strong>Charles Darwin and Alfred Russel Wallace</strong> jointly proposed that evolution occurs through natural selection.  </li>
+<li><strong>Darwin’s observations:</strong> Influenced by Charles Lyell’s geology. Studied finches on the Galapagos Islands; concluded that an ancestral finch colonized the islands and adapted to different food sources, leading to different beak shapes and eventually different species.  </li>
+<li><strong>Basic postulates:</strong>  <ol>
+<li><strong>Geometric increase:</strong> Species produce more offspring than can survive; resources are limited.  </li>
+<li><strong>Struggle for existence:</strong> There is constant competition among organisms at all levels.  </li>
+<li><strong>Variation under nature:</strong> No two individuals are exactly alike; variations are heritable and provide the raw material for evolution.  </li>
+<li><strong>Natural selection (survival of the fittest):</strong> Individuals with useful heritable variations survive and reproduce more successfully, passing on advantageous traits.  </li>
+<li><strong>Origin of species:</strong> Over long periods, the accumulation of adaptations leads to the divergence of descendant populations into new species.</li>
+</ol>
+</li>
+<li><strong>Modern example – antibiotic resistance:</strong> A mutation in bacteria confers resistance to an antibiotic (e.g., penicillin). When the antibiotic is used, sensitive bacteria die, while resistant ones survive, reproduce, and become more common in the population.</li>
+</ul>
+<h4>4.3.3 Neo-Darwinism</h4>
+<ul>
+<li>A modified version of Darwin’s theory that incorporates <strong>genetics</strong> (Mendelian inheritance), molecular biology, and animal behaviour.  </li>
+<li><strong>Postulates:</strong>  <ol>
+<li><strong>Genetic variability</strong> (mutations, recombination) provides the raw material.  </li>
+<li><strong>Natural selection</strong> acts on this variability.  </li>
+<li><strong>Reproductive isolation</strong> leads to speciation.</li>
+</ol>
+</li>
+<li><strong>Gene pool:</strong> The sum of all alleles of all genes in a population. Evolution is a change in allele frequencies in the gene pool over time.</li>
+</ul>
+<h3>4.4 Evidence for Evolution</h3>
+<h4>4.4.1 Comparative Anatomy</h4>
+<ul>
+<li><strong>Homologous structures:</strong> Structures with the same basic anatomy and a common evolutionary origin but different functions. They indicate a common ancestor.  <ul>
+<li><strong>Example:</strong> The pentadactyl (five-digit) forelimb of mammals – human arm, cat leg, whale flipper, bat wing. Same bone pattern, different external functions.</li>
+</ul>
+</li>
+<li><strong>Analogous structures:</strong> Structures with similar function but different anatomy and different evolutionary origins. They do <strong>not</strong> indicate a close evolutionary relationship.  <ul>
+<li><strong>Example:</strong> Wings of a bird, bat, and insect all serve flight but have very different internal structures.</li>
+</ul>
+</li>
+</ul>
+<h4>4.4.2 Embryology</h4>
+<ul>
+<li><strong>Comparative embryology</strong> studies the developmental stages of embryos.  </li>
+<li>Vertebrate embryos show similar features early in development, such as <strong>gill slits</strong> and a <strong>tail</strong>, even in species where these disappear later (e.g., human tail becomes the coccyx). These similarities suggest a common ancestry.</li>
+</ul>
+<h4>4.4.3 Palaeontology (Fossils)</h4>
+<ul>
+<li><strong>Fossils:</strong> Preserved remains, imprints, or traces of organisms from the past. They provide direct evidence of ancestral forms.  </li>
+<li><strong>Categories:</strong>  <ol>
+<li>Actual remains or imprints: bones, teeth, shells, skin impressions, hair.  </li>
+<li>Trace fossils: footprints, burrows, coprolite (faeces).</li>
+</ol>
+</li>
+<li><strong>Dating fossils:</strong>  <ul>
+<li><strong>Stratigraphy:</strong> The study of rock layers (strata). Older fossils are found in deeper layers; younger fossils in upper layers. This provides <strong>relative dating</strong>.  </li>
+<li><strong>Radiometric dating (absolute dating):</strong> Uses radioactive isotopes. The ratio of parent to daughter isotopes gives the fossil’s age.  <ul>
+<li><strong>Half-life:</strong> The time needed for half of the radioactive atoms in a sample to decay.  </li>
+<li><strong>Radiocarbon dating:</strong> Measures decay of carbon-14; suitable for fossils up to about 60,000 years old.  </li>
+<li><strong>Potassium-argon dating:</strong> Used for older rocks.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4>4.4.4 Biochemistry</h4>
+<ul>
+<li>Organisms that share very similar molecules and biochemical pathways are closely related evolutionarily.  </li>
+<li><strong>DNA comparisons:</strong> The more similar the DNA sequences, the closer the evolutionary relationship. DNA hybridisation measures the similarity between DNA of two species. Humans and chimpanzees share about 98% of their DNA.  </li>
+<li><strong>Protein comparisons:</strong> Differences in amino acid sequences of common proteins (e.g., <strong>haemoglobin</strong>) indicate how much species have diverged. For example, human haemoglobin differs from gorilla by 1 amino acid, from horse by 25, from frog by 67.  </li>
+<li>A <strong>phylogenetic tree</strong> can be constructed based on these molecular differences.</li>
+</ul>
+<h3>4.5 Natural Selection and Speciation</h3>
+<h4>4.5.1 Types of Natural Selection</h4>
+<ul>
+<li><strong>Natural selection</strong> is the process by which individuals with advantageous alleles survive and reproduce in greater numbers, increasing the frequency of those alleles in the gene pool.  </li>
+<li><strong>Three types:</strong>  <ol>
+<li><strong>Directional selection:</strong> One extreme of a phenotypic range is favoured; the population’s average shifts toward that extreme.  </li>
+<li><strong>Stabilising selection:</strong> The intermediate (mean) phenotype is favoured; extremes are selected against. The variation around the mean is reduced.  </li>
+<li><strong>Disruptive selection:</strong> Both phenotypic extremes are favoured over the intermediate; the population may split into two distinct types.</li>
+</ol>
+</li>
+</ul>
+<h4>4.5.2 Speciation</h4>
+<ul>
+<li><strong>Species definition:</strong> A group of similar organisms with a similar biochemistry, physiology, and evolutionary history that can interbreed to produce fertile offspring.  </li>
+<li><strong>Speciation:</strong> The formation of new species when populations become reproductively isolated.  </li>
+<li><strong>Allopatric speciation:</strong> Occurs when a population is <strong>geographically isolated</strong> (e.g., by mountains, rivers) from the original population. The isolated group faces different selection pressures and accumulates genetic differences until interbreeding is no longer possible.  </li>
+<li><strong>Sympatric speciation:</strong> Occurs within the same geographical area, without physical separation. Reproductive isolation arises due to differences in behaviour, breeding times, or genetic changes (e.g., <strong>polyploidy</strong> in plants).</li>
+</ul>
+<h4>4.5.3 Polyploidy and Plant Evolution</h4>
+<ul>
+<li><strong>Polyploidy:</strong> A condition in which an organism has more than two sets of homologous chromosomes (e.g., tetraploid = four sets).  </li>
+<li>In plants, polyploidy can allow infertile hybrids to become fertile by doubling the chromosome number, enabling homologous chromosomes to pair during meiosis. This is an important mechanism of sympatric speciation.</li>
+</ul>
+<h4>4.5.4 Patterns of Evolution</h4>
+<ul>
+<li><strong>Divergent evolution:</strong> Two or more related species become increasingly different over time, often due to different environments. This leads to <strong>adaptive radiation</strong>. Example: the pentadactyl limb evolving into flippers, legs, wings.  </li>
+<li><strong>Convergent evolution:</strong> Unrelated species evolve similar traits because they occupy similar environments or ecological niches. Example: streamlined bodies in whales (mammals) and fish. The traits are <strong>analogous</strong>.  </li>
+<li><strong>Parallel evolution:</strong> Two unrelated species evolve independently but maintain a similar level of similarity, often in similar niches.</li>
+</ul>
+<h3>4.6 Human Evolution</h3>
+<ul>
+<li><strong>Homo sapiens:</strong> The species to which all living humans belong.  </li>
+<li><strong>Two distinctive human features:</strong> A very large brain (relative to body size) and true <strong>bipedalism</strong> (walking upright on two legs).  </li>
+<li>Humans and chimpanzees share a <strong>common ancestor</strong> that lived about 6 million years ago. Humans did not evolve from chimpanzees or modern monkeys; they share a common ancestry.</li>
+</ul>
+<p><strong>Key fossils from Ethiopia:</strong>  </p>
+<ul>
+<li><strong>Dinkinesh (“Lucy”) – <em>Australopithecus afarensis</em>:</strong> Discovered in 1974 at Hadar, Ethiopia. Dated to 3.2 million years. About 40% complete skeleton; she was bipedal but also showed arboreal (tree-dwelling) adaptations. Brain size similar to a chimpanzee. <strong>Significance:</strong> Proved that bipedalism evolved before a large brain.  </li>
+<li><strong>Ardi – <em>Ardipithecus ramidus</em>:</strong> Discovered in the Afar region, Ethiopia, dated to 4.4 million years. She was bipedal but also capable of climbing trees. <strong>Significance:</strong> Ardi is the closest known fossil to the common ancestor of humans and chimpanzees, showing that this ancestor did <strong>not</strong> resemble a modern chimpanzee.</li>
+</ul>
+<p><strong>Brain size evolution:</strong>  </p>
+<ul>
+<li>Brain size increased in hominids over time. <em>Australopithecus</em> brain: 0.7–1.0% of body mass; modern human brain: 1.8–2.3%.  </li>
+<li>The human brain uses 25% of the body’s resting energy, compared to 8% in great apes.  </li>
+<li>A larger brain allows running, planning, tool-making, and coordinated movements.</li>
+</ul>
+<p><strong>Migration of modern humans:</strong>  </p>
+<ul>
+<li><em>Homo sapiens</em> first appeared in Africa and then migrated to all parts of the world (starting around 70,000–50,000 years ago).  </li>
+<li>As humans moved into different environments, different <strong>selection pressures</strong> acted on them, resulting in different physical traits (e.g., shorter body shape, increased fat layer, hairiness in cold climates). This led to different “human races,” though classification is difficult and debated.</li>
+</ul>
+<h3>4.7 Mutations</h3>
+<ul>
+<li><strong>Mutation:</strong> A random change in the genetic material (DNA) of an organism. Mutations are the ultimate source of genetic variation.</li>
+</ul>
+<p><strong>Point mutations</strong> (affecting a single base):  </p>
+<ul>
+<li><strong>Substitution:</strong> One base is replaced by another. May change a single amino acid (e.g., sickle-cell anaemia: GAG → GTG changes glutamate to valine in haemoglobin).  </li>
+<li><strong>Deletion:</strong> One base is removed.  </li>
+<li><strong>Insertion (addition):</strong> An extra base is added.  </li>
+<li><strong>Frameshift mutations:</strong> Deletions or insertions shift the reading frame of all subsequent codons, usually producing a completely non-functional protein.</li>
+</ul>
+<p><strong>Chromosomal mutations:</strong>  </p>
+<ul>
+<li>Large-scale changes in chromosome structure or number. Types include <strong>deletion</strong>, <strong>duplication</strong>, <strong>inversion</strong>, and <strong>translocation</strong> of chromosome segments.  </li>
+<li>They often occur during crossing over in meiosis and can be lethal.</li>
+</ul>
+<h3>4.8 Genetic Drift</h3>
+<ul>
+<li><strong>Genetic drift:</strong> A change in allele frequencies in a population due to chance events (sampling error), not natural selection. It has a greater effect in small populations.  </li>
+<li><strong>Bottleneck effect:</strong> Occurs when a population’s size is drastically reduced by a catastrophic event (e.g., earthquake, fire). The surviving individuals’ allele frequencies may not represent the original population, and genetic diversity is reduced.  </li>
+<li><strong>Founder effect:</strong> Occurs when a small group of individuals breaks off from a larger population to establish a new colony. The founding group carries only a fraction of the original genetic diversity, and certain alleles may be over- or under-represented.</li>
+</ul>
+<h3>4.9 Gene Flow</h3>
+<ul>
+<li><strong>Gene flow (migration):</strong> The movement of individuals and their genetic material from one population to another.  </li>
+<li><strong>Immigration:</strong> Individuals enter a population, adding new alleles.  </li>
+<li><strong>Emigration:</strong> Individuals leave a population, removing alleles.  </li>
+<li>Gene flow can introduce new genetic variation into a population or reduce differences between populations.</li>
+</ul>
+<h3>4.10 Causes of Species Extinction</h3>
+<ul>
+<li>Species extinction can be caused by <strong>anthropogenic effects</strong> (human activities) and <strong>natural disasters</strong> (e.g., climate change, habitat loss, greenhouse gases).</li>
+</ul>
+<h3>4.11 Renowned Anthropologists and Evolutionists in Ethiopia</h3>
+<ul>
+<li>The text acknowledges the work of Ethiopian scientists in the discovery and study of human evolution, particularly fossils such as Lucy, Ardi, and Selam. No specific names are listed in the learning content. Ethiopia is described as the “cradle of mankind” due to its rich fossil record.</li>
+</ul>
+<hr>
+<p><strong>BALANCED REVISION NOTES</strong><br>(Medium-length study notes with clear headings and bullet points, logically grouped.)</p>
+<h3>4.1 What is Evolution?</h3>
+<ul>
+<li><strong>Evolution</strong> is the gradual change in the genetic makeup of a population over generations. Causes include mutation, natural selection, meiosis, and hybridization. This can lead to the formation of new species.</li>
+</ul>
+<h3>4.2 How Did Life Begin? (Theories)</h3>
+<ul>
+<li><strong>Special Creationism:</strong> A divine being created life; not a scientific theory.</li>
+<li><strong>Spontaneous Generation:</strong> Life arises from non-living matter. Disproved by Redi (meat/maggots) and Pasteur (sterile broth). However, the first cell’s origin remains open.</li>
+<li><strong>Eternity of Life:</strong> Life and the Universe have always existed.</li>
+<li><strong>Cosmozoan Theory (Panspermia):</strong> Life’s “seeds” arrived from space via meteorites.</li>
+<li><strong>Biochemical Origin (Abiogenesis):</strong> Life arose gradually from chemical reactions on early Earth.<ul>
+<li>Oparin and Haldane proposed simple gases → organic molecules → pre-cells.</li>
+<li>Miller’s experiment simulated early Earth and produced amino acids, supporting this theory.</li>
+</ul>
+</li>
+<li><strong>Early life:</strong> First organisms ~4 billion years ago were prokaryotes. Chemoautotrophs used chemicals for energy; photoautotrophs (cyanobacteria) later added oxygen to the atmosphere, enabling aerobic life.</li>
+</ul>
+<h3>4.3 Theories of Evolution</h3>
+<p><strong>Lamarckism (Inheritance of Acquired Characters):</strong></p>
+<ul>
+<li>Organisms develop new needs due to environmental changes.</li>
+<li>Use and disuse: frequently used organs develop; unused ones shrink.</li>
+<li>Acquired traits are passed to offspring.</li>
+<li>Example: giraffe’s long neck. <strong>Disproved:</strong> acquired traits are not genetically inherited.</li>
+</ul>
+<p><strong>Darwinism (Natural Selection):</strong></p>
+<ul>
+<li>Overproduction → struggle for existence.</li>
+<li>Natural variation exists in all populations.</li>
+<li>Survival of the fittest: individuals with advantageous traits survive and reproduce more.</li>
+<li>Over many generations, this leads to new species.</li>
+<li>Evidence: Galapagos finches, antibiotic resistance in bacteria.</li>
+</ul>
+<p><strong>Neo-Darwinism:</strong></p>
+<ul>
+<li>Merges Darwin’s natural selection with Mendelian genetics.</li>
+<li>Evolution is a change in allele frequencies in the gene pool.</li>
+<li>Postulates: genetic variability, natural selection, reproductive isolation.</li>
+</ul>
+<h3>4.4 Evidence for Evolution</h3>
+<ul>
+<li><strong>Comparative Anatomy:</strong><ul>
+<li><em>Homologous structures:</em> Same basic structure, different function → common ancestor (e.g., pentadactyl limb).</li>
+<li><em>Analogous structures:</em> Same function, different structure → no recent common ancestor (e.g., bird and insect wings).</li>
+</ul>
+</li>
+<li><strong>Embryology:</strong> Vertebrate embryos show similar early stages (gill slits, tail), indicating common ancestry.</li>
+<li><strong>Palaeontology (Fossils):</strong><ul>
+<li>Fossils are preserved remains or traces.</li>
+<li>Dating: relative (stratigraphy – deeper = older) and absolute (radiometric dating using half-lives).</li>
+</ul>
+</li>
+<li><strong>Biochemistry:</strong> DNA and protein (e.g., haemoglobin) comparisons reveal evolutionary relationships. Closer species have more similar molecules.</li>
+</ul>
+<h3>4.5 Natural Selection and Speciation</h3>
+<ul>
+<li><strong>Natural selection:</strong> Advantageous alleles increase in frequency over generations.</li>
+<li><strong>Types:</strong><ul>
+<li><em>Directional:</em> one extreme favoured.</li>
+<li><em>Stabilising:</em> intermediate favoured.</li>
+<li><em>Disruptive:</em> both extremes favoured against intermediate.</li>
+</ul>
+</li>
+<li><strong>Species:</strong> A group that can interbreed to produce fertile offspring.</li>
+<li><strong>Allopatric speciation:</strong> geographic separation leads to reproductive isolation.</li>
+<li><strong>Sympatric speciation:</strong> reproductive isolation without geographic separation; can involve polyploidy (common in plants).</li>
+<li><strong>Evolution patterns:</strong><ul>
+<li><em>Divergent:</em> related species become different (adaptive radiation).</li>
+<li><em>Convergent:</em> unrelated species become similar due to similar environments.</li>
+<li><em>Parallel:</em> two species evolve independently but remain similar.</li>
+</ul>
+</li>
+</ul>
+<h3>4.6 Human Evolution</h3>
+<ul>
+<li><strong>Distinctive features:</strong> large brain, bipedalism.</li>
+<li><strong>Ancestry:</strong> Humans and chimpanzees shared a common ancestor ~6 million years ago.</li>
+<li><strong>Key Ethiopian fossils:</strong><ul>
+<li><em>Lucy (<em>A. afarensis</em>):</em> 3.2 mya, bipedal, small brain – bipedalism preceded brain enlargement.</li>
+<li><em>Ardi (<em>Ar. ramidus</em>):</em> 4.4 mya, bipedal, lived near the common ancestor; showed common ancestor did not look like a chimp.</li>
+</ul>
+</li>
+<li>Brain size increased over hominin evolution.</li>
+<li><em>Homo sapiens</em> migrated from Africa to other continents; different selection pressures led to physical diversity (races).</li>
+</ul>
+<h3>4.7 Mutations</h3>
+<ul>
+<li><strong>Mutation:</strong> random change in DNA; source of new alleles.</li>
+<li><strong>Point mutations:</strong> single base change – substitution (may change one amino acid), insertion/deletion (cause frameshift, altering all downstream amino acids).</li>
+<li><strong>Chromosomal mutations:</strong> large-scale changes (deletion, duplication, inversion, translocation); often harmful.</li>
+</ul>
+<h3>4.8 Genetic Drift and Gene Flow</h3>
+<ul>
+<li><strong>Genetic drift:</strong> random changes in allele frequencies; strongest in small populations.<ul>
+<li><em>Bottleneck effect:</em> drastic population reduction reduces diversity.</li>
+<li><em>Founder effect:</em> small group colonizes new area with limited diversity.</li>
+</ul>
+</li>
+<li><strong>Gene flow:</strong> movement of alleles between populations (immigration/emigration).</li>
+</ul>
+<h3>4.9 Species Extinction</h3>
+<ul>
+<li>Caused by human activities and natural disasters.</li>
+</ul>
+<hr>
+<p><strong>EXAM REVISION SUMMARY</strong><br>(A medium-length, bulleted recap covering all topics.)</p>
+<ul>
+<li><strong>Evolution:</strong> Gradual genetic change in a population over generations, leading to divergence and new species.</li>
+<li><strong>Origin of life theories:</strong> Special creationism, spontaneous generation (disproved by Redi/Pasteur), eternity of life, cosmozoan/panspermia, biochemical origin (Oparin-Haldane, Miller’s experiment). First life: prokaryotes, chemoautotrophs, then photoautotrophs producing oxygen.</li>
+<li><strong>Lamarckism:</strong> Use/disuse + inheritance of acquired characters (disproved).</li>
+<li><strong>Darwinism:</strong> Natural selection – overproduction, variation, struggle for existence, survival of fittest, speciation. Example: Galapagos finches, antibiotic resistance.</li>
+<li><strong>Neo-Darwinism:</strong> Natural selection + genetics; gene pool; reproductive isolation.</li>
+<li><strong>Evidence for evolution:</strong> Homologous vs. analogous structures; comparative embryology; fossil record (stratigraphy, radiometric dating); comparative biochemistry (DNA, haemoglobin).</li>
+<li><strong>Natural selection types:</strong> Directional, stabilising, disruptive.</li>
+<li><strong>Speciation:</strong> Allopatric (geographic) and sympatric (within same area, often by polyploidy in plants).</li>
+<li><strong>Evolution patterns:</strong> Divergent (adaptive radiation), convergent (analogous traits), parallel.</li>
+<li><strong>Human evolution:</strong> Bipedalism and large brain are key features. Ethiopian fossils Lucy (3.2 mya) and Ardi (4.4 mya) prove bipedalism came first, and common ancestor not chimp-like. Brain size increased; modern humans migrated from Africa; races evolved under different selection pressures.</li>
+<li><strong>Mutations:</strong> Random DNA changes; point mutations (substitution, frameshift) and chromosomal mutations. Sickle-cell anaemia is example of substitution.</li>
+<li><strong>Genetic drift:</strong> Chance allele frequency changes (bottleneck, founder effects); gene flow (migration) alters gene pools.</li>
+<li><strong>Extinction:</strong> Driven by human activities and natural disasters.</li>
+</ul>
+<hr>
+<p><strong>COMPREHENSIVE SUMMARY, KEY POINTS, DEFINITIONS, PROCESSES</strong></p>
+<h3>Overall Summary</h3>
+<p>Unit 4 covers evolution, the change in genetic composition of populations over time. It explores historical and scientific theories of life’s origin (special creation, spontaneous generation, eternity, panspermia, and biochemical abiogenesis). The unit contrasts Lamarck’s discredited idea of inherited acquired traits with Darwin and Wallace’s theory of natural selection, updated by Neo-Darwinism to incorporate genetics. A wide range of evidence supports evolution: homologous structures, embryological similarities, fossil records dated by stratigraphy and radiometry, and biochemical comparisons. Natural selection acts on variation, leading to speciation through allopatric or sympatric mechanisms. Human evolution is traced from a common ancestor with chimpanzees, with critical fossils from Ethiopia (Lucy, Ardi) showing the early appearance of bipedalism. Mutations provide genetic variation, while genetic drift and gene flow also influence allele frequencies. Species extinction results from anthropogenic and natural causes.</p>
+<h3>Key Points</h3>
+<ul>
+<li><strong>Evolution</strong> is genetic change in populations over generations due to mutation, natural selection, etc., leading to new species.</li>
+<li><strong>Origin theories:</strong> biochemical (abiogenesis) is the current scientific model; Miller’s experiment produced organic molecules.</li>
+<li><strong>Lamarck</strong> proposed inheritance of acquired traits (use/disuse), later disproven.</li>
+<li><strong>Darwin’s natural selection</strong> requires overproduction, variation, struggle, and differential survival (fitness). Example: antibiotic resistance.</li>
+<li><strong>Neo-Darwinism</strong> adds genetics: gene pool, allele frequency changes, reproductive isolation.</li>
+<li><strong>Evidence:</strong> homologous (common ancestor) vs. analogous (convergent) structures; embryo similarities; fossil record with dating methods; DNA/protein comparisons.</li>
+<li><strong>Natural selection types:</strong> directional, stabilising, disruptive.</li>
+<li><strong>Speciation:</strong> allopatric = geographic isolation; sympatric = isolation without geography (polyploidy in plants).</li>
+<li><strong>Divergent evolution</strong> (adaptive radiation), <strong>convergent</strong> (unrelated species look similar), <strong>parallel</strong> evolution.</li>
+<li><strong>Humans:</strong> bipedalism and large brain; common ancestor with chimps ~6 mya. Lucy (3.2 mya) bipedal small brain; Ardi (4.4 mya) bipedal, near common ancestor. Brain size expanded; migration from Africa; races arose from local selection.</li>
+<li><strong>Mutations:</strong> point (substitution, frameshift) and chromosomal; source of new alleles.</li>
+<li><strong>Genetic drift</strong> (chance) and <strong>gene flow</strong> (migration) affect allele frequencies; bottleneck and founder effects reduce diversity.</li>
+<li><strong>Extinction</strong> from human impact and natural disasters.</li>
+</ul>
+<h3>Definitions</h3>
+<ul>
+<li><strong>Evolution:</strong> Gradual change in genetic composition of a population over successive generations.</li>
+<li><strong>Special creationism:</strong> Belief that a supreme being created life.</li>
+<li><strong>Spontaneous generation:</strong> Disproven idea that life arises from non-living matter.</li>
+<li><strong>Eternity of life:</strong> Life has always existed; no origin.</li>
+<li><strong>Cosmozoan theory/Panspermia:</strong> Life arrived on Earth from space.</li>
+<li><strong>Biochemical origin (abiogenesis):</strong> Life arose from chemical reactions on early Earth.</li>
+<li><strong>Autotroph:</strong> Organism that produces organic molecules from inorganic materials. Photoautotrophs use light; chemoautotrophs use chemical energy.</li>
+<li><strong>Prokaryote:</strong> Unicellular organism lacking a membrane-bound nucleus.</li>
+<li><strong>Eukaryote:</strong> Organism whose cells have a nucleus enclosed by a membrane.</li>
+<li><strong>Archaebacterium:</strong> Ancient prokaryotes found in extreme environments.</li>
+<li><strong>Eubacterium:</strong> All bacteria that are not archaebacteria; includes cyanobacteria.</li>
+<li><strong>Lamarckism:</strong> Theory of evolution based on use/disuse and inheritance of acquired characters.</li>
+<li><strong>Darwinism/Natural selection:</strong> Theory that organisms best adapted to their environment survive and reproduce, passing on advantageous traits.</li>
+<li><strong>Neo-Darwinism:</strong> Modern evolutionary theory combining natural selection with genetics.</li>
+<li><strong>Gene pool:</strong> All the alleles of all genes in a population.</li>
+<li><strong>Homologous structures:</strong> Same basic anatomy, different function, common origin (e.g., pentadactyl limb).</li>
+<li><strong>Analogous structures:</strong> Same function, different anatomy, different origin (e.g., bird and insect wings).</li>
+<li><strong>Pentadactyl limb:</strong> A limb with five digits; basic pattern found in many vertebrates.</li>
+<li><strong>Stratigraphy:</strong> Study of rock layers to date fossils relative to each other.</li>
+<li><strong>Half-life:</strong> Time taken for half of a radioactive substance to decay.</li>
+<li><strong>Species:</strong> A group of similar organisms that can interbreed to produce fertile offspring.</li>
+<li><strong>Allopatric speciation:</strong> Speciation due to geographical isolation.</li>
+<li><strong>Sympatric speciation:</strong> Speciation without geographical isolation, often through reproductive barriers or polyploidy.</li>
+<li><strong>Polyploidy:</strong> Possessing more than two sets of homologous chromosomes; important in plant speciation.</li>
+<li><strong>Divergent evolution:</strong> Related species become increasingly different.</li>
+<li><strong>Convergent evolution:</strong> Unrelated species develop similar traits independently.</li>
+<li><strong>Parallel evolution:</strong> Two species evolve similarly while maintaining independence.</li>
+<li><strong>Hominin:</strong> Any member of the genus <em>Homo</em> (modern humans, neanderthals, etc.).</li>
+<li><strong>Hominid:</strong> Group including genus <em>Homo</em> and earlier ancestors like <em>Australopithecus</em> and <em>Ardipithecus</em>.</li>
+<li><strong>Mutation:</strong> A random change in the genetic material.</li>
+<li><strong>Point mutation:</strong> Change in a single DNA base (substitution, insertion, deletion).</li>
+<li><strong>Frameshift mutation:</strong> Insertion or deletion of a base that shifts the reading frame of codons.</li>
+<li><strong>Chromosomal mutation:</strong> Structural change in a chromosome (deletion, duplication, inversion, translocation).</li>
+<li><strong>Genetic drift:</strong> Change in allele frequencies due to chance events.</li>
+<li><strong>Bottleneck effect:</strong> Drastic reduction in population size leading to loss of genetic diversity.</li>
+<li><strong>Founder effect:</strong> Reduced genetic diversity when a new colony is started by a small number of individuals.</li>
+<li><strong>Gene flow:</strong> Movement of alleles between populations via migration.</li>
+</ul>
+<h3>Processes</h3>
+<p><strong>Natural Selection (Darwinian evolution):</strong></p>
+<ol>
+<li>Population produces more offspring than environment can support.</li>
+<li>Genetic variation exists among individuals.</li>
+<li>Struggle for existence: competition for limited resources.</li>
+<li>Individuals with advantageous traits (fitter) survive and reproduce more.</li>
+<li>Favorable alleles are passed on; their frequency increases in the gene pool.</li>
+<li>Over many generations, this can lead to the accumulation of adaptations and formation of new species.</li>
+</ol>
+<p><strong>Allopatric Speciation:</strong></p>
+<ol>
+<li>A population is split by a geographical barrier (e.g., mountain, river).</li>
+<li>The separated groups experience different environmental conditions and selection pressures.</li>
+<li>Mutations and natural selection cause genetic divergence.</li>
+<li>Over time, the two groups become so different that they can no longer interbreed – reproductive isolation is achieved.</li>
+<li>Two distinct species have formed.</li>
+</ol>
+<p><strong>Sympatric Speciation (via Polyploidy in plants):</strong></p>
+<ol>
+<li>A genetic error (e.g., non-disjunction) produces an individual with extra sets of chromosomes (polyploid).</li>
+<li>This polyploid individual cannot breed with the normal parent population because chromosome pairing fails.</li>
+<li>The polyploid can self-fertilize or breed with other polyploids, forming a reproductively isolated new species in the same geographic area.</li>
+</ol>
+<p><strong>Stratigraphic Dating of Fossils:</strong></p>
+<ul>
+<li>Sedimentary rocks form in layers (strata) over time.</li>
+<li>The oldest rocks and fossils are in the lowest layers, the youngest in the upper layers.</li>
+<li>By correlating strata, the relative ages of fossils can be determined.</li>
+</ul>
+<p><strong>Radiometric Dating:</strong></p>
+<ul>
+<li>Measure the ratio of parent radioactive isotope to daughter product.</li>
+<li>Knowing the half-life of the isotope, calculate the time elapsed since the rock/fossil formed.</li>
+<li>Example: Carbon-14 decays to nitrogen-14 (half-life ~5730 years); useful for fossils up to ~60,000 years.</li>
+</ul>
+<p><strong>DNA Hybridisation to Determine Evolutionary Relationships:</strong></p>
+<ol>
+<li>Heat DNA from two species to separate strands.</li>
+<li>Mix single-stranded DNA from both species and allow it to cool.</li>
+<li>Strands from different species will hybridize (base-pair) where sequences match.</li>
+<li>Mismatched regions indicate sequence differences. The degree of hybridization reflects genetic similarity and thus evolutionary relatedness.</li>
+</ol>
+<p><strong>Point Mutation (Substitution) leading to Sickle-cell Anaemia:</strong></p>
+<ul>
+<li>In the haemoglobin gene, a substitution changes the DNA triplet GAG to GTG.</li>
+<li>This changes the mRNA codon from GAG to GUG.</li>
+<li>During translation, the amino acid valine is inserted instead of glutamic acid at position 6 of the β-globin chain.</li>
+<li>The altered haemoglobin molecule (HbS) causes red blood cells to sickle under low oxygen conditions.</li>
+</ul>
+<h3>Other Points (Ethiopian context, lists, comparisons)</h3>
+<p><strong>Timeline of Early Life:</strong></p>
+<ul>
+<li>4 billion years ago: first prokaryotes</li>
+<li>2.4 billion years ago: oxygen atmosphere begins (photoautotrophs)</li>
+<li>3.5–2.1 billion years ago: bacteria dominant</li>
+<li>1.9–2.1 billion years ago: eukaryotes numerous</li>
+<li>0.9 billion years ago: fungi-like organisms</li>
+<li>600–700 million years ago: animals appear</li>
+</ul>
+<p><strong>Comparison: Homologous vs. Analogous Structures</strong></p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Homologous</th>
+<th>Analogous</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Structure</td>
+<td>Same basic anatomy</td>
+<td>Different anatomy</td>
+</tr>
+<tr>
+<td>Function</td>
+<td>Often different</td>
+<td>Same/similar</td>
+</tr>
+<tr>
+<td>Origin</td>
+<td>Common ancestor</td>
+<td>Different ancestors</td>
+</tr>
+<tr>
+<td>Example</td>
+<td>Mammalian forelimb</td>
+<td>Bird wing vs. insect wing</td>
+</tr>
+</tbody></table>
+<p><strong>Comparison of Lamarckism and Darwinism:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Lamarck</th>
+<th>Darwin</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Evolution driven by inner “need” and use/disuse</td>
+<td>Evolution driven by natural selection on variation</td>
+</tr>
+<tr>
+<td>Acquired traits inherited</td>
+<td>Genetic traits inherited</td>
+</tr>
+<tr>
+<td>Individual adapts and passes changes</td>
+<td>Populations evolve over generations</td>
+</tr>
+<tr>
+<td>Disproved</td>
+<td>Supported by evidence</td>
+</tr>
+</tbody></table>
+<p><strong>Key Ethiopian Fossils:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Fossil</th>
+<th>Species</th>
+<th>Age (mya)</th>
+<th>Key Features</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Lucy</td>
+<td><em>Australopithecus afarensis</em></td>
+<td>3.2</td>
+<td>Bipedal, small brain; showed bipedalism preceded large brain</td>
+</tr>
+<tr>
+<td>Ardi</td>
+<td><em>Ardipithecus ramidus</em></td>
+<td>4.4</td>
+<td>Bipedal, some arboreal adaptation; near common ancestor of humans and chimps; proved ancestor didn’t look like chimp</td>
+</tr>
+</tbody></table>
+<p><strong>Brain Size in Hominids:</strong></p>
+<ul>
+<li><em>Australopithecus</em>: 0.7–1.0% of body mass; <em>Homo sapiens</em>: 1.8–2.3%.</li>
+<li>Human brain uses ~25% of resting energy; great apes ~8%.</li>
+</ul>
+<p><strong>Adaptations to Cold in Human Races:</strong></p>
+<ul>
+<li>Shorter, squatter body shape (reduces surface-area-to-volume ratio)</li>
+<li>Increased subcutaneous adipose tissue (insulation)</li>
+<li>Increased hairiness (reduces convective heat loss)</li>
+</ul>
+<p><strong>Modes of Speciation:</strong></p>
+<ul>
+<li><strong>Allopatric:</strong> geographic separation → reproductive isolation.</li>
+<li><strong>Sympatric:</strong> within same area → reproductive isolation via behaviour, polyploidy, etc.</li>
+</ul>
+<p><strong>Genetic Drift Examples:</strong></p>
+<ul>
+<li><strong>Bottleneck:</strong> disaster randomly eliminates most of population, survivors’ genes dominate.</li>
+<li><strong>Founder:</strong> small group colonizes new region; rare alleles may become common (e.g., Ellis-Van Creveld syndrome in Amish population).</li>
+</ul>
+<p><strong>Causes of Extinction:</strong></p>
+<ul>
+<li>Human activities (habitat destruction, pollution, overhunting)</li>
+<li>Natural disasters (volcanic eruptions, asteroid impacts)</li>
+<li>Climate change and greenhouse gases.</li>
+</ul>
+<p><strong>Ethiopian Contribution to Evolution Science:</strong></p>
+<ul>
+<li>Ethiopia is called the “cradle of mankind” because of the discovery of early hominid fossils like Lucy, Ardi, Selam.</li>
+<li>Renowned Ethiopian anthropologists and evolutionists have contributed significantly to the understanding of human origins (specific names are not listed in the provided text).</li>
+</ul>
+
+    </div>
+</body>
+</html>

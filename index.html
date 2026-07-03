@@ -8,81 +8,85 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <style>
         /* ==========================================================================
-           1. COMPREHENSIVE NEUMORPHIC DESIGN SYSTEM (:root Tokens)
+           1. COMPREHENSIVE MINIMALIST DESIGN SYSTEM (:root Tokens)
            ========================================================================== */
         :root {
             /* ---- Hue & Saturation base mappings ---- */
             --primary-hue: 220;
-            --primary-sat: 16%;
-            --bg-lightness: 94%;
-            --surface-lightness: 94%;
-            --card-lightness: 94%;
+            --primary-sat: 20%;
+            --bg-lightness: 98%;
+            --surface-lightness: 100%;
+            --card-lightness: 100%;
             
             /* ---- Core Background & Content Colors ---- */
-            --color-bg: hsl(var(--primary-hue), var(--primary-sat), var(--bg-lightness));
-            --color-surface: hsl(var(--primary-hue), var(--primary-sat), var(--surface-lightness));
-            --color-card: hsl(var(--primary-hue), var(--primary-sat), var(--card-lightness));
+            --color-bg: #fafbfd;
+            --color-surface: #ffffff;
+            --color-card: #ffffff;
             
-            --color-text: #1e293b;
+            --color-text: #0f172a;
             --color-text-soft: #475569;
-            --color-text-muted: #64748b;
-            --color-border: rgba(255, 255, 255, 0.6);
-            --color-glass-bg: rgba(255, 255, 255, 0.45);
+            --color-text-muted: #94a3b8;
+            --color-border: #e2e8f0;
+            --color-glass-bg: rgba(255, 255, 255, 0.75);
             
             /* ---- Accent Mappings ---- */
             --color-accent: #3b82f6;
-            --color-accent-soft: hsla(220, 95%, 50%, 0.08);
-            --color-accent-glow: hsla(220, 95%, 50%, 0.25);
+            --color-accent-soft: rgba(59, 130, 246, 0.08);
+            --color-accent-glow: rgba(59, 130, 246, 0.15);
             
-            /* ---- Neumorphic Elevation Elevations ---- */
+            /* ---- Modern Minimalist Elevation Elevations ---- */
             /* Flat / Extruded upward */
-            --nm-shadow-flat: 10px 10px 20px #cbd5e1, -10px -10px 20px #ffffff;
-            --nm-shadow-flat-sm: 5px 5px 10px #cbd5e1, -5px -5px 10px #ffffff;
-            --nm-shadow-flat-lg: 16px 16px 32px #b8c5d6, -16px -16px 32px #ffffff;
+            --nm-shadow-flat: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            --nm-shadow-flat-sm: 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            --nm-shadow-flat-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
             
             /* Pressed / Recessed downward */
-            --nm-shadow-pressed: inset 6px 6px 12px #cbd5e1, inset -6px -6px 12px #ffffff;
-            --nm-shadow-pressed-sm: inset 3px 3px 6px #cbd5e1, inset -3px -3px 6px #ffffff;
-            --nm-shadow-pressed-lg: inset 10px 10px 20px #b8c5d6, inset -10px -10px 20px #ffffff;
+            --nm-shadow-pressed: 0 0 0 transparent;
+            --nm-shadow-pressed-sm: 0 0 0 transparent;
+            --nm-shadow-pressed-lg: 0 0 0 transparent;
             
             /* ---- Typography & Sizing Scales ---- */
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
             
             --radius-sm: 12px;
-            --radius-md: 20px;
-            --radius-lg: 32px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
             --radius-full: 9999px;
             
             /* ---- Motion & Interpolation curves ---- */
-            --ease-smooth: cubic-bezier(0.2, 0.8, 0.2, 1);
-            --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-bounce: cubic-bezier(0.16, 1, 0.3, 1);
             --transition-normal: 0.35s var(--ease-smooth);
             --transition-fast: 0.2s var(--ease-smooth);
         }
 
-        /* ---- 2. Elegant Dark Mode Neumorphism Mappings ---- */
+        /* ---- 2. Elegant Dark Mode Minimalist Mappings ---- */
         [data-theme="dark"] {
-            --bg-lightness: 11%;
-            --surface-lightness: 11%;
-            --card-lightness: 11%;
+            --bg-lightness: 4%;
+            --surface-lightness: 7%;
+            --card-lightness: 7%;
+            
+            --color-bg: #030712;
+            --color-surface: #0b1120;
+            --color-card: #0b1120;
             
             --color-text: #f8fafc;
-            --color-text-soft: #cbd5e1;
+            --color-text-soft: #94a3b8;
             --color-text-muted: #64748b;
-            --color-border: rgba(15, 23, 42, 0.3);
-            --color-glass-bg: rgba(15, 23, 42, 0.45);
+            --color-border: rgba(30, 41, 59, 0.5);
+            --color-glass-bg: rgba(11, 17, 32, 0.8);
             
-            /* Dark Mode shadows must use deep indigo-tinted darks & sharp, ambient highlights */
-            --nm-shadow-flat: 10px 10px 20px #060b13, -10px -10px 20px #1c273e;
-            --nm-shadow-flat-sm: 5px 5px 10px #060b13, -5px -5px 10px #1c273e;
-            --nm-shadow-flat-lg: 16px 16px 32px #04080e, -16px -16px 32px #22304c;
+            /* Dark Mode subtle micro-shadows */
+            --nm-shadow-flat: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+            --nm-shadow-flat-sm: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+            --nm-shadow-flat-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
             
-            --nm-shadow-pressed: inset 6px 6px 12px #060b13, inset -6px -6px 12px #1c273e;
-            --nm-shadow-pressed-sm: inset 3px 3px 6px #060b13, inset -3px -3px 6px #1c273e;
-            --nm-shadow-pressed-lg: inset 10px 10px 20px #04080e, inset -10px -10px 20px #22304c;
+            --nm-shadow-pressed: 0 0 0 transparent;
+            --nm-shadow-pressed-sm: 0 0 0 transparent;
+            --nm-shadow-pressed-lg: 0 0 0 transparent;
             
-            --color-accent-soft: hsla(220, 95%, 60%, 0.12);
+            --color-accent-soft: rgba(59, 130, 246, 0.12);
         }
 
         /* ==========================================================================
@@ -111,47 +115,80 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
             transition: background-color var(--transition-normal), color var(--transition-normal);
+            position: relative;
         }
 
-        /* Ambient background graphics */
+        /* Ambient Animated Backdrop Gradients */
         body::before {
             content: '';
+            position: fixed;
+            top: -20%;
+            left: -20%;
+            width: 60vw;
+            height: 60vh;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 65%);
+            filter: blur(80px);
+            z-index: -1;
+            pointer-events: none;
+            animation: drift 25s ease-in-out infinite alternate;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -20%;
+            right: -20%;
+            width: 60vw;
+            height: 60vh;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.06) 0%, transparent 65%);
+            filter: blur(80px);
+            z-index: -1;
+            pointer-events: none;
+            animation: drift 30s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            50% { transform: translate(8%, 10%) scale(1.15) rotate(180deg); }
+            100% { transform: translate(-5%, -5%) scale(0.9) rotate(360deg); }
+        }
+
+        /* Modern Grid Overlay Pattern */
+        .grid-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-            opacity: 0.15;
+            background-image: linear-gradient(var(--color-border) 1px, transparent 1px),
+                              linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.12;
             pointer-events: none;
-            background-image: radial-gradient(var(--color-accent) 1px, transparent 1px);
-            background-size: 40px 40px;
+            z-index: -1;
         }
 
         /* ==========================================================================
-           4. NEUMORPHIC LAYOUT & CORE CLASSES
+           4. MINIMALIST LAYOUT & CORE CLASSES
            ========================================================================== */
         .container {
             max-width: 1240px;
             margin: 0 auto;
-            padding: 2rem 1.5rem;
+            padding: 3rem 1.5rem;
             width: 100%;
             flex: 1;
         }
 
-        /* Elegant Extruded Card */
         .nm-card {
             background-color: var(--color-card);
             border-radius: var(--radius-md);
             box-shadow: var(--nm-shadow-flat);
             border: 1px solid var(--color-border);
-            padding: 2rem;
+            padding: 2.25rem;
             transition: transform var(--transition-normal), box-shadow var(--transition-normal);
         }
 
-        /* Interactive Neumorphic Card */
         .nm-card-interactive {
             background-color: var(--color-card);
             border-radius: var(--radius-md);
@@ -159,20 +196,20 @@
             border: 1px solid var(--color-border);
             padding: 2rem;
             cursor: pointer;
-            transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-fast);
         }
 
         .nm-card-interactive:hover {
             transform: translateY(-4px);
+            border-color: rgba(59, 130, 246, 0.3);
             box-shadow: var(--nm-shadow-flat-lg);
         }
 
         .nm-card-interactive:active {
-            transform: translateY(1px);
-            box-shadow: var(--nm-shadow-pressed);
+            transform: translateY(-1px);
+            box-shadow: var(--nm-shadow-flat-sm);
         }
 
-        /* Flat Neumorphic Button */
         .nm-btn {
             background-color: var(--color-surface);
             box-shadow: var(--nm-shadow-flat-sm);
@@ -199,12 +236,10 @@
             box-shadow: var(--nm-shadow-pressed-sm);
         }
 
-        /* Pressed Neumorphic Well */
         .nm-well {
-            background-color: var(--color-surface);
-            box-shadow: var(--nm-shadow-pressed);
+            background-color: var(--color-bg);
             border-radius: var(--radius-md);
-            border: 1px solid transparent;
+            border: 1px solid var(--color-border);
             padding: 2rem;
         }
 
@@ -217,14 +252,14 @@
             z-index: 1000;
             height: 76px;
             background: var(--color-glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--color-border);
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 2rem;
-            box-shadow: 0 8px 32px 0 rgba(148, 163, 184, 0.08);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.02);
             transition: background-color var(--transition-normal);
         }
 
@@ -248,10 +283,10 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            background: var(--color-surface);
+            background: var(--color-bg);
             padding: 0.375rem;
             border-radius: var(--radius-full);
-            box-shadow: var(--nm-shadow-pressed-sm);
+            border: 1px solid var(--color-border);
         }
 
         .nav-link {
@@ -265,7 +300,7 @@
 
         .nav-link:hover {
             color: var(--color-accent);
-            background: var(--color-bg);
+            background: var(--color-surface);
             box-shadow: var(--nm-shadow-flat-sm);
         }
 
@@ -275,7 +310,6 @@
             box-shadow: 0 4px 12px var(--color-accent-glow);
         }
 
-        /* Theme Toggle container */
         .theme-toggle-container {
             display: flex;
             align-items: center;
@@ -302,7 +336,7 @@
         }
 
         .theme-toggle:active {
-            box-shadow: var(--nm-shadow-pressed-sm);
+            box-shadow: var(--nm-shadow-flat-sm);
         }
 
         .menu-toggle {
@@ -411,7 +445,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 1.125rem 1.5rem;
-            background-color: var(--color-surface);
+            background-color: var(--color-bg);
             border-bottom: 1px solid var(--color-border);
         }
 
@@ -442,7 +476,7 @@
 
         .nav-btn:active:not(:disabled) {
             transform: translateY(0);
-            box-shadow: var(--nm-shadow-pressed-sm);
+            box-shadow: var(--nm-shadow-flat-sm);
         }
 
         .nav-btn:disabled {
@@ -463,7 +497,7 @@
             flex-wrap: wrap;
             gap: 0.5rem;
             padding: 0.875rem 1.5rem;
-            background-color: var(--color-surface);
+            background-color: var(--color-bg);
             border-bottom: 1px solid var(--color-border);
             font-size: 0.9rem;
             font-weight: 600;
@@ -520,7 +554,7 @@
 
         .folder-item:active {
             transform: translateX(2px);
-            box-shadow: var(--nm-shadow-pressed-sm);
+            box-shadow: var(--nm-shadow-flat-sm);
         }
 
         .item-main-content {
@@ -535,9 +569,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: var(--color-surface);
+            background-color: var(--color-bg);
             border-radius: var(--radius-sm);
-            box-shadow: var(--nm-shadow-pressed-sm);
+            border: 1px solid var(--color-border);
         }
 
         .folder-img, .file-img {
@@ -600,7 +634,7 @@
 
         .contact-link:active {
             transform: translateY(0);
-            box-shadow: var(--nm-shadow-pressed-sm);
+            box-shadow: var(--nm-shadow-flat-sm);
         }
 
         .contact-icon {
@@ -667,12 +701,12 @@
         .future-icon-container {
             width: 52px;
             height: 52px;
-            background-color: var(--color-surface);
+            background-color: var(--color-bg);
             border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: var(--nm-shadow-pressed-sm);
         }
 
         .future-icon-img {
@@ -725,7 +759,7 @@
             font-size: 0.9rem;
             border-top: 1px solid var(--color-border);
             margin-top: 5rem;
-            background-color: var(--color-surface);
+            background-color: var(--color-bg);
         }
 
         /* ==========================================================================
@@ -807,6 +841,7 @@
     </style>
 </head>
 <body>
+    <div class="grid-overlay"></div>
     <nav class="navbar">
         <a href="#home" class="logo">APSSG12</a>
         <div class="nav-links" id="navLinks">
@@ -814,10 +849,10 @@
         </div>
         <div class="theme-toggle-container">
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                <span class="sun-icon"><img src="images/sun.svg" alt="light mode" class="theme-icon"></span>
-                <span class="moon-icon" style="display:none;"><img src="images/moon.svg" alt="dark mode" class="theme-icon"></span>
+                <span class="sun-icon"><img src="images/sun.svg" alt="light mode" class="theme-icon" font-display: block;></span>
+                <span class="moon-icon" style="display:none;"><img src="images/moon.svg" alt="dark mode" class="theme-icon" font-display: block;></span>
             </button>
-            <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><img src="images/menu.svg" alt="Menu" class="menu-icon"></button>
+            <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><img src="images/menu.svg" alt="Menu" class="menu-icon" font-display: block;></button>
         </div>
     </nav>
 
@@ -827,20 +862,20 @@
                 <h1>APSSG12 – Learning Resources</h1>
                 <p>Your gateway to structured knowledge.</p>
                 <a href="#notes" class="notes-btn-large">
-                    <img src="images/notes.svg" alt="Notes" class="notes-icon"> <span>Notes Directory</span>
+                    <img src="images/notes.svg" alt="Notes" class="notes-icon" font-display: block;> <span>Notes Directory</span>
                 </a>
             </div>
         </section>
 
         <section id="notes" class="section">
             <h2 class="section-title">
-                <img src="images/study.svg" alt="Study Materials" class="study-icon"> <span>Study Materials</span>
+                <img src="images/study.svg" alt="Study Materials" class="study-icon" font-display: block;> <span>Study Materials</span>
             </h2>
             <div class="explorer-container">
                 <div class="explorer-toolbar">
                     <div class="nav-controls">
-                        <button class="nav-btn" id="backBtn" disabled aria-label="Go back"><img src="images/arrow.svg" alt="Back" class="nav-icon back-icon"></button>
-                        <button class="nav-btn" id="forwardBtn" disabled aria-label="Go forward"><img src="images/arrow.svg" alt="Forward" class="nav-icon"></button>
+                        <button class="nav-btn" id="backBtn" disabled aria-label="Go back"><img src="images/arrow.svg" alt="Back" class="nav-icon back-icon" font-display: block;></button>
+                        <button class="nav-btn" id="forwardBtn" disabled aria-label="Go forward"><img src="images/arrow.svg" alt="Forward" class="nav-icon" font-display: block;></button>
                     </div>
                 </div>
                 <div class="breadcrumb-container" id="breadcrumb"></div>
@@ -871,23 +906,23 @@ automatically using GitHub Pages.</p>
 
         <section id="contact" class="section">
             <h2 class="section-title">Contact Me</h2>
-            <div class="contact-bar"><span class="contact-tooltip" data-tooltip="email"><a href="mailto:keabi@gmail.com" target="_blank" class="contact-link" title=""><img src="images/email.svg" alt="email" class="contact-icon"></a></span> <span class="contact-tooltip" data-tooltip="telegram"><a href="https://t.me/keabi" target="_blank" class="contact-link" title=""><img src="images/telegram.svg" alt="telegram" class="contact-icon"></a></span> <span class="contact-tooltip" data-tooltip="whatsapp"><a href="https://wa.me/1234567890" target="_blank" class="contact-link" title=""><img src="images/whatsapp.svg" alt="whatsapp" class="contact-icon"></a></span> <span class="contact-tooltip" data-tooltip="github"><a href="https://github.com/keabi-coder" target="_blank" class="contact-link" title=""><img src="images/github.svg" alt="github" class="contact-icon"></a></span> <span class="contact-tooltip" data-tooltip="discord"><a href="https://discord.gg/example" target="_blank" class="contact-link" title=""><img src="images/discord.svg" alt="discord" class="contact-icon"></a></span></div>
+            <div class="contact-bar"><span class="contact-tooltip" data-tooltip="email"><a href="mailto:keabi@gmail.com" target="_blank" class="contact-link" title=""><img src="images/email.svg" alt="email" class="contact-icon" font-display: block;></a></span> <span class="contact-tooltip" data-tooltip="telegram"><a href="https://t.me/keabi" target="_blank" class="contact-link" title=""><img src="images/telegram.svg" alt="telegram" class="contact-icon" font-display: block;></a></span> <span class="contact-tooltip" data-tooltip="whatsapp"><a href="https://wa.me/1234567890" target="_blank" class="contact-link" title=""><img src="images/whatsapp.svg" alt="whatsapp" class="contact-icon" font-display: block;></a></span> <span class="contact-tooltip" data-tooltip="github"><a href="https://github.com/keabi-coder" target="_blank" class="contact-link" title=""><img src="images/github.svg" alt="github" class="contact-icon" font-display: block;></a></span> <span class="contact-tooltip" data-tooltip="discord"><a href="https://discord.gg/example" target="_blank" class="contact-link" title=""><img src="images/discord.svg" alt="discord" class="contact-icon" font-display: block;></a></span></div>
         </section>
 
         <section id="future" class="section">
             <h2 class="section-title">Future Improvements</h2>
             <div class="future-grid">
-                <div class="future-card" style="color:#1e293b; background:#f0f9ff; border:1px solid #3b82f6;"><img src="images/search.svg" alt="Search Functionality" class="future-icon-img"><h3>Search Functionality</h3><p>Find any topic instantly with a full‑text search engine.</p></div>
-<div class="future-card" style="color:#1e293b; background:#f0fdf4; border:1px solid #22c55e;"><img src="images/progress.svg" alt="Progress Tracking" class="future-icon-img"><h3>Progress Tracking</h3><p>Track your learning progress with interactive charts.</p></div>
-<div class="future-card" style="color:#1e293b; background:#fef2f2; border:1px solid #ef4444;"><img src="images/quiz.svg" alt="Interactive Quizzes" class="future-icon-img"><h3>Interactive Quizzes</h3><p>Test your knowledge after each unit with auto‑graded quizzes.</p></div>
-<div class="future-card" style="color:#1e293b; background:#faf5ff; border:1px solid #a855f7;"><img src="images/mobile.svg" alt="Mobile App" class="future-icon-img"><h3>Mobile App</h3><p>A dedicated mobile app for offline access and notifications.</p></div>
-<div class="future-card" style="color:#f1f5f9; background:#1e293b; border:1px solid #475569;"><img src="images/moon.svg" alt="Dark Mode Improvements" class="future-icon-img"><h3>Dark Mode Improvements</h3><p>Even better dark mode with custom colour schemes.</p></div>
+                <div class="future-card" style="color:#1e293b; background:#f0f9ff; border:1px solid #3b82f6;"><img src="images/search.svg" alt="Search Functionality" class="future-icon-img" font-display: block;><h3>Search Functionality</h3><p>Find any topic instantly with a full‑text search engine.</p></div>
+<div class="future-card" style="color:#1e293b; background:#f0fdf4; border:1px solid #22c55e;"><img src="images/progress.svg" alt="Progress Tracking" class="future-icon-img" font-display: block;><h3>Progress Tracking</h3><p>Track your learning progress with interactive charts.</p></div>
+<div class="future-card" style="color:#1e293b; background:#fef2f2; border:1px solid #ef4444;"><img src="images/quiz.svg" alt="Interactive Quizzes" class="future-icon-img" font-display: block;><h3>Interactive Quizzes</h3><p>Test your knowledge after each unit with auto‑graded quizzes.</p></div>
+<div class="future-card" style="color:#1e293b; background:#faf5ff; border:1px solid #a855f7;"><img src="images/mobile.svg" alt="Mobile App" class="future-icon-img" font-display: block;><h3>Mobile App</h3><p>A dedicated mobile app for offline access and notifications.</p></div>
+<div class="future-card" style="color:#f1f5f9; background:#1e293b; border:1px solid #475569;"><img src="images/moon.svg" alt="Dark Mode Improvements" class="future-icon-img" font-display: block;><h3>Dark Mode Improvements</h3><p>Even better dark mode with custom colour schemes.</p></div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>Auto‑generated on 2026-07-03 10:54 UTC • Powered by GitHub Pages</p>
+        <p>Auto‑generated on 2026-07-03 11:45 UTC • Powered by GitHub Pages</p>
     </footer>
 
     <script>
@@ -933,11 +968,11 @@ automatically using GitHub Pages.</p>
             });
 
             // =================== Neumorphic File Explorer ===================
-            const fileTree = {"grade_10": {"__has_index__": false, "__children__": {"chemistry": {"__has_index__": false, "__children__": {"unit_4": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}}}, "biology": {"__has_index__": false, "__children__": {"unit_5": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}}}, "physics": {"__has_index__": false, "__children__": {"all unit summary": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}}}}}, "grade_11": {"__has_index__": false, "__children__": {"biology": {"__has_index__": false, "__children__": {"unit_4": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}}}, "chemistry": {"__has_index__": false, "__children__": {"unit_2": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}}}, "physics": {"__has_index__": false, "__children__": {"unit_6": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}}}}}, "grade_12": {"__has_index__": false, "__children__": {"biology": {"__has_index__": false, "__children__": {"unit_4": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}}}, "physics": {"__has_index__": false, "__children__": {"unit_1": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}}}, "chemistry": {"__has_index__": false, "__children__": {"unit_3": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}}}}}, "grade_9": {"__has_index__": false, "__children__": {"physics": {"__has_index__": false, "__children__": {"unit_5": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}}}, "biology": {"__has_index__": false, "__children__": {"unit_4": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}}}, "chemistry": {"__has_index__": false, "__children__": {"unit_1": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}}}}}};
+            const fileTree = {"grade_11": {"__has_index__": false, "__children__": {"physics": {"__has_index__": false, "__children__": {"unit_5": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}, "unit_7": {"__has_index__": true, "__children__": {}}, "equations": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}}}, "biology": {"__has_index__": false, "__children__": {"unit_2": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}}}, "chemistry": {"__has_index__": false, "__children__": {"all unit summary": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_4": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}}}}}, "grade_12": {"__has_index__": false, "__children__": {"biology": {"__has_index__": false, "__children__": {"unit_4": {"__has_index__": true, "__children__": {}}, "all unit summary": {"__has_index__": true, "__children__": {}}, "unit_6": {"__has_index__": true, "__children__": {}}, "unit_1": {"__has_index__": true, "__children__": {}}, "unit_3": {"__has_index__": true, "__children__": {}}, "unit_5": {"__has_index__": true, "__children__": {}}, "unit_2": {"__has_index__": true, "__children__": {}}}}}}};
             const baseUrl = "https://keabi-coder.github.io/apssg12";
-            const folderIconSvg = '<img src="images/folder.svg" alt="Folder" class="folder-img">';
-            const fileIconSvg = '<img src="images/file.svg" alt="Page" class="file-img">';
-            const homeIconSvg = '<img src="images/home.svg" alt="Home" class="home-icon">';
+            const folderIconSvg = '<img src="images/folder.svg" alt="Folder" class="folder-img" font-display: block;>';
+            const fileIconSvg = '<img src="images/file.svg" alt="Page" class="file-img" font-display: block;>';
+            const homeIconSvg = '<img src="images/home.svg" alt="Home" class="home-icon" font-display: block;>';
 
             let historyStack = [[]];
             let historyIndex = 0;

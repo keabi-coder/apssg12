@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>biology-g11-unit-1</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+        <style>
+            :root {
+                --bg: #fffefb;
+                --text: #2b2823;
+                --accent: #4a6d7c;
+                --border: #e4ddcf;
+                --font-sans: 'Inter', 'Segoe UI', 'SF Pro Display', system-ui, -apple-system, sans-serif;
+                --font-serif: 'Georgia', 'Times New Roman', 'STIX Two Text', 'Charis SIL', serif;
+                --font-mono: 'SF Mono', 'Fira Code', 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+                --radius-sm: 8px;
+                --radius-md: 12px;
+            }
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body {
+                background: #f4f0ea;
+                font-family: var(--font-serif);
+                color: var(--text);
+                line-height: 1.8;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                padding: 40px 20px 80px;
+            }
+            .document-container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: var(--bg);
+                padding: 50px 60px;
+                border-radius: 16px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.04);
+            }
+            @media (max-width: 768px) {
+                .document-container { padding: 30px 24px; border-radius: 10px; }
+                body { padding: 20px 10px 40px; }
+            }
+            .document-container h1, .document-container h2, .document-container h3,
+            .document-container h4, .document-container h5, .document-container h6 {
+                font-family: var(--font-sans);
+                font-weight: 650;
+                line-height: 1.3;
+                margin-top: 1.8em;
+                margin-bottom: 0.6em;
+                color: #1f1c18;
+                letter-spacing: -0.02em;
+            }
+            .document-container h1 { font-size: 2rem; border-bottom: 2px solid #e8e2d4; padding-bottom: 0.3em; margin-top: 0.2em; }
+            .document-container h2 { font-size: 1.5rem; border-bottom: 1px solid #ece6da; padding-bottom: 0.2em; }
+            .document-container h3 { font-size: 1.25rem; }
+            .document-container h4 { font-size: 1.1rem; }
+            .document-container p { margin: 0.8em 0; }
+            .document-container a {
+                color: var(--accent);
+                text-decoration: underline;
+                text-underline-offset: 3px;
+                text-decoration-thickness: 1.2px;
+                text-decoration-color: rgba(74,109,124,0.35);
+            }
+            .document-container a:hover { text-decoration-color: var(--accent); color: #2f505e; }
+            .document-container strong { font-weight: 700; color: #1a1815; }
+            .document-container em { font-style: italic; color: #4a4540; }
+            .document-container blockquote {
+                margin: 1.4em 0; padding: 14px 24px;
+                border-left: 4px solid #cdb69b;
+                background: #faf6ef;
+                border-radius: 0 8px 8px 0;
+                color: #5a5248; font-style: italic;
+            }
+            .document-container ul, .document-container ol { margin: 0.8em 0; padding-left: 1.8em; }
+            .document-container li { margin: 0.4em 0; line-height: 1.7; }
+            .document-container li::marker { color: #b0a394; }
+            .document-container code {
+                font-family: var(--font-mono); font-size: 0.85em;
+                background: #f2ede4; padding: 2px 8px; border-radius: 4px; color: #654f3b;
+            }
+            .document-container pre {
+                margin: 1.4em 0; padding: 20px 24px;
+                background: #f8f5ef; border: 1px solid #e4ddcf;
+                border-radius: 10px; overflow-x: auto;
+                font-size: 0.9rem; line-height: 1.6;
+            }
+            .document-container pre code { background: transparent; padding: 0; border-radius: 0; color: #3d352c; }
+            .document-container table {
+                width: 100%; border-collapse: collapse; margin: 1.4em 0;
+                font-size: 0.95rem; font-family: var(--font-sans);
+                border-radius: 10px; overflow: hidden;
+                box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            }
+            .document-container th, .document-container td {
+                padding: 10px 18px; border: 1px solid #e5ded3; text-align: left;
+            }
+            .document-container th { background: #f5f1e9; font-weight: 650; color: #3d352c; }
+            .document-container tr:nth-child(even) td { background: #fdfbf7; }
+            .document-container tr:hover td { background: #faf6ee; }
+            .document-container hr { border: none; border-top: 2px solid #e5ded3; margin: 2.2em 0; }
+            .document-container img { max-width: 100%; border-radius: 8px; margin: 1em 0; }
+            .document-container .katex-display { margin: 1.4em 0; overflow-x: auto; overflow-y: hidden; }
+            .document-container .katex { font-size: 1.25em; }
+            .document-container .math-error { color: #c0392b; background: #fdecea; padding: 2px 6px; border-radius: 3px; font-family: var(--font-mono); font-size: 0.85em; }
+            .document-container dl { margin: 1em 0; }
+            .document-container dt { font-weight: 700; color: #1f1c18; margin-top: 0.8em; }
+            .document-container dd { margin-left: 1.6em; margin-bottom: 0.6em; color: #4a4540; }
+            .document-container sup, .document-container sub { font-size: 0.8em; }
+        </style>
+        </head>
+        <body>
+        <div class="document-container">
+        <h1>BIOLOGY AND TECHNOLOGY – EXAM REVISION PACKAGE</h1>
+<h2>FULL CONTENT CLEANING</h2>
+<p>All learning content from the unit has been extracted and reorganized. Irrelevant text, page numbers, subject headings, activities, review questions and instructions have been removed. The remaining material covers:</p>
+<ul>
+<li>Imitation of nature in technology</li>
+<li>Definitions of biology, technology, biotechnology</li>
+<li>Benefits of biology to technology</li>
+<li>Uses of technology in biology</li>
+<li>Impacts of biology and technology on society and nature</li>
+<li>Ethical issues in biology (plants, animals, wider concerns)</li>
+</ul>
+<hr>
+<h2>BALANCED REVISION NOTES</h2>
+<h3>1. IMITATION – LEARNING FROM NATURE</h3>
+<p><strong>Concept</strong></p>
+<ul>
+<li>Many modern technologies are designed by <strong>imitating natural working systems</strong>.</li>
+<li>Nature is a reliable source of knowledge, ideas and concepts for scientists and engineers.</li>
+<li>This imitation helps to innovate, solve problems and expand scientific understanding.</li>
+</ul>
+<p><strong>Examples of technologies imitated from nature</strong></p>
+<table>
+<thead>
+<tr>
+<th>Natural Source</th>
+<th>Technology / Architecture</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Swallow nests</td>
+<td>House building design</td>
+</tr>
+<tr>
+<td>Spider web formation</td>
+<td>Weaving technologies</td>
+</tr>
+<tr>
+<td>Termite mound architecture (chimneys, constant temperature &amp; humidity)</td>
+<td>Building design (e.g. East Gate Centre, Harare)</td>
+</tr>
+<tr>
+<td>Wings of birds and bats</td>
+<td>First heavy aircraft wings and flight techniques</td>
+</tr>
+<tr>
+<td>Human eye</td>
+<td>Photograph camera</td>
+</tr>
+<tr>
+<td>Movement of kangaroo</td>
+<td>Bio-robot movement</td>
+</tr>
+<tr>
+<td>Mosquito proboscis</td>
+<td>Injection needle</td>
+</tr>
+<tr>
+<td>Biological neurons</td>
+<td>Sensors in electrical devices</td>
+</tr>
+<tr>
+<td>Sharp teeth of animals</td>
+<td>Cutting saw</td>
+</tr>
+<tr>
+<td>Spider silk (spin silk)</td>
+<td>Synthetic bulletproof vests</td>
+</tr>
+<tr>
+<td>Crack-resistant shellfish exoskeleton</td>
+<td>Ceramics</td>
+</tr>
+<tr>
+<td>Elephant trunk</td>
+<td>Robotic arm</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>2. BIOLOGY AND TECHNOLOGY</h3>
+<h4>2.1 Definitions</h4>
+<ul>
+<li><strong>Biology</strong> is called the study of life – structures, functions, growth, origins, evolution and distribution of living organisms.</li>
+<li><strong>Technology</strong> is called the application of scientific knowledge, skills, methods and processes to produce devices and tools for scientific investigations.</li>
+<li><strong>Biotechnology</strong> is called the blend (coupling) of biology and technology. It is a technology that uses biological systems to develop useful products. It is the integration of natural and engineering sciences to apply organisms, cells, parts and molecular analogues for products and services.<ul>
+<li><em>Example</em>: using yeasts to produce bread and beer.</li>
+</ul>
+</li>
+</ul>
+<h4>2.2 Benefits of biology to technology</h4>
+<p>Biology provides materials and information that allow us to imitate, design, adapt and develop technologies. The diversity of nature stimulates new technology.</p>
+<ol>
+<li><p><strong>Medicinal plants</strong></p>
+<ul>
+<li>Biochemical substances in plants are used to develop medicines.</li>
+<li>Scientists imitate nature to produce artificial versions of these substances.</li>
+</ul>
+</li>
+<li><p><strong>Gene engineering and biosynthetic materials</strong></p>
+<ul>
+<li>Imitating human, animal and plant genes allows gene engineering to cure genetic conditions.</li>
+<li>Biosynthetic materials are created to repair damaged body tissues.</li>
+</ul>
+</li>
+<li><p><strong>Building design</strong></p>
+<ul>
+<li>Engineers imitate termite mound architecture to design buildings with constant temperature and humidity (chimneys).</li>
+</ul>
+</li>
+<li><p><strong>Bullet train design</strong></p>
+<ul>
+<li>The nose of bullet trains is designed by imitating the beak of kingfishers when they dive into water.</li>
+</ul>
+</li>
+</ol>
+<h4>2.3 Uses of technology in biology</h4>
+<p>Technology is used in biology to solve human problems, provide services, and investigate new biological questions. This is the practical application of biotechnological instruments.</p>
+<p><strong>Biological study areas that rely on technological tools:</strong></p>
+<ul>
+<li><strong>Biochemical studies</strong> – investigate carbohydrates, proteins, lipids, nucleic acids.</li>
+<li><strong>Biomedical studies</strong> – provide detailed information on chemical components of medicinal plants.</li>
+<li><strong>Biophysical studies</strong> – use physical devices to gather biological information at all scales (molecular, organismic, population).</li>
+<li><strong>Environmental studies</strong> – a multidisciplinary system dealing with human‑environment interactions.</li>
+<li><strong>Bioinformatics</strong> – computer technology to collect, store, analyze, and disseminate biological data (DNA, amino acid sequences).</li>
+<li><strong>Biogeographical information</strong> – study of species distribution and geographic ecosystems over geological periods.</li>
+</ul>
+<p><strong>Specific technological devices and their functions</strong></p>
+<ul>
+<li><strong>Digital thermometer</strong> – measures body temperature.</li>
+<li><strong>Pregnancy urine test</strong> – detects human Chorionic Gonadotropin (HCG) hormone to confirm pregnancy. One line = negative; two lines = positive.</li>
+<li><strong>Diabetic blood test</strong> – measures blood sugar level using a finger‑tip blood sample.</li>
+<li><strong>HIV test</strong> – identifies infection with the virus.</li>
+<li><strong>Microscope</strong> – magnifies objects for detailed study.</li>
+<li><strong>Computer Information Technology Scanning (CITS)</strong> – investigates diseases or cancerous areas in the body.</li>
+<li><strong>Computed Tomography scan (CT scan)</strong> – a sophisticated X‑ray device that takes many X‑ray pictures to detect and screen for diseases and conditions.</li>
+<li><strong>Positron Emission Tomography (PET scan)</strong> – imaging device that uses radioactive tracers to check for cancer; visualizes metabolic processes, blood flow, chemical composition and absorption.</li>
+<li><strong>Geographical Position System (GPS)</strong> – collects biogeographical data on landscape, plants, animals, and human movements.</li>
+<li><strong>Handheld Body fat calculator</strong> – measures body fat.</li>
+</ul>
+<hr>
+<h3>3. IMPACTS OF BIOLOGY AND TECHNOLOGY ON SOCIETY AND THE NATURAL WORLD</h3>
+<p><strong>Impacts</strong> are factors that pose positive or negative effects on society and the natural world.</p>
+<h4>3.1 Impacts of biology</h4>
+<p><strong>Positive impacts (examples)</strong></p>
+<ul>
+<li>Ensuring food security through increased productivity.</li>
+<li>Improved health and longevity via medicine and disease treatments.</li>
+<li>Better supply of energy and clean water.</li>
+<li>Increased industrial production due to microbial action.</li>
+<li>Creating antibiotics to treat bacterial infections.</li>
+<li>Technological devices made from biological materials provide services that influence, treat and control society and nature.</li>
+</ul>
+<p><strong>Negative impacts (examples)</strong></p>
+<ul>
+<li>Biological weapon production and use destroy the natural world.</li>
+<li>Predetermined selection of child sex chromosomes (e.g. allowing only XY males, avoiding XX females) may lead to loss of females, affecting society and nature.</li>
+</ul>
+<h4>3.2 Impacts of technology</h4>
+<ul>
+<li>Technology solves societal problems but also causes environmental damage.</li>
+</ul>
+<p><strong>Two main ways technology damages the natural world:</strong></p>
+<ol>
+<li><strong>Pollution</strong> – industrial emissions and effluents pollute air and drinking water.</li>
+<li><strong>Depletion of natural resources</strong></li>
+</ol>
+<p><strong>Examples of negative impacts:</strong></p>
+<ul>
+<li>Industrial emissions and effluents.</li>
+<li>Biochemical agents, pesticides and fertilizers cause toxicity and biohazards.</li>
+</ul>
+<hr>
+<h3>4. ETHICAL ISSUES IN BIOLOGY</h3>
+<p><strong>Definition</strong></p>
+<ul>
+<li>Ethical issues in biology are called concerns about the rightness or wrongness of using biological discoveries for human health and wellbeing.</li>
+<li>They deal with biotechnology, medicine and the environment, including the rightness or wrongness of using biotechnological information, products or devices on human health, lifestyles and livelihoods.</li>
+</ul>
+<h4>4.1 Ethical treatment of plants and animals</h4>
+<p><strong>Ethical treatment</strong> is the process of subjecting animals and plants to various experiments and rigorous tests, while considering their moral status.</p>
+<p><strong>A. Ethical treatment of plants</strong></p>
+<ul>
+<li>Plants are primary producers and feeders for all living organisms.</li>
+<li>Trees function in a <strong>decentralized</strong> way without a brain.</li>
+<li>Unethical treatment can cause disappearance of plant species and harm dependent communities.</li>
+</ul>
+<p><strong>Unethical treatments of plants:</strong></p>
+<ul>
+<li>Testing seeds or berries through destructive rays.</li>
+<li>Cutting tree terminals for experiments.</li>
+<li>Consumption of all seeds and fruits without conservation.</li>
+<li>Unplanned cutting of trees (deforestation).</li>
+<li>Burning forests and seedlings for farmland.</li>
+<li>Restructuring tree shapes for aesthetic appeal.</li>
+</ul>
+<p><strong>Ethical care:</strong></p>
+<ul>
+<li>Planting trees is a national responsibility; it saves jeopardized species and conserves for the future.</li>
+</ul>
+<p><strong>B. Ethical treatment of animals</strong></p>
+<ul>
+<li>Animals are sentient creatures with a nervous system; they feel pain, emotional stress, and have interests.</li>
+<li>It is unethical to harm animals during experiments or rigorous testing.</li>
+</ul>
+<p><strong>Unethical treatments:</strong></p>
+<ul>
+<li>Approaches that expose animals to experiments causing injury or pain.</li>
+</ul>
+<p><strong>The Three Rs principle to reduce unethical treatment:</strong></p>
+<ol>
+<li><strong>Reduction</strong> – minimize the number of animals used by improving techniques and sharing information.</li>
+<li><strong>Refinement</strong> – reduce animal suffering by using less invasive techniques, better medical care, and better living conditions.</li>
+<li><strong>Replacement</strong> – substitute animals with alternatives such as cell cultures, biosynthesis, and computer‑simulated models.</li>
+</ol>
+<h4>4.2 Wider ethical issues in biology (from unit summary)</h4>
+<ul>
+<li>Unethicality, immorality, illegality, inequality, injustice, and disrespectful acts towards the values and rights of someone.</li>
+<li>Commercialization and commodification of human organs.</li>
+<li>Assisted reproduction techniques.</li>
+<li>Manipulation of basic biological organ systems.</li>
+</ul>
+<hr>
+<h2>EXAM REVISION SUMMARY</h2>
+<ul>
+<li><strong>Imitation:</strong> Designing technologies by copying natural systems. Nature inspires innovations.</li>
+<li><strong>Examples of nature‑inspired tech:</strong> swallow nests → house design; spider webs → weaving; termite mounds → climate‑controlled buildings (East Gate Centre); bird/bat wings → aircraft; human eye → camera; kangaroo movement → bio‑robots; mosquito proboscis → injection needle; neurons → sensors; animal teeth → cutting saw; spider silk → bulletproof vests; shellfish exoskeleton → ceramics; elephant trunk → robotic arm.</li>
+<li><strong>Biology:</strong> study of life. <strong>Technology:</strong> application of scientific knowledge to make tools. <strong>Biotechnology:</strong> blend of biology and technology using biological systems to create products (e.g., yeast for bread/beer).</li>
+<li><strong>Benefits of biology to technology:</strong> medicinal plants → artificial medicines; gene imitation → gene engineering &amp; biosynthetic tissue repair; termite mounds → energy‑efficient buildings; kingfisher beak → bullet train nose.</li>
+<li><strong>Uses of technology in biology:</strong> fields – biochemical, biomedical, biophysical, environmental, bioinformatics, biogeographical. Devices – digital thermometer, pregnancy test (detects HCG), diabetic test, HIV test, microscope, CT scan, PET scan, GPS, body fat calculator.</li>
+<li><strong>Impacts of biology:</strong> positive – food security, better health, clean energy/water, antibiotics, bio‑based devices. Negative – biological weapons, sex selection causing imbalance.</li>
+<li><strong>Impacts of technology:</strong> positive – solving societal problems. Negative – pollution (air/water), depletion of resources, toxicity/biohazards from chemicals, pesticides, fertilizers.</li>
+<li><strong>Ethical issues in biology:</strong> rightness/wrongness of using biological discoveries. <strong>Plants:</strong> unethical actions include destructive testing, deforestation, burning forests; ethical duty to conserve. <strong>Animals:</strong> sentient beings feel pain; unethical to harm them. <strong>Three Rs:</strong> Reduction (fewer animals), Refinement (less suffering), Replacement (cell cultures, computer models). <strong>Broader concerns:</strong> organ commercialization, assisted reproduction, manipulation of basic biological systems.</li>
+<li><strong>Key relationships:</strong> Biology supplies knowledge for technology; technology provides tools for biological discovery; both have societal and environmental impacts that must be ethically managed.</li>
+</ul>
+
+    </div>
+</body>
+</html>

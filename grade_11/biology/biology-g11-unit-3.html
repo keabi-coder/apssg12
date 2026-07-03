@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>biology-g11-unit-3</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+        <style>
+            :root {
+                --bg: #fffefb;
+                --text: #2b2823;
+                --accent: #4a6d7c;
+                --border: #e4ddcf;
+                --font-sans: 'Inter', 'Segoe UI', 'SF Pro Display', system-ui, -apple-system, sans-serif;
+                --font-serif: 'Georgia', 'Times New Roman', 'STIX Two Text', 'Charis SIL', serif;
+                --font-mono: 'SF Mono', 'Fira Code', 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+                --radius-sm: 8px;
+                --radius-md: 12px;
+            }
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body {
+                background: #f4f0ea;
+                font-family: var(--font-serif);
+                color: var(--text);
+                line-height: 1.8;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                padding: 40px 20px 80px;
+            }
+            .document-container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: var(--bg);
+                padding: 50px 60px;
+                border-radius: 16px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.04);
+            }
+            @media (max-width: 768px) {
+                .document-container { padding: 30px 24px; border-radius: 10px; }
+                body { padding: 20px 10px 40px; }
+            }
+            .document-container h1, .document-container h2, .document-container h3,
+            .document-container h4, .document-container h5, .document-container h6 {
+                font-family: var(--font-sans);
+                font-weight: 650;
+                line-height: 1.3;
+                margin-top: 1.8em;
+                margin-bottom: 0.6em;
+                color: #1f1c18;
+                letter-spacing: -0.02em;
+            }
+            .document-container h1 { font-size: 2rem; border-bottom: 2px solid #e8e2d4; padding-bottom: 0.3em; margin-top: 0.2em; }
+            .document-container h2 { font-size: 1.5rem; border-bottom: 1px solid #ece6da; padding-bottom: 0.2em; }
+            .document-container h3 { font-size: 1.25rem; }
+            .document-container h4 { font-size: 1.1rem; }
+            .document-container p { margin: 0.8em 0; }
+            .document-container a {
+                color: var(--accent);
+                text-decoration: underline;
+                text-underline-offset: 3px;
+                text-decoration-thickness: 1.2px;
+                text-decoration-color: rgba(74,109,124,0.35);
+            }
+            .document-container a:hover { text-decoration-color: var(--accent); color: #2f505e; }
+            .document-container strong { font-weight: 700; color: #1a1815; }
+            .document-container em { font-style: italic; color: #4a4540; }
+            .document-container blockquote {
+                margin: 1.4em 0; padding: 14px 24px;
+                border-left: 4px solid #cdb69b;
+                background: #faf6ef;
+                border-radius: 0 8px 8px 0;
+                color: #5a5248; font-style: italic;
+            }
+            .document-container ul, .document-container ol { margin: 0.8em 0; padding-left: 1.8em; }
+            .document-container li { margin: 0.4em 0; line-height: 1.7; }
+            .document-container li::marker { color: #b0a394; }
+            .document-container code {
+                font-family: var(--font-mono); font-size: 0.85em;
+                background: #f2ede4; padding: 2px 8px; border-radius: 4px; color: #654f3b;
+            }
+            .document-container pre {
+                margin: 1.4em 0; padding: 20px 24px;
+                background: #f8f5ef; border: 1px solid #e4ddcf;
+                border-radius: 10px; overflow-x: auto;
+                font-size: 0.9rem; line-height: 1.6;
+            }
+            .document-container pre code { background: transparent; padding: 0; border-radius: 0; color: #3d352c; }
+            .document-container table {
+                width: 100%; border-collapse: collapse; margin: 1.4em 0;
+                font-size: 0.95rem; font-family: var(--font-sans);
+                border-radius: 10px; overflow: hidden;
+                box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            }
+            .document-container th, .document-container td {
+                padding: 10px 18px; border: 1px solid #e5ded3; text-align: left;
+            }
+            .document-container th { background: #f5f1e9; font-weight: 650; color: #3d352c; }
+            .document-container tr:nth-child(even) td { background: #fdfbf7; }
+            .document-container tr:hover td { background: #faf6ee; }
+            .document-container hr { border: none; border-top: 2px solid #e5ded3; margin: 2.2em 0; }
+            .document-container img { max-width: 100%; border-radius: 8px; margin: 1em 0; }
+            .document-container .katex-display { margin: 1.4em 0; overflow-x: auto; overflow-y: hidden; }
+            .document-container .katex { font-size: 1.25em; }
+            .document-container .math-error { color: #c0392b; background: #fdecea; padding: 2px 6px; border-radius: 3px; font-family: var(--font-mono); font-size: 0.85em; }
+            .document-container dl { margin: 1em 0; }
+            .document-container dt { font-weight: 700; color: #1f1c18; margin-top: 0.8em; }
+            .document-container dd { margin-left: 1.6em; margin-bottom: 0.6em; color: #4a4540; }
+            .document-container sup, .document-container sub { font-size: 0.8em; }
+        </style>
+        </head>
+        <body>
+        <div class="document-container">
+        <h1>UNIT 3: ENZYMES – EXAM REVISION PACKAGE</h1>
+<h2>FULL CONTENT CLEANING</h2>
+<p>All learning content from Unit 3 has been extracted. Page numbers, activity instructions, lab procedures, self-questioning prompts, unit learning outcomes, and review questions have been removed. The remaining material covers:</p>
+<ul>
+<li>Definition of enzymes and their general properties</li>
+<li>Functions of enzymes and examples</li>
+<li>Protein structures (primary, secondary, tertiary, quaternary)</li>
+<li>Enzyme–substrate models (lock and key, induced fit)</li>
+<li>Enzymatic transition state</li>
+<li>Enzyme regulation (allosteric, covalent modification, inhibition)</li>
+<li>Types of enzymes (structural and basic classification)</li>
+<li>Factors affecting enzyme action</li>
+<li>Enzyme kinetics (Michaelis‑Menten)</li>
+<li>Industrial and biological applications of enzymes</li>
+<li>Malting (modern and traditional Ethiopian practice)</li>
+<li>Biochemists and their roles</li>
+</ul>
+<hr>
+<h2>BALANCED REVISION NOTES</h2>
+<h3>3.1 Introduction – What are Enzymes?</h3>
+<p>Enzymes are biological catalysts that speed up chemical reactions in living organisms. They are protein in nature. An enzyme accelerates a reaction without being consumed or permanently changed; it remains unchanged after the reaction.</p>
+<hr>
+<h3>3.2 Properties and Functions of Enzymes</h3>
+<p>Enzyme properties are the physical and chemical characteristics that govern how enzymes work.</p>
+<h4>3.2.1 General Properties of Enzymes</h4>
+<p><strong>A. Physical Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Denaturation</strong></td>
+<td>Breaking of non‑covalent bonds that distort the enzyme’s shape and active site. Caused by high heat (above 40 °C), extreme pH, heavy metals, high salt, solvents. Once denatured, enzymes lose function; usually irreversible.</td>
+</tr>
+<tr>
+<td><strong>Solubility</strong></td>
+<td>Enzymes dissolve in water, dilute salt solutions, glycerol, and alcohol. (Alcohol can cause denaturation.)</td>
+</tr>
+<tr>
+<td><strong>Colloidal nature</strong></td>
+<td>Enzymes are large molecules that do not easily pass through semi‑permeable membranes (little or no dialysis).</td>
+</tr>
+<tr>
+<td><strong>Biocatalyst</strong></td>
+<td>A very small amount of enzyme converts a large quantity of substrate without being used up.</td>
+</tr>
+<tr>
+<td><strong>Precipitation</strong></td>
+<td>Enzymes can be separated for analysis by using aqueous or ethanol solvents.</td>
+</tr>
+<tr>
+<td><strong>Molecular weight</strong></td>
+<td>Enzymes are large protein biomolecules with high molecular weights, made of polypeptide chains of many amino acids.</td>
+</tr>
+<tr>
+<td><strong>Enzymatic activity</strong></td>
+<td>The catalytic performance of an enzyme, which depends on temperature, pH, enzyme concentration, and substrate concentration. Highest activity occurs at optimum temperature and pH.</td>
+</tr>
+</tbody></table>
+<p><strong>B. Chemical Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Heat and pH sensitivity</strong></td>
+<td>Enzymes are activated at optimum temperature and pH; extremes cause loss of activity.</td>
+</tr>
+<tr>
+<td><strong>Regulation</strong></td>
+<td>Enzyme activity is controlled by activator and inhibitor molecules.</td>
+</tr>
+<tr>
+<td><strong>Catalysis</strong></td>
+<td>Enzymes are biological catalysts with high catalytic efficiency. One enzyme molecule can convert about 100–10 000 substrate molecules per second. Enzyme‑catalysed reactions are 10³–10⁸ times faster than non‑catalysed reactions.</td>
+</tr>
+<tr>
+<td><strong>Reversibility</strong></td>
+<td>Enzymes can catalyse reactions in both forward and reverse directions (both synthesis/anabolic and breakdown/catabolic).</td>
+</tr>
+<tr>
+<td><strong>Specificity</strong></td>
+<td>The enzyme is restrictive in its choice of substrate.</td>
+</tr>
+</tbody></table>
+<p><strong>Types of enzyme specificity:</strong></p>
+<ul>
+<li><strong>Bond specificity</strong> – the enzyme is specific for a particular type of bond.</li>
+<li><strong>Group specificity</strong> – the enzyme acts on a specific chemical group.</li>
+<li><strong>Substrate specificity</strong> – the enzyme acts only on a particular substrate.</li>
+<li><strong>Optical specificity</strong> – the enzyme recognises the optical configuration (stereochemistry) of the substrate.</li>
+<li><strong>Co‑factor specificity</strong> – the enzyme requires specific co‑factors to function.</li>
+</ul>
+<h4>3.2.2 Functions of Enzymes</h4>
+<ul>
+<li>Enzymes <strong>speed up chemical reactions</strong> in the body; they are essential for respiration, digestion, liver, muscle, and nerve function.</li>
+<li>Every cell contains thousands of enzymes that facilitate chemical reactions.</li>
+<li><strong>Turnover number</strong> is the number of substrate molecules converted to product by one enzyme molecule per second when the active site is saturated.</li>
+<li>Enzymes act as <strong>markers of disease states</strong> (e.g., myocardial infarction, jaundice, pancreatitis, cancer, neurodegenerative disorders).</li>
+<li>Each enzyme has an <strong>active site</strong> with a unique shape that binds the substrate and speeds up metabolism.</li>
+</ul>
+<p><strong>Examples of enzymes and their substrates:</strong></p>
+<ul>
+<li><strong>Sucrase</strong> – breaks down sucrose</li>
+<li><strong>Lactase</strong> – breaks down lactose (milk sugar)</li>
+<li><strong>Carbohydrase</strong> – breaks down carbohydrates into sugars</li>
+<li><strong>Lipase</strong> – breaks down fats into fatty acids</li>
+<li><strong>Protease</strong> – breaks down proteins into amino acids</li>
+</ul>
+<p><strong>How enzymes work:</strong><br>Enzymes lower the <strong>activation energy</strong> – the minimum energy required to start a reaction. Lower activation energy means a faster reaction.</p>
+<p><strong>Some enzymes in the body and their functions (Table):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Enzyme</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Lipases</td>
+<td>Split fats; found in blood, gastric juice, pancreatic secretions, intestinal juices, adipose tissue; participate in digestion.</td>
+</tr>
+<tr>
+<td>Amylase</td>
+<td>In saliva; changes starches into sugars.</td>
+</tr>
+<tr>
+<td>Maltase</td>
+<td>In saliva and foods like potatoes; breaks maltose into glucose.</td>
+</tr>
+<tr>
+<td>Trypsin</td>
+<td>In small intestine; breaks proteins into amino acids.</td>
+</tr>
+<tr>
+<td>Lactase</td>
+<td>In small intestine; breaks lactose into glucose and galactose.</td>
+</tr>
+<tr>
+<td>Helicase</td>
+<td>Unwinds DNA.</td>
+</tr>
+<tr>
+<td>DNA Polymerase</td>
+<td>Forms new copies of DNA (nucleic acid molecules).</td>
+</tr>
+<tr>
+<td>Acetylcholinesterase</td>
+<td>Breaks down the neurotransmitter acetylcholine in nerves and muscles.</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>3.3 Protein Structures</h3>
+<p><strong>Protein structure</strong> is the three‑dimensional arrangement of atoms in a chain of amino acids linked by peptide bonds. Since enzymes are proteins, their structure determines their function.</p>
+<p>Proteins have <strong>four structural levels</strong>:</p>
+<ol>
+<li><p><strong>Primary structure</strong></p>
+<ul>
+<li>The linear sequence of amino acids in a polypeptide chain, linked by peptide bonds.</li>
+<li>Determined by the side‑chain substituents (which vary in chemical, physical, and structural properties).</li>
+<li>Chains with fewer than 50 amino acids are called <strong>peptides</strong>; longer chains are <strong>polypeptides</strong>.</li>
+<li>Humans need 20 amino acids; 10 are made in the body, the other 10 come from the diet.</li>
+<li>Cells use 20 standard L‑α‑amino acids (with basic amino and acidic carboxyl groups).</li>
+</ul>
+</li>
+<li><p><strong>Secondary structure</strong></p>
+<ul>
+<li>Local folded structures formed by hydrogen bonding between backbone atoms.</li>
+<li>Two main types:<ul>
+<li><strong>α‑Helix</strong> – a right‑handed coiled strand. The C=O of one amino acid forms a hydrogen bond with the N–H group of an amino acid four residues away. Side chains point outward.</li>
+<li><strong>β‑Pleated sheet</strong> – strands lie side‑by‑side; hydrogen bonds form between adjacent strands (inter‑strand) or within a strand (intra‑strand). The chain is nearly fully extended, forming pleats.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Tertiary structure</strong></p>
+<ul>
+<li>The overall three‑dimensional shape of a single polypeptide chain.</li>
+<li>Formed by interactions between side‑chain groups (e.g., hydrophobic interactions, ionic bonds, disulfide bridges, hydrogen bonds).</li>
+<li>The protein bends and twists to reach maximum stability (lowest energy state).</li>
+</ul>
+</li>
+<li><p><strong>Quaternary structure</strong></p>
+<ul>
+<li>The arrangement of two or more folded polypeptide subunits into a multi‑subunit complex.</li>
+<li>Held together by hydrogen bonds and other interactions.</li>
+<li>Example: <strong>Haemoglobin</strong> consists of four polypeptide chains.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Summary of protein structure levels:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Primary</td>
+<td>Linear sequence of amino acids in a polypeptide chain.</td>
+</tr>
+<tr>
+<td>Secondary</td>
+<td>Folding into α‑helices and β‑pleated sheets within one chain, due to backbone hydrogen bonding.</td>
+</tr>
+<tr>
+<td>Tertiary</td>
+<td>3‑D arrangement of all amino acids in a single chain, stabilised by side‑chain interactions.</td>
+</tr>
+<tr>
+<td>Quaternary</td>
+<td>Assembly of multiple polypeptide chains into one functional protein.</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>3.4 Enzyme–Substrate Models</h3>
+<p>Enzyme–substrate models describe how the active site and substrate interact.</p>
+<p>Two main models:</p>
+<ol>
+<li><p><strong>Lock and key model</strong></p>
+<ul>
+<li>The active site has a rigid shape that is exactly complementary to the substrate.</li>
+<li>The substrate fits into the active site like a key into a lock.</li>
+<li>After the reaction forms products, the active site returns to its original shape and can accommodate more substrate.</li>
+</ul>
+</li>
+<li><p><strong>Induced fit model</strong></p>
+<ul>
+<li>The active site is not a perfect rigid fit initially.</li>
+<li>When the substrate binds, the enzyme <strong>changes shape</strong>, moulding around the substrate to form the enzyme–substrate complex.</li>
+<li>This conformational change can strain bonds in the substrate, lowering activation energy and facilitating the reaction.</li>
+<li>The shape change may either enhance or suppress enzyme activity.</li>
+</ul>
+</li>
+</ol>
+<h4>3.4.1 Enzymatic Transition State</h4>
+<p>The <strong>transition state</strong> is the high‑energy, unstable state during the conversion of substrate to product.</p>
+<p>The enzyme‑catalysed reaction follows this sequence:</p>
+<p><em><em>E + S  ⇄  ES  ⇄  ES</em>  ⇄  EP  ⇄  E + P</em>*</p>
+<p>Where:</p>
+<ul>
+<li><strong>E</strong> = Enzyme</li>
+<li><strong>S</strong> = Substrate</li>
+<li><strong>ES</strong> = Enzyme‑substrate complex</li>
+<li><strong>ES</strong>* = Activated enzyme‑substrate complex (transition state)</li>
+<li><strong>EP</strong> = Enzyme‑product complex</li>
+<li><strong>P</strong> = Product</li>
+</ul>
+<p>The enzyme stabilises the transition state, lowering the activation energy and speeding up the reaction.</p>
+<hr>
+<h3>3.5 Enzyme Regulation</h3>
+<p>Enzyme regulation is the control system that turns enzymes <strong>“on” or “off”</strong> according to the organism’s needs. Regulatory enzymes respond to the presence of certain molecules and adjust the pathway’s activity.</p>
+<p>Regulatory enzymes need extra activation/modification. They are of two main types: <strong>allosteric enzymes</strong> and <strong>covalently modulated enzymes</strong>.</p>
+<h4>3.5.1 Allosteric Enzymes</h4>
+<ul>
+<li>Allosteric enzymes have <strong>two binding sites</strong>:<ul>
+<li><strong>Active site (catalytic site)</strong> – binds substrate.</li>
+<li><strong>Allosteric site (regulatory site)</strong> – binds effector molecules (activators or inhibitors).</li>
+</ul>
+</li>
+<li><strong>Effectors</strong> are small molecules that modulate enzyme activity by reversible non‑covalent binding to the allosteric site.</li>
+<li>Effector binding causes a <strong>conformational change</strong> in the enzyme that alters the active site, modifying catalytic activity (increase or decrease).</li>
+</ul>
+<h4>3.5.2 Genetic and Covalent Modification</h4>
+<ul>
+<li><strong>Genetic modification</strong> – changes to the enzyme’s gene improve enzyme properties; can produce active and inactive forms.</li>
+<li><strong>Covalent modulation</strong> – enzymes are switched between active and inactive forms by the <strong>addition or removal of chemical groups</strong> catalysed by other enzymes.<ul>
+<li>Most common example: <strong>Phosphorylation</strong> – addition of a phosphate group to the enzyme protein. This is the most frequent regulatory modification in cells.</li>
+</ul>
+</li>
+</ul>
+<h4>3.5.3 Enzyme Inhibition</h4>
+<p><strong>Enzyme inhibition</strong> is a decrease in enzyme activity caused by <strong>inhibitor molecules</strong> that bind to the enzyme.</p>
+<p><strong>Types of inhibitors:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Mechanism</th>
+<th>Reversibility</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Irreversible inhibitor</strong></td>
+<td>Permanently blocks enzyme action, often by forming covalent bonds.</td>
+<td>Irreversible</td>
+</tr>
+<tr>
+<td><strong>Reversible inhibitor</strong></td>
+<td>Inactivates enzyme through non‑covalent interactions; can be removed to restore activity.</td>
+<td>Reversible</td>
+</tr>
+</tbody></table>
+<p>Reversible inhibition is further divided into:</p>
+<ol>
+<li><p><strong>Competitive inhibitor</strong></p>
+<ul>
+<li>Competes with the substrate for the <strong>active site</strong>.</li>
+<li>Resembles the substrate and physically blocks substrate binding.</li>
+<li>Effect can be overcome by increasing substrate concentration.</li>
+</ul>
+</li>
+<li><p><strong>Non‑competitive inhibitor</strong></p>
+<ul>
+<li>Binds to a site <strong>other than the active site</strong> (can bind to enzyme or enzyme‑substrate complex).</li>
+<li>Changes enzyme shape so the active site no longer binds substrate effectively; decreases enzyme efficacy.</li>
+<li>Cannot be overcome by adding more substrate.</li>
+</ul>
+</li>
+<li><p><strong>Uncompetitive inhibitor</strong></p>
+<ul>
+<li>Binds <strong>only to the enzyme‑substrate complex</strong>, not to the free enzyme.</li>
+<li>Slows the reaction by locking the substrate in the complex.</li>
+<li>Occurs in multi‑substrate reactions.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3>3.6 Types of Enzymes</h3>
+<p>Enzymes can be classified structurally or functionally.</p>
+<h4>3.6.1 Structural Classification</h4>
+<p>Enzymes are either:</p>
+<ul>
+<li><strong>Simple proteins</strong> – active enzyme consists only of protein.</li>
+<li><strong>Conjugated proteins (holoenzymes)</strong> – consist of:<ul>
+<li><strong>Protein part</strong> – called <strong>apoenzyme</strong> (inactive by itself).</li>
+<li><strong>Non‑protein part</strong> – called <strong>cofactor</strong>.<ul>
+<li><strong>Prosthetic group</strong> – cofactor firmly attached, usually a metal ion.</li>
+<li><strong>Coenzyme</strong> – cofactor loosely attached, often derived from vitamin B complex.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Apoenzyme + Cofactor → <strong>Holoenzyme</strong> (active enzyme).</p>
+<h4>3.6.2 Basic (Functional) Classification</h4>
+<p>Enzymes are grouped into six classes based on the type of reaction they catalyse. All enzyme names end in <strong>“‑ase”</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Reaction catalysed</th>
+<th>Example pattern / description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Oxidoreductases</strong></td>
+<td>Oxidation–reduction reactions; transfer of electrons.</td>
+<td>A⁻ + B → A + B⁻ (oxidant and reductant)</td>
+</tr>
+<tr>
+<td><strong>Transferases</strong></td>
+<td>Transfer of functional groups (e.g., methyl) from a donor to an acceptor molecule.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Hydrolases</strong></td>
+<td>Hydrolysis (cleavage of bonds by adding water).</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Lyases</strong></td>
+<td>Cleavage of bonds by means other than hydrolysis or oxidation; often form double bonds.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Isomerases</strong></td>
+<td>Conversion of a molecule from one isomer to another.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Ligases</strong></td>
+<td>Joining of two molecules, coupled with ATP hydrolysis (diphosphate bond breakage).</td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h3>3.7 Factors Affecting Enzyme Action</h3>
+<p>Factors that influence enzyme activity:</p>
+<ul>
+<li>Temperature</li>
+<li>pH</li>
+<li>Substrate concentration</li>
+<li>Enzyme concentration</li>
+<li>Inhibitors</li>
+<li>Activators</li>
+<li>Radiation</li>
+<li>Water</li>
+<li>End‑product (feedback) inhibition</li>
+</ul>
+<p><strong>Description of each:</strong></p>
+<p><strong>Temperature:</strong></p>
+<ul>
+<li>Each enzyme has an <strong>optimum temperature</strong> (around 37 °C for human enzymes).</li>
+<li>Low temperature reduces molecular movement, lowering activity.</li>
+<li>High temperature denatures the enzyme (breaks non‑covalent bonds, distorts active site). Denaturation is usually irreversible; enzymes cannot be renatured.</li>
+</ul>
+<p><strong>pH:</strong></p>
+<ul>
+<li>Enzymes have an <strong>optimum pH</strong>.</li>
+<li>Too low (acidic) or too high (alkaline) pH disrupts ionic bonds and hydrogen bonds, altering the active site and causing loss of activity.</li>
+</ul>
+<p><strong>Substrate concentration:</strong></p>
+<ul>
+<li>At low substrate concentration, increasing substrate increases reaction rate.</li>
+<li>At high substrate concentration, the enzyme becomes saturated (all active sites occupied), so reaction rate reaches a maximum (Vmax). Further substrate addition does not increase rate.</li>
+</ul>
+<p><strong>Radiation:</strong></p>
+<ul>
+<li>Damages enzyme macromolecules, reducing efficiency.</li>
+</ul>
+<p><strong>Water:</strong></p>
+<ul>
+<li>Affects enzyme performance beyond optimum levels; extreme hydration or dehydration can alter enzyme structure.</li>
+</ul>
+<p><strong>End‑product (feedback) inhibition:</strong></p>
+<ul>
+<li>A cellular control mechanism where the <strong>end product</strong> of a metabolic pathway binds to the <strong>allosteric site</strong> of an enzyme, changing the active site shape and inhibiting the enzyme.</li>
+<li>This prevents over‑production and conserves resources. Example: the HIV drug <strong>Tipranivir</strong> acts as a reversible inhibitor blocking the viral enzyme.</li>
+</ul>
+<p><strong>Inhibitors</strong> – molecules that decrease enzyme activity (see 3.5.3).</p>
+<p><strong>Activators</strong> – molecules that bind to an enzyme and increase its activity.</p>
+<hr>
+<h3>3.8 Enzyme Kinetics</h3>
+<p><strong>Enzyme kinetics</strong> is the study of the rates of enzyme‑catalysed reactions, including binding affinities of substrates and inhibitors and the maximum catalytic rates.</p>
+<p>Enzymes speed up reactions by lowering activation energy. The <strong>concentration of enzyme and substrate</strong> determines the reaction rate.</p>
+<p>The <strong>Michaelis‑Menten model</strong> describes the relationship using the equation:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>V</mi><mn>1</mn></msub><mo>=</mo><mfrac><mrow><msub><mi>V</mi><mtext>max</mtext></msub><mo stretchy="false">[</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><mrow><msub><mi>K</mi><mi>m</mi></msub><mo>+</mo><mo stretchy="false">[</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">V_1 = \frac{V_{\text{max}} [S]}{K_m + [S]}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">]</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">max</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">]</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>Where:</p>
+<ul>
+<li><strong>V₁</strong> (or V₀) = initial velocity / rate of reaction</li>
+<li><strong>Vmax</strong> = maximum reaction velocity (when enzyme is saturated)</li>
+<li><strong>[S]</strong> = substrate concentration</li>
+<li><strong>Km</strong> (Michaelis constant) = substrate concentration at which the reaction rate is half of Vmax; indicates enzyme affinity for substrate (low Km = high affinity).</li>
+</ul>
+<p>The model shows how reaction rate increases with substrate concentration until saturation is reached.</p>
+<hr>
+<h3>3.9 Applications of Enzymes in Industries and Their Benefits</h3>
+<p>Enzyme applications are the use of enzyme catalytic power for industrial processes. Enzymes are far more efficient than inorganic catalysts (hundreds to thousands of times more active).</p>
+<p><strong>Areas of use:</strong></p>
+<ul>
+<li>Food industry</li>
+<li>Feed industry</li>
+<li>Textile industry</li>
+<li>Papermaking</li>
+<li>Leather processing</li>
+<li>Detergents</li>
+<li>Pharmaceutical industry</li>
+<li>Biofuel production</li>
+<li>Molecular biology</li>
+</ul>
+<p><strong>Examples of enzyme applications:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Enzyme(s)</th>
+<th>Industry / Use</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cellulases</td>
+<td>Biofuel</td>
+<td>Break down cellulose into sugars for fermentation into cellulosic ethanol</td>
+</tr>
+<tr>
+<td>Ligninase</td>
+<td>Biofuel</td>
+<td>Pre‑treatment of biomass</td>
+</tr>
+<tr>
+<td>Protease, Amylase, Lipase</td>
+<td>Biological detergents</td>
+<td>Remove protein, starch, and fat/oil stains from laundry and dishes</td>
+</tr>
+<tr>
+<td>Mannanase</td>
+<td>Biological detergents</td>
+<td>Remove food stains from guar gum</td>
+</tr>
+<tr>
+<td>β‑Glucanase</td>
+<td>Brewing</td>
+<td>Improve beer filtration</td>
+</tr>
+<tr>
+<td>Papain</td>
+<td>Culinary</td>
+<td>Tenderise meat</td>
+</tr>
+<tr>
+<td>Rennin</td>
+<td>Dairy</td>
+<td>Hydrolyse protein in cheese manufacture</td>
+</tr>
+<tr>
+<td>Trypsin</td>
+<td>Food processing</td>
+<td>Manufacture hypo‑allergenic baby foods</td>
+</tr>
+<tr>
+<td>Cellulases, Pectinase</td>
+<td>Food processing</td>
+<td>Clarify fruit juices</td>
+</tr>
+<tr>
+<td>Nuclease, DNA Ligase, Polymerase</td>
+<td>Molecular biology</td>
+<td>Restriction digestion and PCR to create recombinant DNA</td>
+</tr>
+</tbody></table>
+<p><strong>General benefits:</strong></p>
+<ul>
+<li>Enzymes break large complex molecules into simpler ones for digestion and cellular respiration.</li>
+<li>Most industrial enzymes were once extracted from animal/plant organs but are now mainly obtained by microbial fermentation.</li>
+<li>Enzymes power billions of chemical reactions inside cells at lightning speed.</li>
+<li>In animal feed, enzymes improve digestibility, break down anti‑nutritional factors, and enhance feed utilisation.</li>
+<li>In pharmaceuticals, enzymes are used in drugs, antibiotics, and household products.</li>
+<li>Enzymes contribute to environmental cleaning (e.g., in washing powders).</li>
+</ul>
+<hr>
+<h3>3.10 Malting in Ethiopian Tradition</h3>
+<p><strong>Malting (sprouting)</strong> is a traditional and industrial process of steeping, germinating, and drying grain to convert it into <strong>malt</strong>. It is the limited, controlled germination of grain in moist air, which mobilises amylases, proteases, and other enzymes to hydrolyse and modify grain components.</p>
+<h4>3.10.1 Steps of Modern Malting</h4>
+<ol>
+<li><p><strong>Steeping</strong></p>
+<ul>
+<li>Grain kernels are cleaned and immersed in water with aeration for 24–48 hours (depending on grain type and size).</li>
+<li>Water activates naturally existing enzymes and stimulates new enzyme production.</li>
+<li>Adequate moisture allows uniform breakdown of starch and protein; starch‑ and protein‑hydrolysing enzymes are activated.</li>
+</ul>
+</li>
+<li><p><strong>Germinating</strong></p>
+<ul>
+<li>The grain continues growth and modification. Rootlets emerge; a shoot (acrospire) grows.</li>
+<li><strong>Modification</strong> is the breakdown of protein and carbohydrates, opening starch reserves, over 4–6 days. Temperature, moisture, and airflow are carefully controlled to produce high‑quality <strong>green malt</strong>.</li>
+</ul>
+</li>
+<li><p><strong>Kilning (Heating)</strong></p>
+<ul>
+<li>The germinated grain is dried to stop further germination. If germination continued, the growing plant would consume the starch reserves needed for brewing.</li>
+<li>Initial drying withers the grain; further drying reduces moisture and develops colour and flavour.</li>
+<li>Kilning sets enzyme activity, friability, and produces a range of malt colours and flavours for different ales and lagers.</li>
+</ul>
+</li>
+</ol>
+<h4>3.10.2 Purpose of Malting</h4>
+<ul>
+<li>To modify the grain’s physical structure and to synthesise/activate enzymes (especially <strong>α‑amylase</strong> and <strong>β‑amylase</strong>, plus beta‑glucanase and protease).</li>
+<li>These enzymes convert grain starches into simple sugars (monosaccharides, disaccharides like maltose) and maltodextrins.</li>
+<li>Yeast then ferments the sugars to produce alcohol (alcoholic fermentation).</li>
+<li><strong>Barley</strong> is the most common grain because of its high starch‑to‑protein ratio and husk that aids processing.</li>
+</ul>
+<h4>3.10.3 Traditional Malting in Ethiopia</h4>
+<ul>
+<li>Traditional malting is the sprouting of barley grains to produce enzymes for local fermented drinks such as <strong>Tella</strong>.</li>
+<li>Steps are the same: soaking (steeping), germinating (sprouting), and kilning (heating).</li>
+<li>Other grains used include maize, millet, and sorghum, but barley is preferred.</li>
+<li>Locally produced drinks include: <strong>Booka, Cheka, Keribo, Korefe, Shameta, Borde, Teji</strong> – made for holidays, weddings, and celebrations.</li>
+<li>Malt production provides alcoholic beverages for consumption and income.</li>
+</ul>
+<hr>
+<h3>3.11 Renowned Biochemists in Ethiopia</h3>
+<ul>
+<li>A <strong>biochemist</strong> is a scientist who studies chemical processes and transformations in living organisms, including DNA, proteins, and cell parts.</li>
+<li>Biochemists research how chemical reactions occur in cells, tissues, and organisms; record the effects of food additives and medicines; study immune systems, gene expression, isolation, analysis, and synthesis of products; mutations leading to cancer; and manage laboratory procedures.</li>
+<li>They also work in agriculture, examining herbicide–plant interactions and evaluating toxicological effects.</li>
+<li>No specific Ethiopian biochemists are named in the text; the unit emphasises that many Ethiopian scientists have contributed to biochemistry and related fields.</li>
+</ul>
+<hr>
+<h2>EXAM REVISION SUMMARY</h2>
+<ul>
+<li><strong>Enzymes</strong> – biological catalysts made of protein; speed up reactions without being consumed.</li>
+<li><strong>Physical properties</strong>: denaturation (irreversible above 40 °C, extreme pH), solubility, colloidal nature, biocatalyst (small amount converts large substrate quantity), precipitation, high molecular weight, enzymatic activity depends on conditions.</li>
+<li><strong>Chemical properties</strong>: heat/pH sensitivity, regulation (activators/inhibitors), high catalytic efficiency (10³–10⁸ times faster), reversibility (both directions), specificity (bond, group, substrate, optical, co‑factor).</li>
+<li><strong>Function</strong>: lower activation energy; turnover number (substrates per second per enzyme molecule); disease markers. Examples: sucrase, lactase, lipase, amylase, trypsin, DNA polymerase.</li>
+<li><strong>Protein structure</strong>: primary (linear amino acid sequence, peptide bonds), secondary (α‑helix, β‑pleated sheet, H‑bonds), tertiary (3‑D folding, side‑chain interactions), quaternary (multi‑subunit assembly, e.g., haemoglobin).</li>
+<li><strong>Enzyme–substrate models</strong>: lock and key (rigid fit), induced fit (enzyme changes shape on binding). Transition state: E + S → ES → ES* → EP → E + P.</li>
+<li><strong>Enzyme regulation</strong>:<ul>
+<li>Allosteric enzymes: active site + allosteric site; effectors (activators/inhibitors) bind, cause conformational change.</li>
+<li>Covalent modification: addition/removal of chemical groups (e.g., phosphorylation) to switch on/off.</li>
+<li>Inhibition: irreversible (permanent), reversible (competitive – blocks active site; non‑competitive – binds elsewhere, changes shape; uncompetitive – binds only ES complex).</li>
+</ul>
+</li>
+<li><strong>Structural enzyme classification</strong>: simple protein vs conjugated (holoenzyme = apoenzyme + cofactor; cofactor = prosthetic group or coenzyme).</li>
+<li><strong>Functional classification</strong>: oxidoreductases, transferases, hydrolases, lyases, isomerases, ligases.</li>
+<li><strong>Factors affecting enzyme activity</strong>: temperature (optimum; high = denaturation), pH (optimum; extremes denature), substrate concentration (saturation at Vmax), enzyme concentration, inhibitors, activators, radiation, water, feedback inhibition (end‑product binds allosteric site).</li>
+<li><strong>Enzyme kinetics</strong>: Michaelis‑Menten equation V₁ = Vmax[S]/(Km + [S]); Km = substrate concentration at half‑Vmax; Vmax = maximum rate.</li>
+<li><strong>Industrial applications</strong>: detergents (protease, amylase, lipase), food (papain, rennin, pectinase), biofuel (cellulase, ligninase), brewing (β‑glucanase), molecular biology (polymerase, ligase), pharmaceuticals. Enzymes obtained mainly by microbial fermentation.</li>
+<li><strong>Malting</strong>: steeping (soaking grain), germinating (sprouting, enzyme activation), kilning (drying, flavour/colour). Purpose: activate α‑ and β‑amylase to convert starch to fermentable sugars for brewing (barley preferred). Traditional Ethiopian malting produces Tella, Booka, Cheka, etc.</li>
+<li><strong>Biochemists</strong>: study chemical processes in living organisms; work in agriculture, medicine, genetics; respected Ethiopian scientists contribute to the field.</li>
+</ul>
+
+    </div>
+</body>
+</html>
